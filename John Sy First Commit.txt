@@ -1,0 +1,4 @@
+John Sy
+CS361-S2020
+Team Slackers Weather App
+First Commit
