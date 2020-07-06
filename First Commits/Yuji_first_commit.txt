@@ -1,3 +1,0 @@
-Yuji Zhou
-CS362
-First Git Commit
