@@ -5,8 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body>
-    <h1>Weather stuff</h1>
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="#homepic"><img src="img/logo.JPG"/></a></li>
+                <li><a href="#white-container">7-Day Forecast</a></li>
+                <li><a href="#mustard-container">Something</a></li>
+                <li><a href="#background-thing">Something</a></li>
+                <li><a href="#background-thing">Something</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="homepic">
+        <div id="location-box">
+            <h4>Choose a location:</h4>
+            <p>User enters location info here. Not sure how we want to do this. Dropdown menus, google map api, search box (that
+                 when they start typing in, it will give them suggestions for locations to select), etc. When they hit submit it 
+                 could automatically send them down to the 7-day forecast.
+            </p>
+            <form><input type="text"><input type="submit" value="submit"></form>
+        </div>
+    </div>
+    <section id="white-container"> <!-- white box -->
+        <div class="textContainer">
+            <div id="week-forecast">
+                <h1>7-Day Forecast</h1>
+                <p>There are many ways that we could format this. I'm just gonna stick an image here for now to fill space.</p>
+                <img src="img/nasa1.jpg"/>
+            </div>
+        </div>
+    </section>
+    
+    <div id="background-thing">
+    </div>
+    
+    <section id="mustard-container"> 
+        <div class="textContainer">
+            <div class="flex-center">
+                <div>
+                    <img src="img/lee-junda.jpg"/>
+                </div>
+                <div>
+                    <h3>Something</h3>
+                    <p>We could put something here later when our TA gives us more requirements in the future.</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
 </body>
+<footer>
+    <ul>
+        <li><strong>Image Sources:</strong></li>
+        <li>Earth and satellite: Photo by NASA on Unsplash.</li>
+        <li>Footer background: Photo by NAMEEEE on Unsplash. </li>
+      </ul> 
+</footer>
 </html>
