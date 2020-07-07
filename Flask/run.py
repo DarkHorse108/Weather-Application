@@ -1,3 +1,8 @@
+#The instructions below are based off of the CS340 instructions for running a Flask application
+#Which can be found here: https://github.com/knightsamar/CS340_starter_flask_app
+#I would recommend reading that first to get the big picture. If you are familiar with the setup, feel free
+#to ignore and move on to executing using the instructions below.
+
 #If you HAVE NOT set up your virtual environment follow lines 2-7 below. If you have, skip lines 2-7.
 #In bash create your virtualenv environment to contain all the dependencies to run the Flask application
 #bash
