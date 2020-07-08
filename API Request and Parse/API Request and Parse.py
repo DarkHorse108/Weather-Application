@@ -30,7 +30,7 @@ returns: boolean object
 	return True
 
 
-def api_request(city, country = "", state = "", number_of_days = FORECAST_DAYS):
+def api_request(city, country, state, number_of_days = FORECAST_DAYS):
 '''
 api_request() takes up to 4 arguments in the following order: city name, number of days to forecast, country name, and state name. City name is required at minimum, number of days to forecast is pre-set to 7 as our application is required to display information for a 7-day forecast. If an invalid city name or a blank
 city name is supplied, api_request() will automatically return None. Country name and State name are optional, however, to ensure that you receive the most accurate information about the specific city you desire, entering those values will help, i.e. whether you want to find the weather in Paris, France or Paris, Arkansas. 
@@ -127,9 +127,39 @@ def parse_api_response(response):
 
 	return days
 
+def get_weather(city, country = "", state = ""):
+
+'''
+get_weather() takes 3 string parameters: city is the name of the city you are requesting the 7-day forecast of, this value is required. The other 2 string parameters, country and state are optional and can be left empty. 
+For greater accuracy of the results, supplying country, or country and state in the case of a U.S. city is preferrable, otherwise the API will attempt to provide information for the most relevant city, if there are multiple cities with the same name. Example calls to get_weather()
+are: get_weather("Berlin"), get_weather("Paris, France"), and get_weather("San Diego", "United States", "California"). 
+
+If any of the supplied arguments are invalid for any reasons, i.e. the city does not exist or it is spelled incorrectly, get_weather() will return None. Otherwise it returns a list object containing 7 dictionary objects containing forecast information for 7 days for the supplied city.
+For more details about the value list that is returned see the notes below:
+	#If the API response contains valid information, we take that information and store it in a list called "days", containing 7 elements i.e. days[0] through days[6] which are dictionary objects, representing the current day queried, and 6 days afterwards. 
+	#For each day, i.e. day[0] which would be today, it contains the following keys:
+	#"city_name"	represents the name of the city 
+	#"country"		represents the country where the above city is found
+	#"date"			represents the date of the day you are indexing into
+	#"current_temp"	represents the current temperature in Farenheit
+	#"high_temp"	represents the highest temperature forecasted for that day in Farenheit
+	#"low_temp"		represents the lowest temperature forecasted for that day in Farenheit
+	#"precip_chance"	represents the percentage chance of rain
+	#"weather_description"	represents a short general summary of the current weather conditions, i.e. "sunny with no clouds"
+
+	i.e. day[0] = {"city_name": "Paris", "country": "France", "date": "2020-07-08", "current_temp": "80.1", "high_temp": "85.2", "low_temp": "76.3", "precip_chance": "30", "weather_description": "clear skies"}
+		 day[1] = {"city_name": "Paris", "country": "France", "date": "2020-07-08", "current_temp": "82.1", "high_temp": "84.2", "low_temp": "78.3", "precip_chance": "0", "weather_description": "overcast clouds"}
+		 day[2] = {...}
+		 ...
+		 day[6] = {...}
+'''
+
+	return parse_api_response(api_request(city, country, state))
+
+
 	
 if __name__ == "__main__":
 
-	print(parse_api_response(api_request("Paris", "France")))
+	print(get_weather("Paris", "France"))
 
 
