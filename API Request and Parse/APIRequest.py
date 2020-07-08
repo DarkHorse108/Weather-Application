@@ -1,12 +1,12 @@
 #config contains our API keys, this config file is included in .gitignore
 #requests allow us to make the GET requests to the API
-import config, requests
+import config, requests, sys
 
 #Below is the URL of the api endpoint for Weatherbit.io
 API_ENDPOINT = "https://api.weatherbit.io/v2.0/forecast/daily"
 
 #Below is the constant that will determine the number of days to be queried for the forecast as a whole, adjust this number which will affect the query and parsing functions below. 
-FORECAST_DAYS = 7
+FORECAST_DAYS = 1
 
 
 def valid_location(string_argument):
@@ -21,6 +21,7 @@ def valid_location(string_argument):
 
 	#If the string argument is a blank string "", its length is 0, and we can return False
 	if not string_length:
+		print("Empty string argument to valid_location()", file=sys.stderr)
 		return False
 
 	#Walk down each character in the string. If the character is neither a whitespace character or strictly an alphabetical character, return False immediately
@@ -28,6 +29,7 @@ def valid_location(string_argument):
 		if string_argument[i].isspace() or string_argument[i].isalpha():
 			continue
 		else:
+			print("String argument contains non-alpha characters", file=sys.stderr)
 			return False
 
 	#If we've reached this point then we have determined that the string argument is not blank, and it only contains alphabetical characters. Note that this does not mean
@@ -79,9 +81,14 @@ def api_request(city, country, state, number_of_days = FORECAST_DAYS):
 
 	#If the response we get is a status code of 204, we entered a location that while a valid string input, is not a location that exists in the API's database
 	if response.status_code == 204:
+		print("API call successful, however location queried does not exist", file=sys.stderr)
 		return None
-	else:
-		#The response we get back is a raw string containing information about the location we are querying, convert it to a JSON object
+	#If the response we get is out of the 200 range, some more significant error has occured, return None
+	elif response.status_code not in (200, 201, 202):
+		print("API call successful, however a status error occured: {}".format(response.status_code), file=sys.stderr)
+		return None
+	#The response we get back is a raw string containing information about the location we are querying, convert it to a JSON object
+	else:	
 		response = response.json()
 
 	#Return our JSON object response from the function
@@ -99,7 +106,10 @@ def parse_api_response(response):
 
 	#If the API response we are trying to parse is a None object, or is an empty string, it means that the GET request that produced this response was invalid for some reason. Automatically return None from this function to indicate
 	#that no information could be retrieved from the argument that has been given to us
-	if (response == None) or (not len(response)):
+	if (response == None):
+		return None
+	elif "error" in response:
+		print("API call successful, however an error occured, please validate your API Key", file=sys.stderr)
 		return None
 	#If the API response contains valid information, we take that information and store it in a list called "days", containing 7 elements i.e. days[0] through days[6] which are dictionary objects, representing the current day queried, and 6 days afterwards. 
 	#For each day, i.e. day[0] which would be today, it contains the following keys:
@@ -170,7 +180,4 @@ def get_weather(city, country = "", state = ""):
 
 	
 if __name__ == "__main__":
-
 	print(get_weather("Berlin"))
-
-
