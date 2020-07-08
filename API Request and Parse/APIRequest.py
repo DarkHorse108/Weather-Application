@@ -47,7 +47,6 @@ def api_request(city, country, state, number_of_days = FORECAST_DAYS):
 
 	returns raw JSON or None'''
 	
-
 	#The parameter city will always be required, irregardless of country, or state.
 	#If we do not receive a valid city argument, we should immediately return a None
 	#from the function indicating that a valid api request could not be made. 
