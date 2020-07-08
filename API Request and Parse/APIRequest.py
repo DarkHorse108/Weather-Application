@@ -6,7 +6,7 @@ import config, requests, sys
 API_ENDPOINT = "https://api.weatherbit.io/v2.0/forecast/daily"
 
 #Below is the constant that will determine the number of days to be queried for the forecast as a whole, adjust this number which will affect the query and parsing functions below. 
-FORECAST_DAYS = 1
+FORECAST_DAYS = 7
 
 
 def valid_location(string_argument):
