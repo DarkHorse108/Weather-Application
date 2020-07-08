@@ -154,11 +154,11 @@ def get_weather(city, country = "", state = ""):
 		#"precip_chance"	represents the percentage chance of rain
 		#"weather_description"	represents a short general summary of the current weather conditions, i.e. "sunny with no clouds"
 
-		i.e. day[0] = {"city_name": "Paris", "country": "France", "date": "2020-07-08", "current_temp": "80.1", "high_temp": "85.2", "low_temp": "76.3", "precip_chance": "30", "weather_description": "clear skies"}
-			 day[1] = {"city_name": "Paris", "country": "France", "date": "2020-07-08", "current_temp": "82.1", "high_temp": "84.2", "low_temp": "78.3", "precip_chance": "0", "weather_description": "overcast clouds"}
-			 day[2] = {...}
+		i.e. days[0] = {"city_name": "Paris", "country": "France", "date": "2020-07-08", "current_temp": "80.1", "high_temp": "85.2", "low_temp": "76.3", "precip_chance": "30", "weather_description": "clear skies"}
+			 days[1] = {"city_name": "Paris", "country": "France", "date": "2020-07-08", "current_temp": "82.1", "high_temp": "84.2", "low_temp": "78.3", "precip_chance": "0", "weather_description": "overcast clouds"}
+			 days[2] = {...}
 			 ...
-			 day[6] = {...}
+			 days[6] = {...}
 
 	city:	string object
 	country:	string object
