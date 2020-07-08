@@ -8,6 +8,8 @@ API_ENDPOINT = "https://api.weatherbit.io/v2.0/forecast/daily"
 #Below is the constant that will determine the number of days to be queried for the forecast as a whole, adjust this number which will affect the query and parsing functions below. 
 FORECAST_DAYS = 7
 
+
+def valid_location(string_argument):
 ''' valid_location() takes a single string argument, which may represent a city, state, or country. This function returns True if the string is not blank, and also contains only alphabetical characters (ignoring whitespace) i.e. "Fort Collins", "Chicago", "Hogwarts" all return True. If the string is blank or
 contains values that are not alphabetical characters, it returns False, i.e. "", "San1 Diego!", "!$@*&#^", all return False.
 
@@ -15,7 +17,6 @@ string_argument: string object
 
 returns: boolean object
 '''
-def valid_location(string_argument):
 
 	#If the string argument is a blank string "", its length is 0, and we can return False
 	if not len(string_argument):
@@ -28,6 +29,8 @@ def valid_location(string_argument):
 	#That the string_argument represents a city, state, or country that actually exists. i.e. "Hogwarts" is not a real city but would return True from this function. 
 	return True
 
+
+def api_request(city, country = "", state = "", number_of_days = FORECAST_DAYS):
 '''
 api_request() takes up to 4 arguments in the following order: city name, number of days to forecast, country name, and state name. City name is required at minimum, number of days to forecast is pre-set to 7 as our application is required to display information for a 7-day forecast. If an invalid city name or a blank
 city name is supplied, api_request() will automatically return None. Country name and State name are optional, however, to ensure that you receive the most accurate information about the specific city you desire, entering those values will help, i.e. whether you want to find the weather in Paris, France or Paris, Arkansas. 
@@ -40,7 +43,6 @@ number_of_days:	integer object
 
 returns JSON object or None
 '''
-def api_request(city, country = "", state = "", number_of_days = FORECAST_DAYS):
 
 	#The parameter city will always be required, irregardless of country, or state.
 	#If we do not receive a valid city argument, we should immediately return a None
@@ -78,6 +80,8 @@ def api_request(city, country = "", state = "", number_of_days = FORECAST_DAYS):
 	#Return our JSON object response from the function
 	return response
 
+
+def parse_api_response(response):
 ''' parse_api_response() takes a JSON object response from the Weatherbit API and creates a list of 7 dictionary objects, each object representing a day in the 7 day forecast, from day 0 to day 6. Each day contains the following information:
 	city name, country, date, current temperature (F), high temperature (F), low temperature (F), chance of precipitation (%), and a short description of the weather provided by the API. If the argument supplied is a None object, or is a blank string object
 	indicating an error or issue in the original API request, this function returns a None object. 
@@ -85,7 +89,6 @@ def api_request(city, country = "", state = "", number_of_days = FORECAST_DAYS):
 	response:	JSON object
 	returns:	list object, or None
 '''
-def parse_api_response(response):
 
 	#If the API response we are trying to parse is a None object, or is an empty string, it means that the GET request that produced this response was invalid for some reason. Automatically return None from this function to indicate
 	#that no information could be retrieved from the argument that has been given to us
