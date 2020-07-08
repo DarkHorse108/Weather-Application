@@ -152,6 +152,12 @@ For more details about the value list that is returned see the notes below:
 		 day[2] = {...}
 		 ...
 		 day[6] = {...}
+
+city:	string object
+country:	string object
+state:	string object
+
+returns:	list object or None
 '''
 
 	return parse_api_response(api_request(city, country, state))
