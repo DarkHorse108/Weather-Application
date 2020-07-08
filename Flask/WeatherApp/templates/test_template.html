@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="./home.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Test Page</title>
+</head>
+<body>
+    <h1>Weather stuff</h1>
+    <table>
+        <tr><td>City Name: </td><td>{{ city_name }}</td></tr>
+    </table>
+    <form id="search-location" action="/test_template" method="post">
+        Location: <input type="text" name="location-name" id="location-name">
+        <input type="submit" value="Get Weather">
+    </form>
+</body>
+</html>
