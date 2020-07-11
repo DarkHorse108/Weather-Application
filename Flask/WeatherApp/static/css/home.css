@@ -144,6 +144,36 @@ nav {
     text-align: center;
 }
 
+.day-forecast {
+    display: flex;
+    font-size: xx-large;
+}
+
+.day-forecast-element {
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.day-forecast-middle-element {
+    flex-grow: 1;
+}
+
+.day-forecast-top-element {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 32%;
+}
+
+.weather-icon {
+    display: table;
+    vertical-align: top;
+    margin: 0 auto;
+}
+
 
 
 
