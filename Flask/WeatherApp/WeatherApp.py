@@ -1,6 +1,7 @@
 # Import Flask and the module required to render HTML pages and deal with
 # requests and redirection between pages
 from flask import Flask, render_template, request, redirect
+from APIModule import APIRequest
 import requests
 
 # Instantiate the Flask Application/Object
@@ -12,11 +13,38 @@ API_KEY = '5bf5950b4a834db092b5870ac750a47f'
 
 # The code below handles the default URL/Landing page i.e. flipN.oregonstate.edu:PORTNUMBER automatically executes
 # the view/function below
-@WeatherApp.route('/')
+@WeatherApp.route('/', methods=['GET', 'POST'])
 def index():
-    # We render the file home.html contained in the templates folder
-    return render_template('home.html')
+    
+    #If the user arrives at this page for the first time, they will be shown home.html
+    if request.method == 'GET':
 
+        return render_template('home.html')
+
+    #If they are arriving at this page via POST, they have used one or more of the input forms. We collect that data here
+    elif request.method == 'POST':
+
+        #Collect string input from the cityInput, countryInput, and stateInput forms
+        user_city_input = request.form['cityInput']
+        user_country_input = request.form['countryInput']
+        user_state_input = request.form['stateInput']
+
+        #Instantiate a UserWeatherRequest object called test_user_weather_request
+        test_user_weather_request = APIRequest.UserWeatherRequest(user_city_input, user_country_input, user_state_input)
+
+        #Check if the user input includes a valid city name
+        if test_user_weather_request.has_valid_city_name():
+
+            #If so, attempt to send the information to tthe API and retrieve the parsed information from the response. If successful, forecast_days should be a list of dictionary objects.
+            forecast_days = APIRequest.get_weather(test_user_weather_request)
+
+            #If forecast_days is NOT None, we received a valid/usable information from the API
+            if forecast_days != None:
+
+                #process data here
+
+        #If the city name was not valid, or if the API response indicates that weather information could not be retrieved using the location information we supplied it, return the user to the home page to start again
+        redirect('/')
 
 # test route
 @WeatherApp.route('/test_template', methods=['GET', 'POST'])
