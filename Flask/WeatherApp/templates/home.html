@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link href="{{ url_for('static', filename = '/css/home.css') }}" rel="stylesheet" type="text/css">
+    <link href="../static/css/weather-icons.css" rel="stylesheet" type="text/css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
     <link rel='icon' href='{{ url_for('static', filename = '/img/favicon.ico') }}' type='image/x-icon'>
 </head>
 <body>
@@ -17,9 +19,9 @@
             <ul class="navbar">
                 <li><a href="#homepic"><img src="{{ url_for('static', filename = '/img/logo.JPG') }}" alt="logo"/></a></li>
                 <li><a href="#white-container">7-Day Forecast</a></li>
-                <li><a href="#mustard-container">Something</a></li>
-                <li><a href="#background-thing">Something</a></li>
-                <li><a href="#background-thing">Something</a></li>
+                <li><a href="#mustard-container">Next Page</a></li>
+                <li><a href="#background-thing">Next Page</a></li>
+                <li><a href="#background-thing">Next Page</a></li>
             </ul>
         </nav>
     </header>
@@ -27,89 +29,49 @@
         <div id="location-box">
             <h4>Choose a location:</h4>
             <p>User enters location info here. Not sure how we want to do this. Dropdown menus, google map api, search box (that
-                 when they start typing in, it will give them suggestions for locations to select), etc. When they hit submit it
+                 when they start typing in, it will give them suggestions for locations to select), etc. When they hit submit it 
                  could automatically send them down to the 7-day forecast.
             </p>
-            <form><input type="text"><input type="submit" value="submit"></form>
+            <form><label for="submitLocation"></label><input id="submitLocation" type="text" placeholder="PLACEHOLDER"><input type="submit" value="submit" onclick="updateTitle()"></form>
         </div>
     </div>
     <section id="white-container"> <!-- white box -->
         <div class="textContainer">
-            <div id="week-forecast">
-                <h1>7-Day Forecast</h1>
-                <br>
-                <div class="day-forecast">
-                <div class="day-forecast-top-element">
-                    <h4>Location: Portland, OR, USA</h4>
-                    <h4>Date: Thursday, July 9</h4>
-                    <h4>Time: 5:00 PM</h4>
-                    <h6>Precipitation: 9%</h6>
-                    <h6>Humidity: 40%</h6>
-                    <h6>Wind: 5mph</h6>
+            <div id="current-conditions" class="weather-box">
+                <div>
+                    <h2>Portland, OR, USA</h2>
+                    <h6 id="curr-date">Thursday, July 9, 5:00 PM</h6>
+                    <p>Precipitation: 9%</p>
+                    <p>Humidity: 44%</p>
+                    <p>Wind: 5 mph</p>
                 </div>
-                    <div class="day-forecast-middle-element">
-                        <span class="weather-icon"><i class="fas fa-cloud-showers-heavy fa-5x"></i></span>
-                    </div>
-                    <div class="day-forecast-top-element">
-                        <h1>90 &deg;</h1>
-                        <h6>High: 34</h6>
-                        <h6>Low: 54</h6>
-                    </div>
+                <div id="curr-middle">
+                    <i class="wi wi-day-cloudy"></i>
+                    <p>Partly Cloudy</p>
                 </div>
-                <div class="day-forecast">
-                    <div class="day-forecast-element">
-                        <div class="day-forecast-middle-element">
-                            <h4>Fri</h4>
-                            <i class='fas fa-cloud-showers-heavy'></i>
-                            <h4>90 &deg; / 75 &deg;</h4>
+                <div id="curr-right">
+                    <h1>77&#176;</h1>
+                    <p>High: 78&#176;</p>
+                    <p>Low: 54&#176;</p>
                 </div>
-                    </div>
-                    <div class="day-forecast-element">
-                        <div class="day-forecast-middle-element">
-                            <h4>Fri</h4>
-                            <i class='fas fa-cloud-showers-heavy'></i>
-                            <h4>90 &deg; / 75 &deg;</h4>
-                </div>
-                    </div>                    <div class="day-forecast-element">
-                        <div class="day-forecast-middle-element">
-                            <h4>Fri</h4>
-                            <i class='fas fa-cloud-showers-heavy'></i>
-                            <h4>90 &deg; / 75 &deg;</h4>
-                </div>
-                    </div>                    <div class="day-forecast-element">
-                        <div class="day-forecast-middle-element">
-                            <h4>Fri</h4>
-                            <i class='fas fa-cloud-showers-heavy'></i>
-                            <h4>90 &deg; / 75 &deg;</h4>
-                </div>
-                    </div>                    <div class="day-forecast-element">
-                        <div class="day-forecast-middle-element">
-                            <h4>Fri</h4>
-                            <i class='fas fa-cloud-showers-heavy'></i>
-                            <h4>90 &deg; / 75 &deg;</h4>
-                </div>
-                    </div>                    <div class="day-forecast-element">
-                        <div class="day-forecast-middle-element">
-                            <h4>Fri</h4>
-                            <i class='fas fa-cloud-showers-heavy'></i>
-                            <h4>90 &deg; / 75 &deg;</h4>
-                </div>
-                    </div>                    <div class="day-forecast-element">
-                        <div class="day-forecast-middle-element">
-                            <h4>Fri</h4>
-                            <i class='fas fa-cloud-showers-heavy'></i>
-                            <h4>90 &deg; / 75 &deg;</h4>
-                </div>
-                    </div>
-                </div>
+                
+            </div>
+            <div id="week-forecast" class="weather-box">
+                <div> <h5>FRI</h5> <i class="wi wi-day-cloudy"></i> <p>81&#176;/ 54&#176;</p>  </div> <!-- 1 -->
+                <div> <h5>SAT</h5> <i class="wi wi-day-sunny"> </i><p>76&#176;/ 57&#176;</p> </div> <!-- 2 -->
+                <div> <h5>SUN</h5> <i class="wi wi-day-cloudy"> </i><p>75&#176;/ 53&#176;</p> </div> <!-- 3 -->
+                <div> <h5>MON</h5> <i class="wi wi-day-sunny"> </i><p>78&#176;/ 55&#176;</p> </div> <!-- 4 -->
+                <div> <h5>TUE</h5> <i class="wi wi-day-cloudy"> </i><p>78&#176;/ 57&#176;</p> </div> <!-- 5 -->
+                <div> <h5>WED</h5> <i class="wi wi-day-cloudy"> </i><p>76&#176;/ 57&#176;</p> </div> <!-- 6 -->
+                <div> <h5>THU</h5> <i class="wi wi-day-cloudy"> </i><p>75&#176;/ 55&#176;</p> </div> <!-- 7 -->
             </div>
         </div>
     </section>
-
+    
     <div id="background-thing">
     </div>
-
-    <section id="mustard-container">
+    
+    <section id="mustard-container"> 
         <div class="textContainer">
             <div class="flex-center">
                 <div>
@@ -120,7 +82,7 @@
                     <p>We could put something here later when our TA gives us more requirements in the future.</p>
                 </div>
             </div>
-
+            
         </div>
     </section>
 </body>
@@ -129,6 +91,6 @@
         <li><strong>Image Sources:</strong></li>
         <li>Earth and satellite: Photo by NASA on Unsplash.</li>
         <li>Footer background: Photo by NAMEEEE on Unsplash. </li>
-      </ul>
+      </ul> 
 </footer>
 </html>
