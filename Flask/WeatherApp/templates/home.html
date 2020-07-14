@@ -32,9 +32,28 @@
                  when they start typing in, it will give them suggestions for locations to select), etc. When they hit submit it 
                  could automatically send them down to the 7-day forecast.
             </p>
-            <form><label for="submitLocation"></label><input id="submitLocation" type="text" placeholder="PLACEHOLDER"><input type="submit" value="submit" onclick="updateTitle()"></form>
+
+            <!---FORM SECTION-->
+            <form class="form-inline" action="/home" method="POST">
+                <div class="form-row align-items-center">
+                    <div class="col-auto">
+                        <input type="text" class="form-control mb-2" placeholder="City" id="cityInput" name="cityInput">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control mb-2" placeholder="Country" id="countryInput" name="countryInput">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control mb-2" placeholder="State" id="stateInput" name="stateInput">
+                    </div>
+                    <div class="col-auto">
+                        <input type="submit" class="btn btn-primary mb-2 "value="submit" onclick="updateTitle()">
+                    </div>
+            </form>
+
         </div>
     </div>
+
+    <!---CONTENT SECTION-->
     <section id="white-container"> <!-- white box -->
         <div class="textContainer">
             <div id="current-conditions" class="weather-box">
