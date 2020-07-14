@@ -1,8 +1,7 @@
 # Import Flask and the module required to render HTML pages and deal with
 # requests and redirection between pages
 from flask import Flask, render_template, request, redirect
-from APIModule import APIRequest
-import requests
+import requests, APIRequest
 
 # Instantiate the Flask Application/Object
 WeatherApp = Flask(__name__)
