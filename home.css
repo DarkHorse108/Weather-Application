@@ -77,7 +77,7 @@ nav {
 	width: 100%;
 	min-height: 600px;
 	padding-top: 3%;
-	background: url("img/emir-dagci.jpg") no-repeat center center fixed;
+	background: url("img/juskteez-vu-mwhklqGVzck-unsplash.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -88,7 +88,7 @@ nav {
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	background-color: white;
+    background-color:#f8f8ff;
 	color: black;
 }
 
@@ -98,9 +98,6 @@ nav {
     margin-right: auto;
     text-align: center;
     padding: 2%;
-}
-.textContainer p {
-    text-align: justify;
 }
 .textContainer ul {
     text-align: left;
@@ -139,10 +136,61 @@ nav {
     margin: 5px;
 }
 
-#week-forecast {
-    width: 100%;
+
+/* Current conditions and 7-day forecast stuff*/
+.weather-box {
+    width: 70%;
+    background-color: #1A355D;
+    border-radius: 10px;
+    color: white;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: center;
+    margin-left:auto;
+    margin-right:auto;
+}
+#current-conditions {
+    padding: 2%;
+    text-align: left;
+}
+#curr-middle {
     text-align: center;
 }
+#curr-right {padding-left: 10%;}
+#curr-right h1{ font-size: 90px;}
+#current-conditions div {
+    display: inline-block;
+    width: 33.33333333%;
+}
+#current-conditions i {
+    padding-top: 15%;
+    font-size: 120px;
+}
+#curr-date {
+    padding-bottom: 15%;
+}
+#current-conditions p {
+    margin: 0px;
+}
+#week-forecast {
+    text-align: center;
+}
+#week-forecast div {
+    display: inline-block;
+    width: 14.2857142857%;
+    padding: 1%;
+}
+#week-forecast p {
+    text-align: center;
+}
+#week-forecast i {
+    padding-top: 15%;
+    padding-bottom: 15%;
+    font-size: xx-large;
+}
+
+
 
 
 
@@ -185,7 +233,7 @@ input[type=text] {
 
 footer {
 	width: 100%;
-	background: url("img/taylor-van-riper.jpg") no-repeat center center fixed;
+	background: url("img/leon-contreras-YyBlrCUVFWQ-unsplash.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
