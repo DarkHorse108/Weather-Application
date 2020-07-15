@@ -174,7 +174,12 @@ def generate_formatted_per_day_weather_data(response_json):
 	# "weather description"	represents a short general summary of the current weather conditions, i.e. "sunny with no clouds"
 
 	country = response_json["country_code"]
+
+	#If the city being queried is an international location, the API returns the state code as an integer, which should fail the is_valid_location_string() function. We will set the state_code as an empty string so that when the state_code is populated in the results page, nothing appears for the state for cities outside of the U.S.
 	state_code = response_json["state_code"]
+	if not is_valid_location_string(state_code):
+		state_code = ""
+		
 	city_name = response_json["city_name"]
 	per_day_weather_json = response_json["data"]
 	current_time = create_current_12_hour_time()
