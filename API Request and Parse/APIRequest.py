@@ -1,13 +1,13 @@
 # config contains our API keys, this config file is included in .gitignore
 # requests allow us to make the GET requests to the API
-import config, requests, sys
+import config, requests, sys, datetime, calendar
 
 # Below is the URL of the api endpoint for Weatherbit.io
 API_ENDPOINT = "https://api.weatherbit.io/v2.0/forecast/daily"
 
 # Below is the constant that will determine the number of days to be queried for the forecast as a whole, adjust this
 # number which will affect the query and parsing functions below.
-FORECAST_DAYS = 7
+FORECAST_DAYS = 8
 
 
 class UserWeatherRequest:
@@ -113,6 +113,18 @@ def api_response_to_json(response):
 	# a JSON object
 	return response.json()
 
+def get_day_of_week(date_string):
+	'''Takes a string in the format YYYY-MM-DD and converts it into a string representing which day of the week it is, i.e. "Monday", "Tuesday", "Wednesday" and returns that string.'''
+
+	day_of_the_week = datetime.datetime.strptime(date_string, '%Y-%m-%d').weekday()
+
+	return str(calendar.day_name[day_of_the_week])
+
+def get_month_name(date_string):
+	'''Takes a string in the format YYYY-MM-DD and converts it into a string representing which month of the year it is, i.e. "January", "February", and returns that string'''
+	month = datetime.datetime.strptime(date_string, '%Y-%m-%d').strftime('%B')
+
+	return str(month)
 
 def generate_formatted_per_day_weather_data(response_json):
 	'''generate_formatted_per_day_weather_data() takes a Weatherbit API response  JSON object  and creates a list of dictionary
@@ -149,6 +161,8 @@ def generate_formatted_per_day_weather_data(response_json):
 		days[i]["city_name"] = city_name
 		days[i]["country"] = country
 		days[i]["date"] = per_day_weather_json[i]["valid_date"]
+		days[number]["day"] = get_day_of_week(days[number]["date"])
+		days[number]["month"] = get_month_name(days[number]["date"])
 		days[i]["current_temp"] = per_day_weather_json[i]["temp"]
 		days[i]["high_temp"] = per_day_weather_json[i]["max_temp"]
 		days[i]["low_temp"] = per_day_weather_json[i]["low_temp"]
