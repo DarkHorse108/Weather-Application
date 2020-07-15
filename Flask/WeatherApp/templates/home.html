@@ -18,20 +18,18 @@
         <nav>
             <ul class="navbar">
                 <li><a href="#homepic"><img src="{{ url_for('static', filename = '/img/logo.JPG') }}" alt="logo"/></a></li>
-                <li><a href="#white-container">7-Day Forecast</a></li>
-                <li><a href="#mustard-container">Next Page</a></li>
-                <li><a href="#background-thing">Next Page</a></li>
-                <li><a href="#background-thing">Next Page</a></li>
+                <!-- <li><a href="#white-container">7-Day Forecast</a></li> -->
+                <!-- <li><a href="#mustard-container">Next Page</a></li> -->
+                <!-- <li><a href="#background-thing">Next Page</a></li> -->
+                <!-- <li><a href="#background-thing">Next Page</a></li> -->
             </ul>
         </nav>
     </header>
     <div id="homepic">
         <div id="location-box">
             <h4>Choose a location:</h4>
-            <p>User enters location info here. Not sure how we want to do this. Dropdown menus, google map api, search box (that
-                 when they start typing in, it will give them suggestions for locations to select), etc. When they hit submit it 
-                 could automatically send them down to the 7-day forecast.
-            </p>
+            <p>Please enter the name of the city you would like weather information from below, then press submit. For more accurate results, include the country, and state (if in the U.S.)</p>
+            
 
             <!---FORM SECTION-->
             <form class="form-inline" method="POST" action="/results">
