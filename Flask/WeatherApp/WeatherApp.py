@@ -41,9 +41,11 @@ def index():
             if forecast_days != None:
 
                 #process data here
+                print(forecast_days[0])
+
 
         #If the city name was not valid, or if the API response indicates that weather information could not be retrieved using the location information we supplied it, return the user to the home page to start again
-        redirect('/')
+        return redirect('/')
 
 # test route
 @WeatherApp.route('/test_template', methods=['GET', 'POST'])
