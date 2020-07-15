@@ -1,3 +1,8 @@
+'''todo:
+	check that precipitation is being extracted from the response correctly
+	check if the data we're displaying as current weather is actually current
+'''
+
 # config contains our API keys, this config file is included in .gitignore
 # requests allow us to make the GET requests to the API
 import config, requests, sys, datetime, calendar
@@ -70,6 +75,7 @@ def get_weather(user_weather_request):
 		#For each day, i.e. day[0] which would be today, it contains the following keys:
 		#"city_name"	represents the name of the city
 		#"country"		represents the country where the above city is found
+		#"state"		represents the state code where the above city is found
 		#"date"			represents the date of the day you are indexing into
 		#"current_temp"	represents the current temperature in Farenheit
 		#"high_temp"	represents the highest temperature forecasted for that day in Farenheit
@@ -126,6 +132,21 @@ def get_month_name(date_string):
 
 	return str(month)
 
+def get_current_calendar_day_number():
+	return datetime.datetime.today().day
+
+def get_current_hour():
+	return str(datetime.datetime.now().strftime('%I'))
+
+def get_current_minute():
+	return str(datetime.datetime.now().strftime('%M'))
+
+def get_current_am_pm():
+	return str(datetime.datetime.now().strftime('%p'))
+
+def create_current_12_hour_time():
+	return get_current_hour() + ':' + get_current_minute() + ' ' + get_current_am_pm()
+
 def generate_formatted_per_day_weather_data(response_json):
 	'''generate_formatted_per_day_weather_data() takes a Weatherbit API response  JSON object  and creates a list of dictionary
 	objects, each object representing a day in the 7 day forecast, from day 0 to day 6. Each day contains the following
@@ -144,6 +165,7 @@ def generate_formatted_per_day_weather_data(response_json):
 	# For each day, i.e. day[0] which would be today, it contains the following keys:
 	# "city_name"	represents the name of the city
 	# "country"		represents the country where the above city is found
+	# "state"		represents the state code where the above city is found
 	# "date"			represents the date of the day you are indexing into
 	# "current_temp"	represents the current temperature in Farenheit
 	# "high_temp"	represents the highest temperature forecasted for that day in Farenheit
@@ -152,21 +174,26 @@ def generate_formatted_per_day_weather_data(response_json):
 	# "weather description"	represents a short general summary of the current weather conditions, i.e. "sunny with no clouds"
 
 	country = response_json["country_code"]
+	state_code = response_json["state_code"]
 	city_name = response_json["city_name"]
 	per_day_weather_json = response_json["data"]
+	current_time = create_current_12_hour_time()
 
 	days = generate_list_of_dicts(FORECAST_DAYS)
 
 	for i in range(FORECAST_DAYS):
 		days[i]["city_name"] = city_name
 		days[i]["country"] = country
+		days[i]["state"] = state_code
 		days[i]["date"] = per_day_weather_json[i]["valid_date"]
+		days[i]["calendar_day"] = get_current_calendar_day_number()
+		days[i]["current_time"] = current_time
 		days[i]["day"] = get_day_of_week(days[i]["date"])
 		days[i]["month"] = get_month_name(days[i]["date"])
-		days[i]["current_temp"] = per_day_weather_json[i]["temp"]
-		days[i]["high_temp"] = per_day_weather_json[i]["max_temp"]
-		days[i]["low_temp"] = per_day_weather_json[i]["low_temp"]
-		days[i]["precip_chance"] = per_day_weather_json[i]["pop"]
+		days[i]["current_temp"] = round(per_day_weather_json[i]["temp"])
+		days[i]["high_temp"] = round(per_day_weather_json[i]["max_temp"])
+		days[i]["low_temp"] = round(per_day_weather_json[i]["low_temp"])
+		days[i]["precip_chance"] = per_day_weather_json[i]["pop"] # todo: this may not be working
 		days[i]["weather_description"] = per_day_weather_json[i]["weather"]["description"]
 
 	return days
