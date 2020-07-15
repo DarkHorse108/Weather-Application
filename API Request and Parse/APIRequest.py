@@ -161,8 +161,8 @@ def generate_formatted_per_day_weather_data(response_json):
 		days[i]["city_name"] = city_name
 		days[i]["country"] = country
 		days[i]["date"] = per_day_weather_json[i]["valid_date"]
-		days[number]["day"] = get_day_of_week(days[number]["date"])
-		days[number]["month"] = get_month_name(days[number]["date"])
+		days[i]["day"] = get_day_of_week(days[i]["date"])
+		days[i]["month"] = get_month_name(days[i]["date"])
 		days[i]["current_temp"] = per_day_weather_json[i]["temp"]
 		days[i]["high_temp"] = per_day_weather_json[i]["max_temp"]
 		days[i]["low_temp"] = per_day_weather_json[i]["low_temp"]
