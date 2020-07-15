@@ -198,7 +198,7 @@ def generate_formatted_per_day_weather_data(response_json):
 		days[i]["current_temp"] = round(per_day_weather_json[i]["temp"])
 		days[i]["high_temp"] = round(per_day_weather_json[i]["max_temp"])
 		days[i]["low_temp"] = round(per_day_weather_json[i]["low_temp"])
-		days[i]["precip_chance"] = per_day_weather_json[i]["pop"] # todo: this may not be working
+		days[i]["precip_chance"] = per_day_weather_json[i]["pop"]  #UPDATE: It works, some locations do in fact have a 0% precip chance while others have more expected values like 20-50%. This value is fine/working/
 		days[i]["weather_description"] = per_day_weather_json[i]["weather"]["description"]
 
 	return days
