@@ -51,6 +51,39 @@
 
         </div>
     </div>
+
+    <!---CONTENT SECTION-->
+    <section id="white-container"> <!-- white box -->
+        <div class="textContainer">
+            <div id="current-conditions" class="weather-box">
+                <div>
+                    <h2>{{ forecast_days[0].city_name }}, {{ forecast_days[0].state }} {{ forecast_days[0].country }}</h2>
+                    <h6 id="curr-date">{{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}, {{ forecast_days[0].current_time }}</h6>
+                    <p>Precipitation: {{ forecast_days[0].precip_chance }}%</p>
+                    <!-- <p>Humidity: NO_HUMIDITY_YET%</p> -->
+                    <!-- <p>Wind: NO_WIND_YET mph</p> -->
+                </div>
+                <div id="curr-middle">
+                    <i class="wi wi-day-cloudy"></i>
+                    <p>{{ forecast_days[0].weather_description }}</p>
+                </div>
+                <div id="curr-right">
+                    <h1>{{ forecast_days[0].current_temp}} &#176;F</h1>
+                    <p>High: {{ forecast_days[0].high_temp}}&#176;F</p>
+                    <p>Low: {{ forecast_days[0].low_temp}}&#176;F</p>
+                </div>
+            </div>
+            <div id="week-forecast" class="weather-box">
+                <div> <h5>{{ forecast_days[1].day}}</h5> <i class="wi wi-day-cloudy"></i> <p>{{ forecast_days[1].high_temp}}&#176;/ {{ forecast_days[1].low_temp}}&#176;</p>  </div> <!-- 1 -->
+                <div> <h5>{{ forecast_days[2].day}}</h5> <i class="wi wi-day-sunny"> </i><p>{{ forecast_days[2].high_temp}}&#176;/ {{ forecast_days[2].low_temp}}&#176;</p> </div> <!-- 2 -->
+                <div> <h5>{{ forecast_days[3].day}}</h5> <i class="wi wi-day-cloudy"> </i><p>{{ forecast_days[3].high_temp}}&#176;/ {{ forecast_days[3].low_temp}}&#176;</p> </div> <!-- 3 -->
+                <div> <h5>{{ forecast_days[4].day}}</h5> <i class="wi wi-day-sunny"> </i><p>{{ forecast_days[4].high_temp}}&#176;/ {{ forecast_days[4].low_temp}}&#176;</p> </div> <!-- 4 -->
+                <div> <h5>{{ forecast_days[5].day}}</h5> <i class="wi wi-day-cloudy"> </i><p>{{ forecast_days[5].high_temp}}&#176;/ {{ forecast_days[5].low_temp}}&#176;</p> </div> <!-- 5 -->
+                <div> <h5>{{ forecast_days[6].day}}</h5> <i class="wi wi-day-cloudy"> </i><p>{{ forecast_days[6].high_temp}}&#176;/ {{ forecast_days[6].low_temp}}&#176;</p> </div> <!-- 6 -->
+                <div> <h5>{{ forecast_days[7].day}}</h5> <i class="wi wi-day-cloudy"> </i><p>{{ forecast_days[7].high_temp}}&#176;/ {{ forecast_days[7].low_temp}}&#176;</p> </div> <!-- 7 -->
+            </div>
+        </div>
+    </section>
     
     <div id="background-thing">
     </div>
