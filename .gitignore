@@ -132,4 +132,4 @@ dmypy.json
 node_modules/
 
 #API Key file
-API Request and Parse/config.py
+#API Request and Parse/config.py
