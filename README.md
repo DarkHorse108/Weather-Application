@@ -28,11 +28,11 @@ pip install -r requirements.txt
 source ./venv/bin/activate
 export FLASK_APP=run.py
 
-5. Run the following command in your command line, replacing YOUR_PORT_NUMBER with a valid random 4 digit port number that is available for this process to run on, i.e. 8666, 8667, etc.:
+8. Run the following command in your command line, replacing YOUR_PORT_NUMBER with a valid random 4 digit port number that is available for this process to run on, i.e. 8666, 8667, etc.:
 
 python -m flask run -h 0.0.0.0 -p YOUR_PORT_NUMBER --reload
 
-6. The application should now be running and viewable using your browser on your local host at the portnumber you specified. If you are using one of the OSU ENGR flip servers, *you will need to be connected to the OSU VPN*, and then the address your application is on would be:
+9. The application should now be running and viewable using your browser on your local host at the portnumber you specified. If you are using one of the OSU ENGR flip servers, *you will need to be connected to the OSU VPN*, and then the address your application is on would be:
 
 http://flipN.engr.oregonstate.edu:YOUR_PORT_NUMBER
 
