@@ -27,8 +27,6 @@ pip3 install --upgrade pip
 
 pip install -r requirements.txt
 
-7. Then, enter the following commands in your command line:
-
 source ./venv/bin/activate
 
 export FLASK_APP=run.py
