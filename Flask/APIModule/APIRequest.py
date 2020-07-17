@@ -1,5 +1,4 @@
 '''todo:
-	check that precipitation is being extracted from the response correctly
 	check if the data we're displaying as current weather is actually current
 '''
 
