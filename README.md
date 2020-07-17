@@ -27,8 +27,6 @@ pip3 install --upgrade pip
 
 pip install -r requirements.txt
 
-source ./venv/bin/activate
-
 export FLASK_APP=run.py
 
 8. Run the following command in your command line, replacing YOUR_PORT_NUMBER with a valid random 4 digit port number that is available for this process to run on, i.e. 8666, 8667, etc.:
