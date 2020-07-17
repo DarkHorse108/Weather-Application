@@ -18,14 +18,19 @@ git clone https://github.com/DarkHorse108/CS361-Slackers-WeatherApp
 6. Execute the shell script RunWeatherApp.sh OR run the following commands in your command line to set up your virtual environment with all of the required modules:
 
 bash
+
 virtualenv venv -p python3
+
 source ./venv/bin/activate
+
 pip3 install --upgrade pip
+
 pip install -r requirements.txt
 
 7. Then, enter the following commands in your command line:
 
 source ./venv/bin/activate
+
 export FLASK_APP=run.py
 
 8. Run the following command in your command line, replacing YOUR_PORT_NUMBER with a valid random 4 digit port number that is available for this process to run on, i.e. 8666, 8667, etc.:
