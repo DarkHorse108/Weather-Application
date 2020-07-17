@@ -227,8 +227,8 @@ input[type=submit]:hover {
 
 input[type=text] {
     width: 45%;
-    margin-right: 4%;
-    margin-left: 18%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 footer {
