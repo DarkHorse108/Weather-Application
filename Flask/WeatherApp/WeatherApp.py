@@ -1,13 +1,11 @@
 # Import Flask and the module required to render HTML pages and deal with
 # requests and redirection between pages
 from flask import Flask, render_template, request, redirect
-import requests, APIRequest
+from APIModule import APIRequest
+import requests
 
 # Instantiate the Flask Application/Object
 WeatherApp = Flask(__name__)
-
-# temp API key
-API_KEY = '5bf5950b4a834db092b5870ac750a47f'
 
 
 # The code below handles the default URL/Landing page i.e. flipN.oregonstate.edu:PORTNUMBER automatically executes

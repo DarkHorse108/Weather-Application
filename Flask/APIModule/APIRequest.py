@@ -5,7 +5,8 @@
 
 # config contains our API keys, this config file is included in .gitignore
 # requests allow us to make the GET requests to the API
-import config, requests, sys, datetime, calendar
+import requests, sys, datetime, calendar
+from APIModule import config
 
 # Below is the URL of the api endpoint for Weatherbit.io
 API_ENDPOINT = "https://api.weatherbit.io/v2.0/forecast/daily"
