@@ -9,6 +9,8 @@ import datetime
 import requests
 import sys
 
+import pytz
+
 # from APIModule import config
 from Flask.APIModule import config
 
@@ -297,10 +299,15 @@ def is_valid_response(response):
 
 
 if __name__ == "__main__":
-    test_user_weather_request = UserWeatherRequest("Fort Wayne", "USA", "Indiana")
-
-    if test_user_weather_request.has_valid_city_name():
-        print(get_weather(test_user_weather_request))
-        print(get_current_hour())
-        print(get_current_minute())
-        print(get_current_am_pm())
+    # test_user_weather_request = UserWeatherRequest("Fort Wayne", "USA", "Indiana")
+    #
+    # if test_user_weather_request.has_valid_city_name():
+    #     print(get_weather(test_user_weather_request))
+    #     print(get_current_hour())
+    #     print(get_current_minute())
+    #     print(get_current_am_pm())
+    #     print(datetime.datetime.now(pytz.timezone('Asia/Kolkata')))
+    x = datetime.datetime.now(pytz.timezone('America/Indiana/Indianapolis'))
+    y = str(x)[11:19]
+    print(y)
+    print(pytz.all_timezones)
