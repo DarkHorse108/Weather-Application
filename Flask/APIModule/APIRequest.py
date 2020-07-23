@@ -62,33 +62,14 @@ class UserWeatherRequest:
 
 
 def get_weather_json(user_weather_request):
-
 	formatted_request_parameters = user_weather_request.generate_formatted_request_parameters()
 	if formatted_request_parameters:
-		api_response = get_api_response(formatted_request_parameters)
+		api_response = requests.get(url=API_ENDPOINT, params=formatted_request_parameters)
 		if is_valid_response(api_response):
-			return api_response_to_json(api_response)
-
+			return api_response.json()
 		else:
-			print("Invalid response")
+			print("Invalid api response")
 	return None
-
-
-def get_api_response(parameters):
-	# Send the GET request to the API with our dictionary of parameters
-	# Return our JSON object response from the function
-	return requests.get(url=API_ENDPOINT, params=parameters)
-
-
-def api_response_to_json(response):
-	'''api_response_to_json() takes a Requests response, checks if it's valid, then converts it to json and returns it
-
-	response:	Requests response
-	returns:	JSON object'''
-
-	# The response we get back is a raw string containing information about the location we are querying, convert it to
-	# a JSON object
-	return response.json()
 
 
 def get_day_of_week(date_string):

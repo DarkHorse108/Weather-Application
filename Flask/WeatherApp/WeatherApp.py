@@ -73,25 +73,22 @@ def results():
         # Check if the user input includes a valid city name
         if test_user_weather_request.has_valid_city_name():
 
-            # If so, attempt to send the information to tthe API and retrieve the parsed information from the response.
+            # If so, attempt to send the information to the API and retrieve the parsed information from the response.
             # If successful, forecast_days should be a list of dictionary objects.
             weather_json = APIRequest.get_weather_json(test_user_weather_request)
-            forecast_days = APIRequest.generate_formatted_per_day_weather_data(weather_json)
-            location = APIRequest.get_api_returned_location_info(weather_json)
+            if weather_json:
+                # the api requets
+                forecast_days = APIRequest.generate_formatted_per_day_weather_data(weather_json)
+                location = APIRequest.get_api_returned_location_info(weather_json)
 
-            # If forecast_days is NOT None, we received a valid/usable information from the API
-            if forecast_days is not None:
-                # process data here
-                # todo: eventually update time to be local time
-                return render_template('results.html',
-                                       forecast_days=forecast_days,
-                                       location=location,
-                                       time=create_server_12_hour_time())
-
-                print(forecast_days[0])
-
-                for day in forecast_days:
-                    print(day['weather_code'])
+                # If forecast_days is NOT None, we received a valid/usable information from the API
+                if forecast_days is not None:
+                    # process data here
+                    # todo: eventually update time to be local time
+                    return render_template('results.html',
+                                           forecast_days=forecast_days,
+                                           location=location,
+                                           time=create_server_12_hour_time())
 
         # If the city name was not valid, or if the API response indicates that weather information could not be
         # retrieved using the location information we supplied it, return the user to the home page to start again
