@@ -72,9 +72,16 @@
                     <p>{{ forecast_days[0].weather_description }}</p>
                 </div>
                 <div id="curr-right">
-                    <h1>{{ forecast_days[0].current_temp}} &#176;F</h1>
+                    <h1>{{ forecast_days[0].current_temp}}&#176;F</h1>
                     <p>High: {{ forecast_days[0].high_temp}}&#176;F</p>
                     <p>Low: {{ forecast_days[0].low_temp}}&#176;F</p>
+                    <div class="switch">
+                        <input type="radio" class="switch-input" name="view" value="far" id="far" checked>
+                        <label for="far" class="switch-label switch-label-off">F</label>
+                        <input type="radio" class="switch-input" name="view" value="cel" id="cel">
+                        <label for="cel" class="switch-label switch-label-on">C</label>
+                        <span class="switch-selection"></span>
+                    </div>
                 </div>
             </div>
             <div id="week-forecast" class="weather-box">
