@@ -3,6 +3,7 @@
 from flask import Flask, render_template, request, redirect
 from APIModule import APIRequest
 import requests
+import datetime
 
 # Instantiate the Flask Application/Object
 WeatherApp = Flask(__name__)
@@ -74,7 +75,6 @@ def results():
 
             # If so, attempt to send the information to the API and retrieve the parsed information from the response.
             # If successful, forecast_days should be a list of dictionary objects.
-
             weather_json = APIRequest.get_weather_json(test_user_weather_request)
             if weather_json:
                 # the api requets
@@ -94,22 +94,23 @@ def results():
         # retrieved using the location information we supplied it, return the user to the home page to start again
         return redirect('/')
 
-# test route
-@WeatherApp.route('/test_template', methods=['GET', 'POST'])
-def test_route():
-    if request.method == 'GET':
-        return render_template('test_template.html', city_name='PLACEHOLDER')
-
-    elif request.method == 'POST':
-        input_location_name = request.form['location-name']
-
-        request_url = 'https://api.weatherbit.io/v2.0/forecast/daily?city=' + input_location_name + '&key=' + API_KEY
-        response = requests.get(request_url)
-        weather_data = response.json()
-
-        return render_template('test_template.html', city_name=weather_data['city_name'])
-
 
 # To start flask locally
 # if __name__ == '__main__':
 #     WeatherApp.run(debug=True)
+
+# todo: replace the time functions to use local time
+def get_server_hour():
+    return str(datetime.datetime.now().strftime('%I'))
+
+
+def get_server_minute():
+    return str(datetime.datetime.now().strftime('%M'))
+
+
+def get_server_minute_am_pm():
+    return str(datetime.datetime.now().strftime('%p'))
+
+
+def create_server_12_hour_time():
+    return get_server_hour() + ':' + get_server_minute() + ' ' + get_server_minute_am_pm()
