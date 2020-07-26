@@ -7,10 +7,11 @@
 # config contains our API keys, this config file is included in .gitignore
 # requests allow us to make the GET requests to the API
 import requests, sys, datetime, calendar
-from APIModule import config
+import config
 
 # Below is the URL of the api endpoint for Weatherbit.io
 API_ENDPOINT = "https://api.weatherbit.io/v2.0/forecast/daily"
+API_ENDPOINT2 = "https://api.weatherbit.io/v2.0/forecast/energy"
 
 # Below is the constant that will determine the number of days to be queried for the forecast as a whole, adjust this
 # number which will affect the query and parsing functions below.
@@ -61,10 +62,10 @@ class UserWeatherRequest:
 		return False
 
 
-def get_weather_json(user_weather_request):
+def get_weather_json(user_weather_request,key):
 	formatted_request_parameters = user_weather_request.generate_formatted_request_parameters()
 	if formatted_request_parameters:
-		api_response = requests.get(url=API_ENDPOINT, params=formatted_request_parameters)
+		api_response = requests.get(url=key, params=formatted_request_parameters)
 		if is_valid_response(api_response):
 			return api_response.json()
 		else:
@@ -91,7 +92,7 @@ def get_current_calendar_day_number():
 	return datetime.datetime.today().day
 
 
-def generate_formatted_per_day_weather_data(response_json):
+def generate_formatted_per_day_weather_data(response_json, response_json2):
 	'''generate_formatted_per_day_weather_data() takes a Weatherbit API response  JSON object  and creates a list of dictionary
 	objects, each object representing a day in the 7 day forecast, from day 0 to day 6. Each day contains the following
 	information: city name, country, date, current temperature (F), high temperature (F), low temperature (F), chance of
@@ -115,6 +116,7 @@ def generate_formatted_per_day_weather_data(response_json):
 	# "weather description"	represents a short general summary of the current weather conditions, i.e. "sunny with no clouds"
 
 	per_day_weather_json = response_json["data"]
+	per_day_weather_json2 = response_json2["data"]
 
 	days = generate_list_of_dicts(FORECAST_DAYS)
 
@@ -129,6 +131,8 @@ def generate_formatted_per_day_weather_data(response_json):
 		days[i]["precip_chance"] = per_day_weather_json[i]["pop"]  #UPDATE: It works, some locations do in fact have a 0% precip chance while others have more expected values like 20-50%. This value is fine/working/
 		days[i]["weather_description"] = per_day_weather_json[i]["weather"]["description"]
 		days[i]["weather_code"] = per_day_weather_json[i]["weather"]["code"]
+		days[i]["humidity"] = per_day_weather_json2[i]["rh"]
+		days[i]["wind_speed"] = per_day_weather_json2[i]["wind_spd"]
 
 	return days
 
@@ -231,7 +235,9 @@ def is_valid_response(response):
 
 if __name__ == "__main__":
 	test_user_weather_request = UserWeatherRequest("Fort Wayne", "USA", "Indiana")
-
 	if test_user_weather_request.has_valid_city_name():
-		print(get_weather(test_user_weather_request))
-
+		print(generate_formatted_per_day_weather_data(get_weather_json(test_user_weather_request,API_ENDPOINT),get_weather_json(test_user_weather_request,API_ENDPOINT2)))
+		#json1 = get_weather_json(test_user_weather_request,API_ENDPOINT)
+		#print(json1)
+		#json2 = get_weather_json(test_user_weather_request,API_ENDPOINT2)
+		#print(json2)
