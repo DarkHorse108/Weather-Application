@@ -20,7 +20,6 @@ API_ENDPOINT2 = "https://api.weatherbit.io/v2.0/forecast/energy"
 # number which will affect the query and parsing functions below.
 FORECAST_DAYS = 8
 
-
 class UserWeatherRequest:
     def __init__(self, city, country="", state="", number_of_days=FORECAST_DAYS):
         self.city = city
