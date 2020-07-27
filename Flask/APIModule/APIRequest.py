@@ -4,10 +4,7 @@
 
 # config contains our API keys, this config file is included in .gitignore
 # requests allow us to make the GET requests to the API
-import calendar
-import datetime
-import requests
-import sys
+import requests, sys, datetime, calendar
 
 import pytz
 
@@ -310,18 +307,7 @@ def get_timezone_time(loc_timezone):
 
 
 if __name__ == "__main__":
-    # test_user_weather_request = UserWeatherRequest("Fort Wayne", "USA", "Indiana")
-    #
-    # if test_user_weather_request.has_valid_city_name():
-    #     print(get_weather(test_user_weather_request))
-    #     print(get_current_hour())
-    #     print(get_current_minute())
-    #     print(get_current_am_pm())
-    #     print(datetime.datetime.now(pytz.timezone('Asia/Kolkata')))
-    yes = 'America/Indiana/Indianapolis'
-    x = datetime.datetime.now(pytz.timezone('America/Indiana/Indianapolis'))
-    y = str(x)[11:19]
-    print(x.strftime('%I:%M:%S'))
-    print(y)
-    print(pytz.all_timezones)
-    print(get_timezone_time(yes))
+    test_user_weather_request = UserWeatherRequest("Fort Wayne", "USA", "Indiana")
+
+    if test_user_weather_request.has_valid_city_name():
+        print(get_weather(test_user_weather_request))
