@@ -10,7 +10,7 @@ import requests, sys, datetime, calendar
 import pytz
 
 # from APIModule import config
-from Flask.APIModule import config
+from APIModule import config
 
 # Below is the URL of the api endpoint for Weatherbit.io
 API_ENDPOINT = "https://api.weatherbit.io/v2.0/forecast/daily"

@@ -1,7 +1,7 @@
 # Import Flask and the module required to render HTML pages and deal with
 # requests and redirection between pages
 from flask import Flask, render_template, request, redirect
-from Flask.APIModule import APIRequest
+from APIModule import APIRequest
 import requests
 import datetime
 
