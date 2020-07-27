@@ -64,14 +64,16 @@
         <div class="textContainer">
             <div id="current-conditions" class="weather-box">
                 <div>
+{#                    <h2>{{ forecast_days[0].city_name }}, {{ forecast_days[0].state }} {{ forecast_days[0].country }}</h2>#}
+{#                    <h6 id="curr-date">{{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}, {{ forecast_days[9] }}</h6>#}
                     <h2>{{ location.city_name }}, {{ location.state_code }} {{ location.country }}</h2>
-                    <h6 id="curr-date">{{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}, {{ time }}</h6>
+                    <h6 id="curr-date">{{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}, {{ forecast_days[9] }}</h6>
                     <p>Precipitation: {{ forecast_days[0].precip_chance }}%</p>
                     <!-- <p>Humidity: NO_HUMIDITY_YET%</p> -->
                     <!-- <p>Wind: NO_WIND_YET mph</p> -->
                 </div>
                 <div id="curr-middle">
-                    <i class="wi wi-day-cloudy"></i>
+                    <img src="{{ url_for('static', filename = '/icons/' + forecast_days[0].weather_icon + '.png') }}" alt="day1">
                     <p>{{ forecast_days[0].weather_description }}</p>
                 </div>
                 <div id="curr-right">
@@ -88,13 +90,15 @@
                 </div>
             </div>
             <div id="week-forecast" class="weather-box">
-                <div> <h5>{{ forecast_days[1].day}}</h5> <i class="wi wi-day-cloudy"></i> <p><span id="day1_high">{{ forecast_days[1].high_temp}}</span>&#176;/ <span id="day1_low">{{ forecast_days[1].low_temp}}</span>&#176;</p>  </div> <!-- 1 -->
-                <div> <h5>{{ forecast_days[2].day}}</h5> <i class="wi wi-day-sunny"> </i><p><span id="day2_high">{{ forecast_days[2].high_temp}}</span>&#176;/ <span id="day2_low">{{ forecast_days[2].low_temp}}</span>&#176;</p> </div> <!-- 2 -->
-                <div> <h5>{{ forecast_days[3].day}}</h5> <i class="wi wi-day-cloudy"> </i><p><span id="day3_high">{{ forecast_days[3].high_temp}}</span>&#176;/ <span id="day3_low">{{ forecast_days[3].low_temp}}</span>&#176;</p> </div> <!-- 3 -->
-                <div> <h5>{{ forecast_days[4].day}}</h5> <i class="wi wi-day-sunny"> </i><p><span id="day4_high">{{ forecast_days[4].high_temp}}</span>&#176;/ <span id="day4_low">{{ forecast_days[4].low_temp}}</span>&#176;</p> </div> <!-- 4 -->
-                <div> <h5>{{ forecast_days[5].day}}</h5> <i class="wi wi-day-cloudy"> </i><p><span id="day5_high">{{ forecast_days[5].high_temp}}</span>&#176;/ <span id="day5_low">{{ forecast_days[5].low_temp}}</span>&#176;</p> </div> <!-- 5 -->
-                <div> <h5>{{ forecast_days[6].day}}</h5> <i class="wi wi-day-cloudy"> </i><p><span id="day6_high">{{ forecast_days[6].high_temp}}</span>&#176;/ <span id="day6_low">{{ forecast_days[6].low_temp}}</span>&#176;</p> </div> <!-- 6 -->
-                <div> <h5>{{ forecast_days[7].day}}</h5> <i class="wi wi-day-cloudy"> </i><p><span id="day7_high">{{ forecast_days[7].high_temp}}</span>&#176;/ <span id="day7_low">{{ forecast_days[7].low_temp}}</span>&#176;</p> </div> <!-- 7 -->
+
+                <div> <h5>{{ forecast_days[1].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[1].weather_icon + '.png') }}" alt="day1"> <p><span id="day1_high">{{ forecast_days[1].high_temp}}</span>&#176;/ <span id="day1_low">{{ forecast_days[1].low_temp}}</span>&#176;</p>  </div> <!-- 1 -->
+                <div> <h5>{{ forecast_days[2].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[2].weather_icon + '.png') }}" alt="day2"> <p><span id="day2_high">{{ forecast_days[2].high_temp}}</span>&#176;/ <span id="day2_low">{{ forecast_days[2].low_temp}}</span>&#176;</p> </div> <!-- 2 -->
+                <div> <h5>{{ forecast_days[3].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[3].weather_icon + '.png') }}" alt="day3"> <p><span id="day3_high">{{ forecast_days[3].high_temp}}</span>&#176;/ <span id="day3_low">{{ forecast_days[3].low_temp}}</span>&#176;</p> </div> <!-- 3 -->
+                <div> <h5>{{ forecast_days[4].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[4].weather_icon + '.png') }}" alt="day4"> <p><span id="day4_high">{{ forecast_days[4].high_temp}}</span>&#176;/ <span id="day4_low">{{ forecast_days[4].low_temp}}</span>&#176;</p> </div> <!-- 4 -->
+                <div> <h5>{{ forecast_days[5].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[5].weather_icon + '.png') }}" alt="day5"> <p><span id="day5_high">{{ forecast_days[5].high_temp}}</span>&#176;/ <span id="day5_low">{{ forecast_days[5].low_temp}}</span>&#176;</p> </div> <!-- 5 -->
+                <div> <h5>{{ forecast_days[6].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[6].weather_icon + '.png') }}" alt="day6"> <p><span id="day6_high">{{ forecast_days[6].high_temp}}</span>&#176;/ <span id="day6_low">{{ forecast_days[6].low_temp}}</span>&#176;</p> </div> <!-- 6 -->
+                <div> <h5>{{ forecast_days[7].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[7].weather_icon + '.png') }}" alt="day7"> <p><span id="day7_high">{{ forecast_days[7].high_temp}}</span>&#176;/ <span id="day7_low">{{ forecast_days[7].low_temp}}</span>&#176;</p> </div> <!-- 7 -->
+
             </div>
         </div>
     </section>

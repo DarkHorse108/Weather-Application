@@ -15,7 +15,7 @@ WeatherApp = Flask(__name__)
 def index():
     
      return render_template('home.html')
-
+  
 @WeatherApp.route('/results', methods=['GET', 'POST'])
 def results():
     # If the user arrives at this page for the first time, they will be shown home.html
@@ -40,7 +40,7 @@ def results():
 
             # If so, attempt to send the information to the API and retrieve the parsed information from the response.
             # If successful, forecast_days should be a list of dictionary objects.
-            weather_json = APIRequest.get_weather_json(test_user_weather_request)
+            weather_json = APIRequest.get_weather_json(test_user_weather_request, APIRequest.API_ENDPOINT)
             if weather_json:
                 # the api requets
                 forecast_days = APIRequest.generate_formatted_per_day_weather_data(weather_json)
@@ -48,20 +48,21 @@ def results():
 
                 # If forecast_days is NOT None, we received a valid/usable information from the API
                 if forecast_days is not None:
+                    print(forecast_days)
                     # process data here
                     # todo: eventually update time to be local time
                     return render_template('results.html',
                                            forecast_days=forecast_days,
                                            location=location,
-                                           time=create_server_12_hour_time())
+                                           )
 
         # If the city name was not valid, or if the API response indicates that weather information could not be
         # retrieved using the location information we supplied it, return the user to the home page to start again
         return redirect('/')
 
 # To start flask locally
-# if __name__ == '__main__':
-#     WeatherApp.run(debug=True)
+if __name__ == '__main__':
+    WeatherApp.run(debug=True)
 
 # todo: replace the time functions to use local time
 def get_server_hour():
