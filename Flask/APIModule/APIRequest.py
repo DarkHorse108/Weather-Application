@@ -227,6 +227,7 @@ def generate_formatted_per_day_weather_data(response_json):
         days[i]["weather_icon"] = per_day_weather_json[i]["weather"]["icon"]
         days[i]["weather_icon_code"] = per_day_weather_json[i]["weather"]["code"]
     days.append(timezone)
+    days.append(get_timezone_time(timezone))
     return days
 
 
@@ -298,6 +299,16 @@ def is_valid_response(response):
     return True
 
 
+def get_timezone_time(loc_timezone):
+    """
+    Grabs a parameter of a timezone (eg: 'America/Indiana/Indianapolis') and converts it to local time with AM/PM.
+
+    :returns timezone
+    """
+    current_time = datetime.datetime.now(pytz.timezone(loc_timezone))
+    return current_time.strftime('%I:%M:%S')
+
+
 if __name__ == "__main__":
     # test_user_weather_request = UserWeatherRequest("Fort Wayne", "USA", "Indiana")
     #
@@ -307,7 +318,10 @@ if __name__ == "__main__":
     #     print(get_current_minute())
     #     print(get_current_am_pm())
     #     print(datetime.datetime.now(pytz.timezone('Asia/Kolkata')))
+    yes = 'America/Indiana/Indianapolis'
     x = datetime.datetime.now(pytz.timezone('America/Indiana/Indianapolis'))
     y = str(x)[11:19]
+    print(x.strftime('%I:%M:%S'))
     print(y)
     print(pytz.all_timezones)
+    print(get_timezone_time(yes))

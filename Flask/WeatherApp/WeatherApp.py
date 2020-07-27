@@ -1,7 +1,7 @@
 # Import Flask and the module required to render HTML pages and deal with
 # requests and redirection between pages
 from flask import Flask, render_template, request, redirect
-from APIModule import APIRequest
+from Flask.APIModule import APIRequest
 import requests
 
 # Instantiate the Flask Application/Object
@@ -79,6 +79,8 @@ def results():
             # If forecast_days is NOT None, we received a valid/usable information from the API
             if forecast_days != None:
                 # process data here
+                print(forecast_days[8])
+                print(forecast_days[9])
                 return render_template('results.html', forecast_days=forecast_days)
 
                 print(forecast_days[0])
@@ -104,5 +106,5 @@ def test_route():
 
 
 # To start flask locally
-# if __name__ == '__main__':
-#     WeatherApp.run(debug=True)
+if __name__ == '__main__':
+    WeatherApp.run(debug=True)
