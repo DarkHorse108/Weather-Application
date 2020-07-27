@@ -4,7 +4,7 @@
 
             var celsius = $(elementID).text();
             celsius = (celsius - 32) * (5/9);
-            celsius = Math.round(celsius * 10) / 10;
+            celsius = Math.round(celsius); 
             $(elementID).html(celsius);
        }
 
@@ -12,7 +12,7 @@
        {
             var farenheit = $(elementID).text();
             farenheit = (farenheit * (9/5)) + 32;
-            farenheit = Math.round(farenheit * 10) / 10;
+            farenheit = Math.round(farenheit); 
             $(elementID).html(farenheit);
        }
 
