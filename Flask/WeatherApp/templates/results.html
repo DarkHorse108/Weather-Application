@@ -61,14 +61,16 @@
         <div class="textContainer">
             <div id="current-conditions" class="weather-box">
                 <div>
-                    <h2>{{ forecast_days[0].city_name }}, {{ forecast_days[0].state }} {{ forecast_days[0].country }}</h2>
+{#                    <h2>{{ forecast_days[0].city_name }}, {{ forecast_days[0].state }} {{ forecast_days[0].country }}</h2>#}
+{#                    <h6 id="curr-date">{{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}, {{ forecast_days[9] }}</h6>#}
+                    <h2>{{ location.city_name }}, {{ location.state_code }} {{ location.country }}</h2>
                     <h6 id="curr-date">{{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}, {{ forecast_days[9] }}</h6>
                     <p>Precipitation: {{ forecast_days[0].precip_chance }}%</p>
                     <!-- <p>Humidity: NO_HUMIDITY_YET%</p> -->
                     <!-- <p>Wind: NO_WIND_YET mph</p> -->
                 </div>
                 <div id="curr-middle">
-                    <i class="wi wi-day-cloudy"></i>
+                    <img src="{{ url_for('static', filename = '/icons/' + forecast_days[0].weather_icon + '.png') }}" alt="day1">
                     <p>{{ forecast_days[0].weather_description }}</p>
                 </div>
                 <div id="curr-right">
