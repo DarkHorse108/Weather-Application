@@ -81,6 +81,7 @@ def results():
                 # process data here
                 print(forecast_days[8])
                 print(forecast_days[9])
+                print(forecast_days)
                 return render_template('results.html', forecast_days=forecast_days)
 
                 print(forecast_days[0])
