@@ -80,8 +80,8 @@ def get_api_response(parameters):
 def api_response_to_json(response):
     '''api_response_to_json() takes a Requests response, checks if it's valid, then converts it to json and returns it
 
-    response:	Requests response
-    returns:	JSON object'''
+    response:   Requests response
+    returns:    JSON object'''
 
     # The response we get back is a raw string containing information about the location we are querying, convert it to
     # a JSON object
@@ -144,20 +144,20 @@ def generate_formatted_per_day_weather_data(forecast_response_json, current_resp
     object, or is a blank string object indicating an error or issue in the original API request, this function returns
     a None object.
 
-    response:	raw JSON string
-    returns:	list object, or None'''
+    response:   raw JSON string
+    returns:    list object, or None'''
 
     # If the API response contains valid information, we take that information and store it in a list called "days",
     # containing 7 elements i.e. days[0] through days[6] which are dictionary objects, representing the current day
     # queried, and 6 days afterwards.
 
     # For each day, i.e. day[0] which would be today, it contains the following keys:
-    # "date"			represents the date of the day you are indexing into
-    # "current_temp"	represents the current temperature in Farenheit
-    # "high_temp"	represents the highest temperature forecasted for that day in Farenheit
-    # "low_temp"		represents the lowest temperature forecasted for that day in Farenheit
-    # "precip_chance"	represents the percentage chance of rain
-    # "weather description"	represents a short general summary of the current weather conditions, i.e. "sunny with no clouds"
+    # "date"            represents the date of the day you are indexing into
+    # "current_temp"    represents the current temperature in Farenheit
+    # "high_temp"   represents the highest temperature forecasted for that day in Farenheit
+    # "low_temp"        represents the lowest temperature forecasted for that day in Farenheit
+    # "precip_chance"   represents the percentage chance of rain
+    # "weather description" represents a short general summary of the current weather conditions, i.e. "sunny with no clouds"
 
     per_day_weather_json = forecast_response_json["data"]
     # per_day_weather_json2 = response_json2["data"]
@@ -182,7 +182,6 @@ def generate_formatted_per_day_weather_data(forecast_response_json, current_resp
         #days[i]["humidity"] = per_day_weather_json2[i]["rh"]
         #days[i]["wind_speed"] = per_day_weather_json2[i]["wind_spd"]
 
-
     days[0]["current_temp"] = int(current_response_json["data"][0]["temp"])
     days[0]["precip_chance"] = current_response_json["data"][0]["precip"]
     days[0]["weather_description"] = current_response_json["data"][0]["weather"]["description"]
@@ -196,9 +195,9 @@ def generate_formatted_per_day_weather_data(forecast_response_json, current_resp
 
 
 def get_api_returned_location_info(response_json):
-    # "city_name"	represents the name of the city
-    # "country"		represents the country where the above city is found
-    # "state"		represents the state code where the above city is found
+    # "city_name"   represents the name of the city
+    # "country"     represents the country where the above city is found
+    # "state"       represents the state code where the above city is found
 
     # If the city being queried is an international location, the API returns the state code as an integer,
     # which should fail the is_valid_location_string() function. We will set the state_code as an empty
@@ -293,8 +292,15 @@ def get_timezone_time(loc_timezone):
     :returns timezone
     """
     current_time = datetime.datetime.now(pytz.timezone(loc_timezone))
-    return current_time.strftime('%I:%M:%S %p')
+    
+    current_time = current_time.strftime('%I:%M %p')
 
+    #Modify string to not include the extraneous 0 in front of the hours i.e. 06:00 AM, however if the time is 10:00AM it will be displayed correctly as such/
+    hours = current_time[:2]
+    hours = int(hours)
+    current_time = current_time[2::]
+
+    return str(hours) + current_time
 
 if __name__ == "__main__":
     test_user_weather_request = UserWeatherRequest("Fort Wayne", "USA", "Indiana")
