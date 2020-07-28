@@ -1,4 +1,19 @@
 
+        function record_starting_temp(days)
+        {
+            original_temperature = [];
+
+            for (i = 0; i < days.length; i++)
+            {
+                console.log($(days[i]).text());
+                original_temperature.push($(days[i]).text());
+                console.log(original_temperature)
+            }
+
+            return original_temperature;
+
+        }
+
         function farenheit_to_celsius(elementID)
        {
 
@@ -8,19 +23,23 @@
             $(elementID).html(celsius);
        }
 
-       function celsius_to_farenheit(elementID)
+       function celsius_to_farenheit(element_array, farenheit_array)
        {
-            var farenheit = $(elementID).text();
-            farenheit = (farenheit * (9/5)) + 32;
-            farenheit = Math.round(farenheit); 
-            $(elementID).html(farenheit);
+            var i = 0;
+            var length = element_array.length;
+
+            for (i = 0; i < element_array.length; i++)
+            {
+                $(element_array[i]).html(farenheit_array[i]);
+            }       
        }
 
         $(document).ready(function(){
 
-            $('input:radio').change(function(){
+            var days = ['#current_temp', '#current_high', '#current_low', '#day1_high', '#day1_low', '#day2_high', '#day2_low', '#day3_high', '#day3_low', '#day4_high', '#day4_low', '#day5_high', '#day5_low', '#day6_high', '#day6_low', '#day7_high', '#day7_low'];
+            var farenheit = record_starting_temp(days);
 
-                var days = ['#current_temp', '#current_high', '#current_low', '#day1_high', '#day1_low', '#day2_high', '#day2_low', '#day3_high', '#day3_low', '#day4_high', '#day4_low', '#day5_high', '#day5_low', '#day6_high', '#day6_low', '#day7_high', '#day7_low'];
+            $('input:radio').change(function(){
 
                 if(this.value == 'celsius')
                 {
@@ -29,7 +48,7 @@
                 }
                 else if (this.value == 'farenheit')
                 {
-                    days.forEach(element => celsius_to_farenheit(element));
+                    celsius_to_farenheit(days, farenheit);
                 }
             });
         });
