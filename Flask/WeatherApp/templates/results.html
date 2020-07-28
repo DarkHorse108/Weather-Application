@@ -120,12 +120,11 @@
         <div class="textContainer">
             <div id="storm-watch">
                 <h3>Weather Warnings for {{ location.city_name }}, {{ location.state_code }} {{ location.country }}:</h3>
-                <div class="{{ warnings[0].bootstrap_alert_class }}">
-                  <strong>Test</strong> {{ warnings[0].warning_text }}
-                </div>
-                <div class="{{ warnings[1].bootstrap_alert_class }}">
-                  <strong>Test</strong> {{ warnings[1].warning_text }}
-                </div>
+                {% for warning in warnings %}
+                    <div class= "{{ warning.bootstrap_alert_class }}">
+                      <strong>Test</strong> {{ warning.message }}
+                    </div>
+                {% endfor %}
             </div>
 
             <!--<div class="flex-center">

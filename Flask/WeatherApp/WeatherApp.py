@@ -55,9 +55,9 @@ def results():
                     # todo: delete this warning alerts test
                     warnings = [
                         {'bootstrap_alert_class': 'alert alert alert-warning alert-dismissible',
-                         'warning_text': 'Rain is coming!'},
+                         'message': 'Rain is coming!'},
                         {'bootstrap_alert_class': 'alert alert-danger alert-dismissible',
-                         'warning_text': 'The end of the world approaching!'}
+                         'message': 'The end of the world approaching!'}
                     ]
 
                     return render_template('results.html',
