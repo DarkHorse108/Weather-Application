@@ -162,8 +162,6 @@ def generate_formatted_per_day_weather_data(forecast_response_json, current_resp
     per_day_weather_json = forecast_response_json["data"]
     # per_day_weather_json2 = response_json2["data"]
 
-    print(per_day_weather_json)
-
     timezone = forecast_response_json["timezone"]
 
     days = generate_list_of_dicts(FORECAST_DAYS)
@@ -184,14 +182,11 @@ def generate_formatted_per_day_weather_data(forecast_response_json, current_resp
         #days[i]["humidity"] = per_day_weather_json2[i]["rh"]
         #days[i]["wind_speed"] = per_day_weather_json2[i]["wind_spd"]
 
-
-
     days[0]["current_temp"] = int(current_response_json["data"][0]["temp"])
     days[0]["precip_chance"] = current_response_json["data"][0]["precip"]
     days[0]["weather_description"] = current_response_json["data"][0]["weather"]["description"]
     days[0]["weather_icon"] = current_response_json["data"][0]["weather"]["icon"]
     days[0]["weather_code"] =  current_response_json["data"][0]["weather"]["code"]
-
 
     days.append(timezone)
     days.append(get_timezone_time(timezone))
