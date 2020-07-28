@@ -51,9 +51,19 @@ def results():
                     print(forecast_days)
                     # process data here
                     # todo: eventually update time to be local time
+
+                    # todo: delete this warning alerts test
+                    warnings = [
+                        {'bootstrap_alert_class': 'alert alert alert-warning alert-dismissible',
+                         'warning_text': 'Rain is coming!'},
+                        {'bootstrap_alert_class': 'alert alert-danger alert-dismissible',
+                         'warning_text': 'The end of the world approaching!'}
+                    ]
+
                     return render_template('results.html',
                                            forecast_days=forecast_days,
                                            location=location,
+                                           warnings=warnings
                                            )
 
         # If the city name was not valid, or if the API response indicates that weather information could not be
