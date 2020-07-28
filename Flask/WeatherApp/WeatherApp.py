@@ -8,7 +8,6 @@ import datetime
 # Instantiate the Flask Application/Object
 WeatherApp = Flask(__name__)
 
-
 # The code below handles the default URL/Landing page i.e. flipN.oregonstate.edu:PORTNUMBER automatically executes
 # the view/function below
 @WeatherApp.route('/', methods=['GET', 'POST'])
@@ -33,22 +32,24 @@ def results():
         user_state_input = request.form['stateInput']
 
         # Instantiate a UserWeatherRequest object called test_user_weather_request
-        test_user_weather_request = APIRequest.UserWeatherRequest(user_city_input, user_country_input, user_state_input)
-
+        user_weather_request_current = APIRequest.UserWeatherRequest(user_city_input, APIRequest.CURRENT_DAY, user_country_input, user_state_input)
+        user_weather_request_forecast = APIRequest.UserWeatherRequest(user_city_input, APIRequest.FORECAST_DAYS, user_country_input, user_state_input)
         # Check if the user input includes a valid city name
-        if test_user_weather_request.has_valid_city_name():
+        if user_weather_request_forecast.has_valid_city_name():
 
             # If so, attempt to send the information to the API and retrieve the parsed information from the response.
             # If successful, forecast_days should be a list of dictionary objects.
-            weather_json = APIRequest.get_weather_json(test_user_weather_request, APIRequest.API_ENDPOINT)
-            if weather_json:
+
+            forecast_weather_json = APIRequest.get_weather_json(user_weather_request_forecast, APIRequest.API_ENDPOINT_FORECAST)
+            current_weather_json = APIRequest.get_weather_json(user_weather_request_current, APIRequest.API_ENDPOINT_CURRENT)
+
+            if forecast_weather_json and current_weather_json:
                 # the api requets
-                forecast_days = APIRequest.generate_formatted_per_day_weather_data(weather_json)
-                location = APIRequest.get_api_returned_location_info(weather_json)
+                forecast_days = APIRequest.generate_formatted_per_day_weather_data(forecast_weather_json, current_weather_json)
+                location = APIRequest.get_api_returned_location_info(forecast_weather_json)
 
                 # If forecast_days is NOT None, we received a valid/usable information from the API
                 if forecast_days is not None:
-                    print(forecast_days)
                     # process data here
                     # todo: eventually update time to be local time
                     return render_template('results.html',
