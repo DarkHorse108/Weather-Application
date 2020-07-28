@@ -5,9 +5,7 @@
 
             for (i = 0; i < days.length; i++)
             {
-                console.log($(days[i]).text());
                 original_temperature.push($(days[i]).text());
-                console.log(original_temperature)
             }
 
             return original_temperature;
