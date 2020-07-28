@@ -13,19 +13,22 @@ import pytz
 from APIModule import config
 
 # Below is the URL of the api endpoint for Weatherbit.io
-API_ENDPOINT = "https://api.weatherbit.io/v2.0/forecast/daily"
-API_ENDPOINT2 = "https://api.weatherbit.io/v2.0/forecast/energy"
+API_ENDPOINT_FORECAST = "https://api.weatherbit.io/v2.0/forecast/daily"
+API_ENDPOINT_CURRENT = " https://api.weatherbit.io/v2.0/current"
+#API_ENDPOINT2 = "https://api.weatherbit.io/v2.0/forecast/energy"
 
 # Below is the constant that will determine the number of days to be queried for the forecast as a whole, adjust this
 # number which will affect the query and parsing functions below.
 FORECAST_DAYS = 8
+CURRENT_DAY = 1
 
 class UserWeatherRequest:
-    def __init__(self, city, country="", state="", number_of_days=FORECAST_DAYS):
+    def __init__(self, city, number_of_days, country="", state=""):
         self.city = city
+        self.number_of_days = number_of_days
         self.country = country
         self.state = state
-        self.number_of_days = number_of_days
+        
 
     def generate_formatted_request_parameters(self):
         # There must be a city to make get weather data. country and state are optional.
@@ -38,9 +41,14 @@ class UserWeatherRequest:
             print("No/Invalid City name")
             return None
 
-        # Create a new dictionary of parameters, where the key will be the string key in the query, and the value will
-        # be the string value in the query
-        parameters = {"city": self.city, "days": str(self.number_of_days), "units": "I", "key": str(config.API_KEY)}
+        if self.number_of_days == CURRENT_DAY:
+
+             parameters = {"city": self.city, "units": "I", "key": str(config.API_KEY)}
+
+        elif self.number_of_days == FORECAST_DAYS:
+            # Create a new dictionary of parameters, where the key will be the string key in the query, and the value will
+            # be the string value in the query
+            parameters = {"city": self.city, "days": str(self.number_of_days), "units": "I", "key": str(config.API_KEY)}
 
         # If we received a valid country argument, include it in our dictionary of parameters. If we do not, it will
         # not be included and the Country will be inferred by the API to the best of its ability.
@@ -63,52 +71,6 @@ class UserWeatherRequest:
             return True
         return False
 
-
-def get_weather(user_weather_request):
-    '''get_weather() takes a UserWeatherRequest object and returns the 7-day forecast of, this value is required.
-    UserWeatherRequest city member must be a valid location name string. UserWeatherRequest state and country members
-    are optional. For greater accuracy of the results, supplying country, or country and state in the case of a U.S.
-    city is preferrable, otherwise the API will attempt to provide information for the most relevant city, if there are
-    multiple cities with the same name.
-
-    If any of the supplied arguments are invalid for any reasons, i.e. the city does not exist or it is spelled
-    incorrectly, get_weather() will return None. Otherwise it returns a list object containing 7 dictionary objects
-    containing forecast information for 7 days for the supplied city.
-    For more details about the value list that is returned see the notes below:
-        #If the API response contains valid information, we take that information and store it in a list called "days",
-        containing 7 elements i.e. days[0] through days[6] which are dictionary objects, representing the current day
-        queried, and 6 days afterwards.
-        #For each day, i.e. day[0] which would be today, it contains the following keys:
-        #"city_name"	represents the name of the city
-        #"country"		represents the country where the above city is found
-        #"state"		represents the state code where the above city is found
-        #"date"			represents the date of the day you are indexing into
-        #"current_temp"	represents the current temperature in Farenheit
-        #"high_temp"	represents the highest temperature forecasted for that day in Farenheit
-        #"low_temp"		represents the lowest temperature forecasted for that day in Farenheit
-        #"precip_chance"	represents the percentage chance of rain
-        #"weather_description"	represents a short general summary of the current weather conditions, i.e. "sunny with no clouds"
-
-        i.e. days[0] = {"city_name": "Paris", "country": "France", "date": "2020-07-08", "current_temp": "80.1", "high_temp": "85.2", "low_temp": "76.3", "precip_chance": "30", "weather_description": "clear skies"}
-             days[1] = {"city_name": "Paris", "country": "France", "date": "2020-07-08", "current_temp": "82.1", "high_temp": "84.2", "low_temp": "78.3", "precip_chance": "0", "weather_description": "overcast clouds"}
-             days[2] = {...}
-             ...
-             days[6] = {...}
-
-    userWeatherRequest:	UserWeatherRequest Object
-
-    returns:	list object or None'''
-    formatted_request_parameters = user_weather_request.generate_formatted_request_parameters()
-    if formatted_request_parameters:
-        api_response = get_api_response(formatted_request_parameters)
-        if is_valid_response(api_response):
-            json = api_response_to_json(api_response)
-            return generate_formatted_per_day_weather_data(json)
-        else:
-            print("Invalid response")
-    return None
-
-
 def get_api_response(parameters):
     # Send the GET request to the API with our dictionary of parameters
     # Return our JSON object response from the function
@@ -126,10 +88,10 @@ def api_response_to_json(response):
     return response.json()
 
 
-def get_weather_json(user_weather_request, key):
+def get_weather_json(user_weather_request, endpoint_url):
     formatted_request_parameters = user_weather_request.generate_formatted_request_parameters()
     if formatted_request_parameters:
-        api_response = requests.get(url=key, params=formatted_request_parameters)
+        api_response = requests.get(url=endpoint_url, params=formatted_request_parameters)
         if is_valid_response(api_response):
             return api_response.json()
         else:
@@ -174,7 +136,7 @@ def create_current_12_hour_time():
     return get_current_hour() + ':' + get_current_minute() + ' ' + get_current_am_pm()
 
 
-def generate_formatted_per_day_weather_data(response_json, response_json2=None):
+def generate_formatted_per_day_weather_data(forecast_response_json, current_response_json):
     '''generate_formatted_per_day_weather_data() takes a Weatherbit API response  JSON object  and creates a list of dictionary
     objects, each object representing a day in the 7 day forecast, from day 0 to day 6. Each day contains the following
     information: city name, country, date, current temperature (F), high temperature (F), low temperature (F), chance of
@@ -197,28 +159,35 @@ def generate_formatted_per_day_weather_data(response_json, response_json2=None):
     # "precip_chance"	represents the percentage chance of rain
     # "weather description"	represents a short general summary of the current weather conditions, i.e. "sunny with no clouds"
 
-    per_day_weather_json = response_json["data"]
+    per_day_weather_json = forecast_response_json["data"]
     # per_day_weather_json2 = response_json2["data"]
 
-    timezone = response_json["timezone"]
+    timezone = forecast_response_json["timezone"]
 
     days = generate_list_of_dicts(FORECAST_DAYS)
 
     for i in range(FORECAST_DAYS):
         days[i]["date"] = per_day_weather_json[i]["valid_date"]
-        days[i]["calendar_day"] = get_current_calendar_day_number()
+        #days[i]["calendar_day"] = get_current_calendar_day_number() // This uses the calendar day of the machine the program is running on!!! do not use - John Sy
+        days[i]["calendar_day"] = int(per_day_weather_json[i]["valid_date"][-2::])
         days[i]["day"] = get_day_of_week(days[i]["date"])
         days[i]["month"] = get_month_name(days[i]["date"])
         days[i]["current_temp"] = round(per_day_weather_json[i]["temp"])
         days[i]["high_temp"] = round(per_day_weather_json[i]["max_temp"])
         days[i]["low_temp"] = round(per_day_weather_json[i]["low_temp"])
-        days[i]["precip_chance"] = per_day_weather_json[i][
-            "pop"]  # UPDATE: It works, some locations do in fact have a 0% precip chance while others have more expected values like 20-50%. This value is fine/working/
+        days[i]["precip_chance"] = per_day_weather_json[i]["pop"]  # UPDATE: It works, some locations do in fact have a 0% precip chance while others have more expected values like 20-50%. This value is fine/working/
         days[i]["weather_description"] = per_day_weather_json[i]["weather"]["description"]
         days[i]["weather_icon"] = per_day_weather_json[i]["weather"]["icon"]
         days[i]["weather_code"] = per_day_weather_json[i]["weather"]["code"]
         #days[i]["humidity"] = per_day_weather_json2[i]["rh"]
         #days[i]["wind_speed"] = per_day_weather_json2[i]["wind_spd"]
+
+
+    days[0]["current_temp"] = int(current_response_json["data"][0]["temp"])
+    days[0]["precip_chance"] = current_response_json["data"][0]["precip"]
+    days[0]["weather_description"] = current_response_json["data"][0]["weather"]["description"]
+    days[0]["weather_icon"] = current_response_json["data"][0]["weather"]["icon"]
+    days[0]["weather_code"] =  current_response_json["data"][0]["weather"]["code"]
 
     days.append(timezone)
     days.append(get_timezone_time(timezone))
