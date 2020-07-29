@@ -68,6 +68,14 @@
                 <strong>Heat Advisory</strong> -  Click <a href="#storm-watch" class="alert-link">here</a> to see more information.
             </div>
 
+            {% for warning in warnings %}
+                    <div class= "{{ warning.bootstrap_alert_class }}">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        A <strong>{{ warning.duration_days }}</strong> day <strong>{{ warning.type }}storm</strong> is approaching in <strong>{{ warning.days_till }}</strong> days!
+                         - <a href="#storm-watch" class="alert-link">Learn More</a>
+                    </div>
+            {% endfor %}
+
             <div id="current-conditions" class="weather-box">
 
                 <div class="curr-box">
@@ -120,11 +128,7 @@
         <div class="textContainer">
             <div id="storm-watch">
                 <h3>Weather Warnings for {{ location.city_name }}, {{ location.state_code }} {{ location.country }}:</h3>
-                {% for warning in warnings %}
-                    <div class= "{{ warning.bootstrap_alert_class }}">
-                       A <strong>{{ warning.duration_days }}</strong> day <strong>{{ warning.type}}storm</strong> is approaching in <strong>{{ warning.days_till }}</strong> days!
-                    </div>
-                {% endfor %}
+                <!-- Could maybe do a list (<ul></ul>) or multiple paragraphs (<p></p>) or something here. -->
             </div>
 
             <!--<div class="flex-center">
