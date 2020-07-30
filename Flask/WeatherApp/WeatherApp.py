@@ -2,6 +2,7 @@
 # requests and redirection between pages
 from flask import Flask, render_template, request, redirect
 from APIModule import APIRequest
+from WeatherWarningsModule import WeatherWarnings
 import requests
 import datetime
 
@@ -52,9 +53,27 @@ def results():
                 if forecast_days is not None:
                     # process data here
                     # todo: eventually update time to be local time
+
+                    # todo: delete this warning alerts test
+                    # warnings = [
+                    #     {'type': 'rain',
+                    #      'bootstrap_alert_class': 'alert alert-warning alert-dismissible',
+                    #      'days_till': 4,
+                    #      'duration_days': 8},
+                    #     {'bootstrap_alert_class': 'alert alert-danger alert-dismissible',
+                    #      'type': 'sand',
+                    #      'days_till': 7,
+                    #      'duration_days': 14}
+                    # ]
+
+                    # todo: 1:8 since we ignore the first day and someone added location and time to this dict
+                    # todo: need to get location and time out of this dict
+                    warnings = WeatherWarnings.find_storms(forecast_days[1:8])
+
                     return render_template('results.html',
                                            forecast_days=forecast_days,
                                            location=location,
+                                           warnings=warnings
                                            )
 
         # If the city name was not valid, or if the API response indicates that weather information could not be

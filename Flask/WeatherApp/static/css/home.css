@@ -2,7 +2,7 @@ body {
     /*background: url("https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80") no-repeat center center fixed;
     background-size: cover;*/
     text-align: center;
-    background-color: white;
+    background-color: rgba(0, 34, 72);
 	margin: 0px;
     font-family: "Times New Roman", Times, serif;
    	font-size: 1rem;
@@ -11,9 +11,10 @@ body {
     height: 100%;
 }
 
+/*
 a {
 	text-decoration: none;
-}
+}*/
 
 header {
     color: #ffffff;
@@ -31,23 +32,16 @@ header {
     color: #ffffff;
 }
 
-#location-box {
-    background-color: rgba(3, 3, 32, 0.5);
-    width: 60%;
-    padding: 3%;
-    border-radius: 10px;
-    color: white;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 
 
+/* Navigation bar (blue bar at top of page)*/
 nav {
     position: fixed;
+    z-index: 10;
     top: 0;
     left: 0;
-	background-color: rgb(0, 34, 72);
+	background-color: rgba(0, 34, 72);
 	width: 100%;
 }
 .navbar img {
@@ -73,18 +67,53 @@ nav {
     text-decoration: underline;
 }
 
-#background-thing {
-	width: 100%;
-	min-height: 600px;
-	padding-top: 3%;
-	background: url("../img/juskteez-vu-mwhklqGVzck-unsplash.jpg") no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
- }
 
-#white-container {
+
+
+/* Location Information Form*/
+#location-box {
+    background-color: rgba(3, 3, 32, 0.5);
+    width: 60%;
+    padding: 3%;
+    border-radius: 10px;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+form {
+    width: 100%;
+    overflow: auto;
+    padding: 2% 5%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+}
+input[type=submit] {
+	padding: 8px 20px;
+   	border-style: solid;
+	border-color: #001b43;
+	background-color: #011f4b;
+	color: rgba(255, 255, 255, 0.8);
+	border-radius: 4px;
+	cursor: pointer;
+	margin-right: auto;
+	margin-left: auto;
+}
+input[type=submit]:hover {
+    background-color:  rgba(255, 255, 255, 0.8);
+    border-color: #03396c;
+    color: #03396c;
+}
+input[type=text] {
+    width: 45%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+
+
+.white-container {
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
@@ -109,23 +138,16 @@ nav {
     min-width: 40px;
     width: 70%;
 }
-.textContainer img #crowd {
-    margin-left: 20px;
-    width: 100%;
-    min-width: 90px;
-}
-.textContainer img #pacman {
-    margin-left: 20px;
-    width: 80%;
-    min-width: 90px;
-}
 
+
+/*Not currently in use - commented out*/
 #mustard-container {
 	min-height: 400px;
 	width: 100%;
 	background-color: #fdbe51;
 }
 
+/* For parent div with two child divs that each take up half of the parent div*/
 .flex-center {
     display: flex;
     justify-content: center;
@@ -137,7 +159,13 @@ nav {
 }
 
 
+
 /* Current conditions and 7-day forecast stuff*/
+.alert {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
 .weather-box {
     width: 70%;
     background-color: #1A355D;
@@ -154,15 +182,22 @@ nav {
     padding: 2%;
     text-align: left;
 }
-#curr-middle {
-    text-align: center;
-}
-#curr-right {padding-left: 10%;}
-#curr-right h1{ font-size: 90px;}
-#current-conditions div {
+.curr-box { /*There are three "boxes" (divs) in the current-conditions div. Each takes up a third of the parent div.*/
     display: inline-block;
     width: 33.33333333%;
 }
+#curr-middle { /*The middle curr-box in the current conditions div*/
+    text-align: center;
+}
+#curr-middle img{
+    width: 55%;
+}
+#curr-right { /*The right curr-box*/
+    padding-left: 10%;
+    justify-content: flex-start;
+}
+#curr-right h1{ font-size: 90px;} /*This is the current temperature*/
+
 #current-conditions i {
     padding-top: 15%;
     font-size: 120px;
@@ -191,11 +226,15 @@ nav {
 }
 
 
+
+/*Temperature Unit Toggle Switch*/
 .switch {
     position: relative;
+    left: 0px;
     height: 26px;
     width: 30%;
     margin: 20px auto;
+    margin-left: 0%;
     background: rgba(0, 0, 0, 0.25);
     border-radius: 3px;
     -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
@@ -244,7 +283,7 @@ nav {
     left: 50%;
     /* Note: left: 50%; doesn't transition in WebKit */
   }
-  
+
   .switch-selection {
     position: absolute;
     z-index: 1;
@@ -272,42 +311,38 @@ nav {
 
 
 
-form {
-    width: 100%;
-    overflow: auto;
-    padding: 2% 5%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 5px;
-}
+
+/* Used for background image below white box*/
+#background-thing {
+	width: 100%;
+	min-height: 650px;
+	padding-top: 3%;
+	background: url("../img/trevor-mckinnon-nsKKH8ILrkM-unsplash.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+ }
+
+
+ #storm-watch {
+    width: 70%;
+    background-color:#fed48b;
+    border-style: solid;
+    border-color: #e4be7d;
+    border-radius: 10px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding-bottom: 20%;
+    padding-top: 2%;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+ }
 
 
 
-
-input[type=submit] {
-	padding: 8px 20px;
-   	border-style: solid;
-	border-color: #001b43;
-	background-color: #011f4b;
-	color: rgba(255, 255, 255, 0.8);
-	border-radius: 4px;
-	cursor: pointer;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-input[type=submit]:hover {
-    background-color:  rgba(255, 255, 255, 0.8);
-    border-color: #03396c;
-    color: #03396c;
-}
-
-input[type=text] {
-    width: 45%;
-    margin-right: auto;
-    margin-left: auto;
-}
-
+/* Footer of page */
 footer {
 	width: 100%;
 	background: url("../img/leon-contreras-YyBlrCUVFWQ-unsplash.jpg") no-repeat center center fixed;
@@ -319,7 +354,6 @@ footer {
 	bottom: 0;
     padding: 1%;
 }
-
 footer ul {
     width: 90%;
     margin-left: auto;

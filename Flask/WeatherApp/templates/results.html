@@ -51,7 +51,7 @@
                         <input type="text" class="form-control mb-2" placeholder="State" id="stateInput" name="stateInput">
                     </div>
                     <div class="col-auto">
-                        <input type="submit" class="btn btn-primary mb-2 "value="submit" onclick="updateTitle()">
+                        <input type="submit" class="btn btn-primary mb-2 "value="submit">
                     </div>
                 </div>
             </form>
@@ -60,10 +60,25 @@
     </div>
 
     <!---CONTENT SECTION-->
-    <section id="white-container"> <!-- white box -->
+    <section class="white-container"> <!-- white box -->
         <div class="textContainer">
+
+            <!--<div class="alert alert-warning alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Heat Advisory</strong> -  Click <a href="#storm-watch" class="alert-link">here</a> to see more information.
+            </div>-->
+
+            {% for warning in warnings %}
+                    <div class= "{{ warning.bootstrap_alert_class }}">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        A <strong>{{ warning.duration_days }}</strong> day <strong>{{ warning.type }}storm</strong> is approaching in <strong>{{ warning.days_till }}</strong> days!
+                         - <a href="#storm-watch" class="alert-link">Learn More</a>
+                    </div>
+            {% endfor %}
+
             <div id="current-conditions" class="weather-box">
-                <div>
+
+                <div class="curr-box">
 {#                    <h2>{{ forecast_days[0].city_name }}, {{ forecast_days[0].state }} {{ forecast_days[0].country }}</h2>#}
 {#                    <h6 id="curr-date">{{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}, {{ forecast_days[9] }}</h6>#}
                     <h2>{{ location.city_name }}, {{ location.state_code }} {{ location.country }}</h2>
@@ -72,11 +87,13 @@
                     <p>Humidity: {{ forecast_days[0].humidity }}%</p>
                     <p>Wind: <span id="current_wind">{{ forecast_days[0].wind_speed }}</span> <span id="current_wind_units">mph</span></p>
                 </div>
-                <div id="curr-middle">
+
+                <div id="curr-middle" class="curr-box">
                     <img src="{{ url_for('static', filename = '/icons/' + forecast_days[0].weather_icon + '.png') }}" alt="day1">
                     <p>{{ forecast_days[0].weather_description }}</p>
                 </div>
-                <div id="curr-right">
+
+                <div id="curr-right" class="curr-box">
                     <h1><span id="current_temp">{{ forecast_days[0].current_temp}}</span>&#176;</h1>
                     <p>High: <span id="current_high">{{ forecast_days[0].high_temp}}</span>&#176;</p>
                     <p>Low: <span id="current_low">{{ forecast_days[0].low_temp}}</span>&#176;</p>
@@ -88,6 +105,7 @@
                         <span class="switch-selection"></span>
                     </div>
                 </div>
+
             </div>
             <div id="week-forecast" class="weather-box">
 
@@ -103,13 +121,19 @@
         </div>
     </section>
     
-    <!--<div id="background-thing">
-    </div>-->
+    <!---
+    <div id="background-thing">
+    </div>
     
-    <!--<section id="mustard-container"> 
+    <section class="white-container"> 
         <div class="textContainer">
-            <div class="flex-center">
-                <div>
+            <div id="storm-watch">
+                <h3>Weather Warnings for {{ location.city_name }}, {{ location.state_code }} {{ location.country }}:</h3>
+                
+            </div>-->
+
+            <!--<div class="flex-center">
+                <div>-->
 
                     <!--<img src="{{ url_for('static', filename = '/img/lee-junda.jpg') }}" alt="lee-junda"/>-->
                     
@@ -119,10 +143,10 @@
                     <h3>Something</h3>
                     <p>We could put something here later when our TA gives us more requirements in the future.</p>
                 </div>
-            </div>
+            </div>-->
             
         </div>
-    </section>-->
+    </section>
 
     <footer>
     <ul>
