@@ -63,10 +63,10 @@
     <section class="white-container"> <!-- white box -->
         <div class="textContainer">
 
-            <div class="alert alert-warning alert-dismissible">
+            <!--<div class="alert alert-warning alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Heat Advisory</strong> -  Click <a href="#storm-watch" class="alert-link">here</a> to see more information.
-            </div>
+            </div>-->
 
             {% for warning in warnings %}
                     <div class= "{{ warning.bootstrap_alert_class }}">
@@ -121,6 +121,7 @@
         </div>
     </section>
     
+    <!---
     <div id="background-thing">
     </div>
     
@@ -128,8 +129,8 @@
         <div class="textContainer">
             <div id="storm-watch">
                 <h3>Weather Warnings for {{ location.city_name }}, {{ location.state_code }} {{ location.country }}:</h3>
-                <!-- Could maybe do a list (<ul></ul>) or multiple paragraphs (<p></p>) or something here. -->
-            </div>
+                
+            </div>-->
 
             <!--<div class="flex-center">
                 <div>-->
