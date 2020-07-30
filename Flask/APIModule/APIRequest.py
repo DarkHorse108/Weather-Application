@@ -160,7 +160,6 @@ def generate_formatted_per_day_weather_data(forecast_response_json, current_resp
     # "weather description" represents a short general summary of the current weather conditions, i.e. "sunny with no clouds"
 
     per_day_weather_json = forecast_response_json["data"]
-    # per_day_weather_json2 = response_json2["data"]
 
     timezone = forecast_response_json["timezone"]
 
@@ -179,8 +178,8 @@ def generate_formatted_per_day_weather_data(forecast_response_json, current_resp
         days[i]["weather_description"] = per_day_weather_json[i]["weather"]["description"]
         days[i]["weather_icon"] = per_day_weather_json[i]["weather"]["icon"]
         days[i]["weather_code"] = per_day_weather_json[i]["weather"]["code"]
-        #days[i]["humidity"] = per_day_weather_json2[i]["rh"]
-        #days[i]["wind_speed"] = per_day_weather_json2[i]["wind_spd"]
+        days[i]["humidity"] = per_day_weather_json[i]["rh"]
+        days[i]["wind_speed"] = per_day_weather_json[i]["wind_spd"]
 
     days[0]["current_temp"] = int(current_response_json["data"][0]["temp"])
     days[0]["precip_chance"] = current_response_json["data"][0]["precip"]

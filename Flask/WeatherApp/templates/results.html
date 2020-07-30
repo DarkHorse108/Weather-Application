@@ -69,8 +69,8 @@
                     <h2>{{ location.city_name }}, {{ location.state_code }} {{ location.country }}</h2>
                     <h6 id="curr-date">{{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}, {{ forecast_days[9] }}</h6>
                     <p>Precipitation: {{ forecast_days[0].precip_chance }}%</p>
-                    <!-- <p>Humidity: NO_HUMIDITY_YET%</p> -->
-                    <!-- <p>Wind: NO_WIND_YET mph</p> -->
+                    <p>Humidity: {{ forecast_days[0].humidity }}%</p>
+                    <p>Wind: <span id="current_wind">{{ forecast_days[0].wind_speed }}</span> <span id="current_wind_units">mph</span></p>
                 </div>
                 <div id="curr-middle">
                     <img src="{{ url_for('static', filename = '/icons/' + forecast_days[0].weather_icon + '.png') }}" alt="day1">
