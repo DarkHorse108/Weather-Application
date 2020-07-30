@@ -25,7 +25,7 @@ FOG_CODES = {'type': 'fog', 'min': 741, 'max': 751,
 WEATHER_CODES = [THUNDER_CODES, DRIZZLE_CODES, RAIN_CODES, SNOW_CODES, MIST_CODES,
                  SMOKE_CODES, HAZE_CODES, SAND_CODES, FOG_CODES]
 
-DAYS_IN_ROW_CONSIDERED_STORM = 3
+DAYS_IN_ROW_CONSIDERED_STORM = 2
 
 
 def generate_warning_dict(code, days_till, duration_days):
