@@ -11,6 +11,7 @@ import pytz
 
 # from APIModule import config
 from APIModule import config
+from WeatherMapModule import WeatherMap
 
 # Below is the URL of the api endpoint for Weatherbit.io
 API_ENDPOINT_FORECAST = "https://api.weatherbit.io/v2.0/forecast/daily"
@@ -217,6 +218,10 @@ def get_api_returned_location_info(response_json):
 
 
 ''' helpers '''
+
+
+def get_city_coordinates(response_json):
+    return WeatherMap.Point(float(response_json['lon']), float(response_json['lat']))
 
 
 def generate_list_of_dicts(list_len):

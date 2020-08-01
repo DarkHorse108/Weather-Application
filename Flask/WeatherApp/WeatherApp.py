@@ -3,11 +3,15 @@
 from flask import Flask, render_template, request, redirect
 from APIModule import APIRequest
 from WeatherWarningsModule import WeatherWarnings
+from WeatherMapModule import WeatherMap
 import requests
 import datetime
 
 # Instantiate the Flask Application/Object
 WeatherApp = Flask(__name__)
+
+# controls the spacing in degrees between the weather grid points
+WEATHER_GRID_SPACING = 0.5
 
 # The code below handles the default URL/Landing page i.e. flipN.oregonstate.edu:PORTNUMBER automatically executes
 # the view/function below
@@ -48,6 +52,8 @@ def results():
                 # the api requets
                 forecast_days = APIRequest.generate_formatted_per_day_weather_data(forecast_weather_json, current_weather_json)
                 location = APIRequest.get_api_returned_location_info(forecast_weather_json)
+                city_coordinates = APIRequest.get_city_coordinates(forecast_weather_json)
+                weather_grid_coordinates = WeatherMap.generate_nine_point_grid(city_coordinates, WEATHER_GRID_SPACING)
 
                 # If forecast_days is NOT None, we received a valid/usable information from the API
                 if forecast_days is not None:
@@ -73,7 +79,8 @@ def results():
                     return render_template('results.html',
                                            forecast_days=forecast_days,
                                            location=location,
-                                           warnings=warnings
+                                           warnings=warnings,
+                                           weather_grid_coordinates=weather_grid_coordinates
                                            )
 
         # If the city name was not valid, or if the API response indicates that weather information could not be

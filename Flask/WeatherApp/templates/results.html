@@ -18,6 +18,15 @@
 
     <!--<link rel='icon' href='{{ url_for('static', filename = '/img/favicon.ico') }}' type='image/x-icon'>-->
     <link rel='icon' href="../static/img/favicon.ico" type='image/x-icon'>
+
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
 </head>
 <body>
     <header>
@@ -120,6 +129,30 @@
             </div>
         </div>
     </section>
+
+    <div id="mapid"></div>
+    <script type="text/javascript">
+        // this script is from the leaflet example
+        var map = L.map('mapid').setView([{{ weather_grid_coordinates[0].lat }}, {{ weather_grid_coordinates[0].lon }}], 7.8);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.marker([{{ weather_grid_coordinates[0].lat }}, {{ weather_grid_coordinates[0].lon }}]).addTo(map)
+            .bindPopup('Daily High<br>Daily Low')
+            .openPopup();
+
+        L.marker([{{ weather_grid_coordinates[1].lat }}, {{ weather_grid_coordinates[1].lon }}]).addTo(map);
+        L.marker([{{ weather_grid_coordinates[2].lat }}, {{ weather_grid_coordinates[2].lon }}]).addTo(map);
+        L.marker([{{ weather_grid_coordinates[3].lat }}, {{ weather_grid_coordinates[3].lon }}]).addTo(map);
+        L.marker([{{ weather_grid_coordinates[4].lat }}, {{ weather_grid_coordinates[4].lon }}]).addTo(map);
+        L.marker([{{ weather_grid_coordinates[5].lat }}, {{ weather_grid_coordinates[5].lon }}]).addTo(map);
+        L.marker([{{ weather_grid_coordinates[6].lat }}, {{ weather_grid_coordinates[6].lon }}]).addTo(map);
+        L.marker([{{ weather_grid_coordinates[7].lat }}, {{ weather_grid_coordinates[7].lon }}]).addTo(map);
+        L.marker([{{ weather_grid_coordinates[8].lat }}, {{ weather_grid_coordinates[8].lon }}]).addTo(map);
+
+    </script>
     
     <!---
     <div id="background-thing">
