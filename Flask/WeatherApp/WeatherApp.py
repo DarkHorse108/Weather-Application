@@ -53,6 +53,8 @@ def results():
                 forecast_days = APIRequest.generate_formatted_per_day_weather_data(forecast_weather_json)
                 forecast_days = APIRequest.update_current_day_formatted_weather_data(forecast_days, current_weather_json)
                 location = APIRequest.get_api_returned_location_info(forecast_weather_json)
+                city_coordinates = APIRequest.get_city_coordinates(forecast_weather_json)
+                weather_grid_coordinates = WeatherMap.generate_nine_point_grid(city_coordinates, WEATHER_GRID_SPACING)
 
                 # If forecast_days is NOT None, we received a valid/usable information from the API
                 if forecast_days is not None:
