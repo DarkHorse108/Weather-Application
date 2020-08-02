@@ -8,9 +8,10 @@
 # requests allow us to make the GET requests to the API
 import requests, sys, datetime, calendar
 import pytz
+import config
 
 # from APIModule import config
-from APIModule import config
+#from APIModule import config
 
 # Below is the URL of the api endpoint for Weatherbit.io
 API_ENDPOINT_FORECAST = "https://api.weatherbit.io/v2.0/forecast/daily"
@@ -46,6 +47,7 @@ class UserWeatherRequest:
              parameters = {"city": self.city, "units": "I", "key": str(config.API_KEY)}
 
         elif self.number_of_days == FORECAST_DAYS:
+            
             # Create a new dictionary of parameters, where the key will be the string key in the query, and the value will
             # be the string value in the query
             parameters = {"city": self.city, "days": str(self.number_of_days), "units": "I", "key": str(config.API_KEY)}
@@ -302,7 +304,7 @@ def get_timezone_time(loc_timezone):
     return str(hours) + current_time
 
 if __name__ == "__main__":
-    test_user_weather_request = UserWeatherRequest("Fort Wayne", "USA", "Indiana")
+    test_user_weather_request = UserWeatherRequest("Fort Wayne", 8,"USA", "Indiana")
 
     if test_user_weather_request.has_valid_city_name():
-        print(get_weather(test_user_weather_request))
+        print(generate_formatted_per_day_weather_data(get_weather_json(test_user_weather_request,API_ENDPOINT_FORECAST),get_weather_json(test_user_weather_request,API_ENDPOINT_CURRENT)))
