@@ -8,15 +8,11 @@
 # requests allow us to make the GET requests to the API
 import requests, sys, datetime, calendar
 import pytz
-import config
-
-# from APIModule import config
-#from APIModule import config
+from APIModule import config
 
 # Below is the URL of the api endpoint for Weatherbit.io
 API_ENDPOINT_FORECAST = "https://api.weatherbit.io/v2.0/forecast/daily"
 API_ENDPOINT_CURRENT = " https://api.weatherbit.io/v2.0/current"
-#API_ENDPOINT2 = "https://api.weatherbit.io/v2.0/forecast/energy"
 
 # Below is the constant that will determine the number of days to be queried for the forecast as a whole, adjust this
 # number which will affect the query and parsing functions below.
@@ -248,6 +244,7 @@ def is_valid_location_string(location_name_string):
         return True
     else:
         print("String argument contains non-alpha characters", file=sys.stderr)
+        return False
 
 
 def contains_only_spaces_and_alphas(location_name_string):
