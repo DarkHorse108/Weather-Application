@@ -1,11 +1,12 @@
+/*This sheet is for mobile and tablet viewing while in portrait mode*/
 body {
     /*background: url("https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80") no-repeat center center fixed;
     background-size: cover;*/
     text-align: center;
     background-color: rgba(0, 34, 72);
 	margin: 0px;
-    font-family: "Times New Roman", Times, serif;
-   	font-size: 1rem;
+    /*font-family: "Times New Roman", Times, serif;*/
+   	font-size: ems;
     font-weight: 400;
     width: 100%;
     height: 100%;
@@ -54,13 +55,13 @@ nav {
 }
 .navbar {
     margin: 0 auto;
-    width: 75%;
+    width: 90%;
     display: flex;
     justify-content: space-around;
 }
 .navbar li {
     display: inline-block;
-    max-width: 20%;
+    max-width: 30%;
 }
 .navbar a {
     text-decoration: none;
@@ -78,12 +79,13 @@ nav {
 /* Location Information Form*/
 #location-box {
     background-color: rgba(3, 3, 32, 0.5);
-    width: 60%;
+    width: 95%;
     padding: 3%;
     border-radius: 10px;
     color: white;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 form {
     width: 100%;
@@ -102,7 +104,8 @@ input[type=submit] {
 	border-radius: 4px;
 	cursor: pointer;
 	margin-right: auto;
-	margin-left: auto;
+    margin-left: auto;
+    margin-top: 1%;
 }
 input[type=submit]:hover {
     background-color:  rgba(255, 255, 255, 0.8);
@@ -110,9 +113,12 @@ input[type=submit]:hover {
     color: #03396c;
 }
 input[type=text] {
-    width: 45%;
+    width: 70%;
     margin-right: auto;
     margin-left: auto;
+}
+#center-por {
+    width: 100%;
 }
 
 
@@ -127,7 +133,7 @@ input[type=text] {
 }
 
 .textContainer {
-    width: 90%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -167,73 +173,84 @@ input[type=text] {
 
 /* Current conditions and 7-day forecast stuff*/
 .alert {
-    width: 70%;
+    width: 95%;
     margin-left: auto;
     margin-right: auto;
 }
 .weather-graph-box {
-    width: 70%;
-    background-color: #1A355D;
+    width: 95%;
     border-radius: 10px;
+    background-color: #1A355D;
     color: white;
     margin-top: 1%;
     margin-bottom: 1%;
     margin-left:auto;
     margin-right:auto;
     padding: 1%;
+    font-size: x-small;
+}
+
+.weather-graph-box h5 {
+    font-size: 17px;
 }
 .weather-box {
-    width: 70%;
+    width: 95%;
     background-color: #1A355D;
     border-radius: 10px;
     color: white;
     margin-top: 1%;
     margin-bottom: 1%;
-    display: flex;
-    justify-content: center;
     margin-left:auto;
     margin-right:auto;
 }
 #current-conditions {
-    padding: 2%;
-    text-align: left;
+    padding: 1%;
+    text-align: center;
 }
 .curr-box { /*There are three "boxes" (divs) in the current-conditions div. Each takes up a third of the parent div.*/
     display: inline-block;
-    width: 33.33333333%;
-}
-#curr-middle { /*The middle curr-box in the current conditions div*/
-    text-align: center;
+    width: 100%;
 }
 #curr-middle img{
-    width: 55%;
+    width: 45%;
 }
-#curr-right { /*The right curr-box*/
-    padding-left: 10%;
-    justify-content: flex-start;
-}
-#curr-right h1{ font-size: 90px;} /*This is the current temperature*/
-
+#curr-right h1{ font-size: 80px;} /*This is the current temperature*/
 #current-conditions i {
     padding-top: 15%;
     font-size: 120px;
 }
 #curr-date {
-    padding-bottom: 15%;
+    padding-bottom: 1%;
 }
 #current-conditions p {
     margin: 0px;
 }
 #week-forecast {
-    text-align: center;
+    text-align: left;
+}
+#week-forecast h5 { /*Days - Monday, Tuesday, etc.*/
+    justify-content: flex-start;
+    flex: 1;
+    margin-left: 1%;
+    margin-top: 3%;
+    font-size: 17px;
+}
+#week-forecast img {
+    justify-content: center;
+    flex: 1;
+    max-width: 15%;
 }
 #week-forecast div {
-    display: inline-block;
-    width: 14.2857142857%;
+    display: flex;
+    width: 100%;
     padding: 1%;
 }
 #week-forecast p {
-    text-align: center;
+    flex: 1;
+    text-align: right;
+    justify-content: flex-end;
+    margin-right: 2.5%;
+    margin-top: 3%;
 }
 #week-forecast i {
     padding-top: 15%;
@@ -249,8 +266,9 @@ input[type=text] {
     left: 0px;
     height: 26px;
     width: 30%;
-    margin: 20px auto;
-    margin-left: 0%;
+    margin-top: 3%;
+    margin-right: auto;
+    margin-left: auto;
     background: rgba(0, 0, 0, 0.25);
     border-radius: 3px;
     -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
@@ -342,7 +360,7 @@ input[type=text] {
 
 
  #storm-watch {
-    width: 70%;
+    width: 95%;
     background-color:#fed48b;
     border-style: solid;
     border-color: #e4be7d;
@@ -355,6 +373,8 @@ input[type=text] {
     margin-left:auto;
     margin-right:auto;
  }
+
+ 
 
 
 

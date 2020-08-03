@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <!--<link href="{{ url_for('static', filename = '/css/home.css') }}" rel="stylesheet" type="text/css">-->
-    <link href="../static/css/home.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/home.css" rel="stylesheet" type="text/css" media="screen and (min-width: 741px)">
+    <link href="../static/css/portrait.css" rel="stylesheet" type="text/css" media="screen and (max-width: 420px)">
+    <link href="../static/css/landscape.css" rel="stylesheet" type="text/css" media="screen and (min-width: 421px) and (max-width: 740px)">
     <link href="../static/css/weather-icons.css" rel="stylesheet" type="text/css">
 
     <meta charset="UTF-8">
@@ -43,16 +45,16 @@
             <!---FORM SECTION-->
             <form class="form-inline" method="POST" action="/results">
                 <div class="form-row align-items-center">
-                    <div class="col-auto">
+                    <div class="col-auto" id="center-por">
                         <input type="text" class="form-control mb-2" placeholder="City" id="cityInput" name="cityInput">
                     </div>
-                    <div class="col-auto">
+                    <div class="col-auto" id="center-por">
                         <input type="text" class="form-control mb-2" placeholder="Country" id="countryInput" name="countryInput">
                     </div>
-                    <div class="col-auto">
+                    <div class="col-auto" id="center-por">
                         <input type="text" class="form-control mb-2" placeholder="State" id="stateInput" name="stateInput">
                     </div>
-                    <div class="col-auto">
+                    <div class="col-auto" id="center-por">
                         <input type="submit" class="btn btn-primary mb-2 "value="submit">
                     </div>
                 </div>
@@ -83,11 +85,11 @@
                 <div class="curr-box">
 {#                    <h2>{{ forecast_days[0].city_name }}, {{ forecast_days[0].state }} {{ forecast_days[0].country }}</h2>#}
 {#                    <h6 id="curr-date">{{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}, {{ forecast_days[9] }}</h6>#}
-                    <h2>{{ location.city_name }}, {{ location.state_code }} {{ location.country }}</h2>
-                    <h6 id="curr-date">{{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}, {{ forecast_days[9] }}</h6>
-                    <p>Precipitation: {{ forecast_days[0].precip_chance }}%</p>
-                    <p>Humidity: {{ forecast_days[0].humidity }}%</p>
-                    <p>Wind: <span id="current_wind">{{ forecast_days[0].wind_speed }}</span> <span id="current_wind_units">mph</span></p>
+                        <h2>{{ location.city_name }}, {{ location.state_code }} {{ location.country }}</h2>
+                        <h6 id="curr-date">{{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}, {{ forecast_days[9] }}</h6>
+                        <p>Precipitation: {{ forecast_days[0].precip_chance }}%</p>
+                        <p>Humidity: {{ forecast_days[0].humidity }}%</p>
+                        <p>Wind: <span id="current_wind">{{ forecast_days[0].wind_speed }}</span> <span id="current_wind_units">mph</span></p>
                 </div>
 
                 <div id="curr-middle" class="curr-box">
@@ -122,9 +124,9 @@
             </div>
 
             <div class="weather-graph-box">
-                <h4>Hourly Temperature for {{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}</h4>
+                <h5>Hourly Temperature for {{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}</h5>
                 <!-- line chart canvas element -->
-                <canvas id="myChart" height="80"></canvas>
+                <canvas id="myChart" height="60" width="200"></canvas>
                 <script>
                     var ctx = document.getElementById('myChart').getContext('2d');
                     var myChart = new Chart(ctx, {
@@ -133,7 +135,7 @@
                             labels: ['12 AM', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM', '6 AM', '7 AM', '8AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM',
                                     '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM'],
                             datasets: [{
-                                label: 'Temperature',
+                                //label: 'Temperature',
                                 data: [66, 64, 63, 63, 61, 59, 57, 61, 64, 66, 70, 72, 75, 77, 79, 81, 81, 82, 84, 84, 82, 78, 77, 75],
                                 backgroundColor: [
                                     'rgba(179,205,224, 0.2)'
@@ -149,13 +151,32 @@
                             // Change options for ALL labels of THIS CHART
                                 datalabels: {
                                     color: '#ffffff',
-                                    align: 'top'
+                                    align: 'top',
+                                    display: 'auto',
+                                    clamp: true,
+                                    clip: false
                                         }
                                 },
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: "Hourly Temperature Today",
+                                fontColor: '#1A355D'
+                            },
+                            /*layout: {
+                                padding: {
+                                    top: 15,
+                                    right: 0,
+                                    left: 0,
+                                    bottom: 0
+                                }
+                            },*/
                             scales: {
                                 yAxes: [{
                                     ticks: {
-                                        fontColor: '#1A355D',
+                                        display: false,
                                         beginAtZero: false
                                     }
                                 }],
@@ -203,7 +224,7 @@
     <ul>
         <li><strong>Image Sources:</strong></li>
         <li>Earth and satellite: Photo by NASA on Unsplash.</li>
-        <li>Footer background: Photo by NAMEEEE on Unsplash. </li>
+        <li>Footer background: Photo by Leon Contreras on Unsplash. </li>
       </ul> 
     </footer>
 

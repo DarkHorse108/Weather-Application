@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <!--<link href="{{ url_for('static', filename = '/css/home.css') }}" rel="stylesheet" type="text/css"> -->
-    <link href="../static/css/home.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/home.css" rel="stylesheet" type="text/css" media="screen and (min-width: 741px)">
+    <link href="../static/css/portrait.css" rel="stylesheet" type="text/css" media="screen and (max-width: 420px)">
+    <link href="../static/css/landscape.css" rel="stylesheet" type="text/css" media="screen and (min-width: 421px) and (max-width: 740px)">
     <link href="../static/css/weather-icons.css" rel="stylesheet" type="text/css">
     
     <meta charset="UTF-8">
@@ -37,16 +39,16 @@
             <!---FORM SECTION-->
             <form class="form-inline" method="POST" action="/results">
                 <div class="form-row align-items-center">
-                    <div class="col-auto">
+                    <div class="col-auto" id="center-por">
                         <input type="text" class="form-control mb-2" placeholder="City" id="cityInput" name="cityInput">
                     </div>
-                    <div class="col-auto">
+                    <div class="col-auto" id="center-por">
                         <input type="text" class="form-control mb-2" placeholder="Country" id="countryInput" name="countryInput">
                     </div>
-                    <div class="col-auto">
+                    <div class="col-auto" id="center-por">
                         <input type="text" class="form-control mb-2" placeholder="State" id="stateInput" name="stateInput">
                     </div>
-                    <div class="col-auto">
+                    <div class="col-auto" id="center-por">
                         <input type="submit" class="btn btn-primary mb-2 "value="submit">
                     </div>
                 </div>
@@ -79,7 +81,7 @@
     <ul>
         <li><strong>Image Sources:</strong></li>
         <li>Earth and satellite: Photo by NASA on Unsplash.</li>
-        <li>Footer background: Photo by NAMEEEE on Unsplash. </li>
+        <li>Footer background: Photo by Leon Contreras on Unsplash. </li>
       </ul> 
 </footer>
 </body>
