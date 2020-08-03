@@ -14,6 +14,8 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="../static/js/unit_toggle_jquery.js"></script>
+    <script src='../static/js/Chart.min.js'></script>
+    <script src='../static/js/chartjs-plugin-datalabels.min.js'></script>
 
 
     <!--<link rel='icon' href='{{ url_for('static', filename = '/img/favicon.ico') }}' type='image/x-icon'>-->
@@ -105,8 +107,8 @@
                         <span class="switch-selection"></span>
                     </div>
                 </div>
-
             </div>
+            
             <div id="week-forecast" class="weather-box">
 
                 <div> <h5>{{ forecast_days[1].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[1].weather_icon + '.png') }}" alt="day1"> <p><span id="day1_high">{{ forecast_days[1].high_temp}}</span>&#176;/ <span id="day1_low">{{ forecast_days[1].low_temp}}</span>&#176;</p>  </div> <!-- 1 -->
@@ -117,6 +119,55 @@
                 <div> <h5>{{ forecast_days[6].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[6].weather_icon + '.png') }}" alt="day6"> <p><span id="day6_high">{{ forecast_days[6].high_temp}}</span>&#176;/ <span id="day6_low">{{ forecast_days[6].low_temp}}</span>&#176;</p> </div> <!-- 6 -->
                 <div> <h5>{{ forecast_days[7].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[7].weather_icon + '.png') }}" alt="day7"> <p><span id="day7_high">{{ forecast_days[7].high_temp}}</span>&#176;/ <span id="day7_low">{{ forecast_days[7].low_temp}}</span>&#176;</p> </div> <!-- 7 -->
 
+            </div>
+
+            <div class="weather-graph-box">
+                <h4>Hourly Temperature for {{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}</h4>
+                <!-- line chart canvas element -->
+                <canvas id="myChart" height="80"></canvas>
+                <script>
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ['12 AM', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM', '6 AM', '7 AM', '8AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM',
+                                    '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM'],
+                            datasets: [{
+                                label: 'Temperature',
+                                data: [66, 64, 63, 63, 61, 59, 57, 61, 64, 66, 70, 72, 75, 77, 79, 81, 81, 82, 84, 84, 82, 78, 77, 75],
+                                backgroundColor: [
+                                    'rgba(179,205,224, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(100,151,177, 0.8)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            plugins: {
+                            // Change options for ALL labels of THIS CHART
+                                datalabels: {
+                                    color: '#ffffff',
+                                    align: 'top'
+                                        }
+                                },
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        fontColor: '#1A355D',
+                                        beginAtZero: false
+                                    }
+                                }],
+                                xAxes: [{
+                                    ticks: {
+                                        fontColor: '#ffffff'
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script>
             </div>
         </div>
     </section>
