@@ -225,6 +225,33 @@ input[type=text] {
 #current-conditions p {
     margin: 0px;
 }
+
+.nav-tabs .nav-link.active, .nav-tabs .show > .nav-link {
+	background-color: #1A355D;
+	color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-color: #1A355D;
+}
+
+#pills-tab {
+    background-color: rgba(0, 34, 72);
+    border-radius: 10px;
+    border-color: #1A355D;
+    font-size: 9px;
+    padding: 0px;
+}
+
+.nav-link:hover {
+    background-color:  rgba(255, 255, 255, 0.8);
+    border-color: #03396c;
+    color: #03396c;
+}
+
+a {
+    color: white;
+}
+
+
 #week-forecast {
     text-align: left;
 }
