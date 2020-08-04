@@ -237,8 +237,10 @@ input[type=text] {
     background-color: rgba(0, 34, 72);
     border-radius: 10px;
     border-color: #1A355D;
-    font-size: 9px;
+    font-size: 13px;
     padding: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .nav-link:hover {
