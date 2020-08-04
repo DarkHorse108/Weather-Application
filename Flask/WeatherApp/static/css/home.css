@@ -4,7 +4,6 @@ body {
     text-align: center;
     background-color: rgba(0, 34, 72);
 	margin: 0px;
-    font-family: "Times New Roman", Times, serif;
    	font-size: 1rem;
     font-weight: 400;
     width: 100%;
@@ -110,7 +109,7 @@ input[type=submit]:hover {
     color: #03396c;
 }
 input[type=text] {
-    width: 45%;
+    width: 25%;
     margin-right: auto;
     margin-left: auto;
 }
@@ -189,14 +188,15 @@ input[type=text] {
     color: white;
     margin-top: 1%;
     margin-bottom: 1%;
-    display: flex;
-    justify-content: center;
+    text-align: center;
     margin-left:auto;
     margin-right:auto;
 }
 #current-conditions {
     padding: 2%;
     text-align: left;
+    display: flex;
+    justify-content: center;
 }
 .curr-box { /*There are three "boxes" (divs) in the current-conditions div. Each takes up a third of the parent div.*/
     display: inline-block;
@@ -224,8 +224,38 @@ input[type=text] {
 #current-conditions p {
     margin: 0px;
 }
+
+.nav-tabs .nav-link.active, .nav-tabs .show > .nav-link {
+	background-color: #1A355D;
+	color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    border-color: #1A355D;
+}
+
+#pills-tab {
+    background-color: rgba(0, 34, 72);
+    border-radius: 10px;
+    border-color: #1A355D;
+}
+
+.nav-link:hover {
+    background-color:  rgba(255, 255, 255, 0.8);
+    border-color: #03396c;
+    color: #03396c;
+}
+
+a {
+    color: white;
+}
+
+
 #week-forecast {
     text-align: center;
+    display: flex;
+    justify-content: center;
+}
+#week-forecast h5 {
+    font-size: 17px;
 }
 #week-forecast div {
     display: inline-block;
