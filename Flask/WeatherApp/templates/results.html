@@ -265,7 +265,7 @@
                 shadowUrl: icon_shadow_url,
                 shadowSize: [75, 75]
             });
-
+            
             L.marker([{{ weather_point.lat }}, {{ weather_point.lon }}], {icon: weather_icon}).addTo(map).bindPopup('Current Temperature <br> {{ weather_point.current_temp }}').openPopup();
         {% endfor %}
     </script>
