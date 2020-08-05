@@ -2,7 +2,8 @@ body {
     /*background: url("https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80") no-repeat center center fixed;
     background-size: cover;*/
     text-align: center;
-    background-color: rgba(0, 34, 72);
+    background-color: #f8f8ff;
+    /*background-color: transparent;*/
 	margin: 0px;
    	font-size: 1rem;
     font-weight: 400;
@@ -117,7 +118,7 @@ input[type=text] {
 
 
 
-.white-container {
+#white-container {
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
@@ -132,10 +133,13 @@ input[type=text] {
     text-align: center;
     padding: 2%;
 }
-.textContainer ul {
+.container {
+    text-align: center;
+}
+.container ul {
     text-align: left;
 }
-.textContainer img {
+.container img {
     display: inline-block;
     margin: 0 auto;
     padding: 2%;
@@ -166,12 +170,12 @@ input[type=text] {
 
 /* Current conditions and 7-day forecast stuff*/
 .alert {
-    width: 70%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
 .weather-graph-box {
-    width: 70%;
+    width: 80%;
     background-color: #1A355D;
     border-radius: 10px;
     color: white;
@@ -182,7 +186,7 @@ input[type=text] {
     padding: 1%;
 }
 .weather-box {
-    width: 70%;
+    width: 80%;
     background-color: #1A355D;
     border-radius: 10px;
     color: white;
