@@ -56,7 +56,7 @@ nav {
     margin: 0 auto;
     width: 75%;
     display: flex;
-    justify-content: space-around;
+    /*justify-content: space-around;*/
 }
 .navbar li {
     display: inline-block;
@@ -84,6 +84,7 @@ nav {
     color: white;
     margin-left: auto;
     margin-right: auto;
+    text-align: left;
 }
 form {
     width: 100%;
