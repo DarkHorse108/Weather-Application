@@ -52,8 +52,6 @@ def results():
                 # the api requets
                 forecast_days = APIRequest.generate_formatted_per_day_weather_data(forecast_weather_json, current_weather_json)
                 location = APIRequest.get_api_returned_location_info(forecast_weather_json)
-                city_coordinates = APIRequest.get_city_coordinates(forecast_weather_json)
-                weather_grid_coordinates = WeatherMap.generate_nine_point_grid(city_coordinates, WEATHER_GRID_SPACING)
 
                 # If forecast_days is NOT None, we received a valid/usable information from the API
                 if forecast_days is not None:
@@ -76,11 +74,24 @@ def results():
                     # todo: need to get location and time out of this dict
                     warnings = WeatherWarnings.find_storms(forecast_days[1:8])
 
+                    # get weather map data
+                    city_coordinates = APIRequest.get_city_coordinates(forecast_weather_json)
+                    weather_grid_coordinates = WeatherMap.generate_nine_point_grid(city_coordinates, WEATHER_GRID_SPACING)
+                    nine_point_current_weather = []
+                    for coordinate in weather_grid_coordinates:
+                        coordinate_request = APIRequest.CoordinateWeatherRequest(coordinate, 1)
+
+                        coordinate_weather_json = APIRequest.get_weather_json(coordinate_request, APIRequest.API_ENDPOINT_CURRENT)
+                        coordinate_weather = APIRequest.generate_current_weather_data(coordinate_weather_json)
+                        nine_point_current_weather.append(coordinate_weather)
+
+                    print(nine_point_current_weather)
+
                     return render_template('results.html',
                                            forecast_days=forecast_days,
                                            location=location,
                                            warnings=warnings,
-                                           weather_grid_coordinates=weather_grid_coordinates
+                                           nine_point_current_weather=nine_point_current_weather
                                            )
 
         # If the city name was not valid, or if the API response indicates that weather information could not be
