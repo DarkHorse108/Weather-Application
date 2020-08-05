@@ -70,6 +70,18 @@ class UserWeatherRequest:
             return True
         return False
 
+
+class CoordinateWeatherRequest:
+    def __init__(self, coords, number_of_days):
+        self.coords = coords
+        self.number_of_days = number_of_days
+
+    def generate_formatted_request_parameters(self):
+        parameters = {"lon": self.coords.lon, "lat": self.coords.lat, "days": str(self.number_of_days),
+                      "units": "I", "key": str(config.API_KEY)}
+        return parameters
+
+
 def get_api_response(parameters):
     # Send the GET request to the API with our dictionary of parameters
     # Return our JSON object response from the function
@@ -188,6 +200,19 @@ def generate_formatted_per_day_weather_data(forecast_response_json, current_resp
     days.append(get_timezone_time(timezone))
 
     return days
+
+
+def generate_current_weather_data(current_response_json):
+    current_weather = {"current_temp": int(current_response_json["data"][0]["temp"]),
+                       "precip_chance": current_response_json["data"][0]["precip"],
+                       "weather_description": current_response_json["data"][0]["weather"]["description"],
+                       "weather_icon": current_response_json["data"][0]["weather"]["icon"],
+                       "weather_code": current_response_json["data"][0]["weather"]["code"],
+                       "lon": current_response_json["data"][0]["lon"],
+                       "lat": current_response_json["data"][0]["lat"]}
+
+    return current_weather
+
 
 
 def get_api_returned_location_info(response_json):
