@@ -52,8 +52,8 @@
         $(document).ready(function(){
             
             var days = ['#current_temp', '#current_high', '#current_low', '#day1_high', '#day1_low', '#day2_high', '#day2_low', '#day3_high', '#day3_low', '#day4_high', '#day4_low', '#day5_high', '#day5_low', '#day6_high', '#day6_low', '#day7_high', '#day7_low'];
-            var wind_values = ['#current_wind'];
-            var wind_units = ['#current_wind_units'];
+            var wind_values = ['#current_wind', '#day1_wind', '#day2_wind', '#day3_wind', '#day4_wind', '#day5_wind', '#day6_wind', '#day7_wind'];
+            var wind_units = ['#current_wind_units', '#day1_wind_units', '#day2_wind_units', '#day3_wind_units', '#day4_wind_units', '#day5_wind_units', '#day6_wind_units', '#day7_wind_units'];
 
             var farenheit = record_starting_values(days);
             var mph = record_starting_values(wind_values);
