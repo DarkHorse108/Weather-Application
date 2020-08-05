@@ -272,7 +272,6 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-
         {% for weather_point in nine_point_current_weather %}
 
             L.marker([{{ weather_point.lat }}, {{ weather_point.lon }}]).addTo(map)
