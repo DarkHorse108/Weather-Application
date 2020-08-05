@@ -93,7 +93,7 @@
 {#                    <h6 id="curr-date">{{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}, {{ forecast_days[9] }}</h6>#}
                         <h2>{{ location.city_name }}, {{ location.state_code }} {{ location.country }}</h2>
                         <h6 id="curr-date">{{ forecast_days[0].day }}, {{ forecast_days[0].month }} {{ forecast_days[0].calendar_day }}, {{ forecast_days[9] }}</h6>
-                        <p>Precipitation: {{ forecast_days[0].precip_chance }}%</p>
+                        <p>Precipitation: {{ forecast_days[0].precip_chance }}% chance</p>
                         <p>Humidity: {{ forecast_days[0].humidity }}%</p>
                         <p>Wind: <span id="current_wind">{{ forecast_days[0].wind_speed }}</span> <span id="current_wind_units">mph</span></p>
                 </div>
@@ -147,13 +147,13 @@
                     </div>
                     <div class="tab-pane" id="pills-precip" role="tabpanel" aria-labelledby="pills-precip-tab">
                         <div id="week-forecast">
-                            <div> <h5>{{ forecast_days[1].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[1].weather_icon + '.png') }}" alt="day1"> <p><span id="day1_precip">{{ forecast_days[1].precip_chance }}</span>% Chance</p></div> <!-- 1 -->
-                            <div> <h5>{{ forecast_days[2].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[2].weather_icon + '.png') }}" alt="day2"> <p><span id="day2_precip">{{ forecast_days[2].precip_chance }}</span>% Chance</p></div> <!-- 2 -->
-                            <div> <h5>{{ forecast_days[3].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[3].weather_icon + '.png') }}" alt="day3"> <p><span id="day3_precip">{{ forecast_days[3].precip_chance }}</span>% Chance</p></div><!-- 3 -->
-                            <div> <h5>{{ forecast_days[4].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[4].weather_icon + '.png') }}" alt="day4"> <p><span id="day4_precip">{{ forecast_days[4].precip_chance }}</span>% Chance</p></div><!-- 4 -->
-                            <div> <h5>{{ forecast_days[5].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[5].weather_icon + '.png') }}" alt="day5"> <p><span id="day5_precip">{{ forecast_days[5].precip_chance }}</span>% Chance</p></div><!-- 5 -->
-                            <div> <h5>{{ forecast_days[6].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[6].weather_icon + '.png') }}" alt="day6"> <p><span id="day6_precip">{{ forecast_days[3].precip_chance }}</span>% Chance</p></div><!-- 6 -->
-                            <div> <h5>{{ forecast_days[7].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[7].weather_icon + '.png') }}" alt="day7"> <p><span id="day7_precip">{{ forecast_days[3].precip_chance }}</span>% Chance</p></div> <!-- 7 -->
+                            <div> <h5>{{ forecast_days[1].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[1].weather_icon + '.png') }}" alt="day1"> <p><span id="day1_precip">{{ forecast_days[1].precip_chance }}</span>% chance</p></div> <!-- 1 -->
+                            <div> <h5>{{ forecast_days[2].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[2].weather_icon + '.png') }}" alt="day2"> <p><span id="day2_precip">{{ forecast_days[2].precip_chance }}</span>% chance</p></div> <!-- 2 -->
+                            <div> <h5>{{ forecast_days[3].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[3].weather_icon + '.png') }}" alt="day3"> <p><span id="day3_precip">{{ forecast_days[3].precip_chance }}</span>% chance</p></div><!-- 3 -->
+                            <div> <h5>{{ forecast_days[4].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[4].weather_icon + '.png') }}" alt="day4"> <p><span id="day4_precip">{{ forecast_days[4].precip_chance }}</span>% chance</p></div><!-- 4 -->
+                            <div> <h5>{{ forecast_days[5].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[5].weather_icon + '.png') }}" alt="day5"> <p><span id="day5_precip">{{ forecast_days[5].precip_chance }}</span>% chance</p></div><!-- 5 -->
+                            <div> <h5>{{ forecast_days[6].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[6].weather_icon + '.png') }}" alt="day6"> <p><span id="day6_precip">{{ forecast_days[3].precip_chance }}</span>% chance</p></div><!-- 6 -->
+                            <div> <h5>{{ forecast_days[7].day}}</h5> <img src="{{ url_for('static', filename = '/icons/' + forecast_days[7].weather_icon + '.png') }}" alt="day7"> <p><span id="day7_precip">{{ forecast_days[3].precip_chance }}</span>% chance</p></div> <!-- 7 -->
                         </div>
                     </div>
                     <div class="tab-pane" id="pills-humid" role="tabpanel" aria-labelledby="pills-humid-tab">
