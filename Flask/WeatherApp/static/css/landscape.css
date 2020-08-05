@@ -3,7 +3,7 @@ body {
     /*background: url("https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80") no-repeat center center fixed;
     background-size: cover;*/
     text-align: center;
-    background-color: rgba(0, 34, 72);
+    background-color: #f8f8ff;
 	margin: 0px;
    	font-size: 1rem;
     font-weight: 400;
@@ -138,10 +138,14 @@ input[type=text] {
     text-align: center;
     padding: 2%;
 }
-.textContainer ul {
+
+.container {
+    text-align: center;
+}
+.container ul {
     text-align: left;
 }
-.textContainer img {
+.container img {
     display: inline-block;
     margin: 0 auto;
     padding: 2%;
@@ -197,14 +201,15 @@ input[type=text] {
     color: white;
     margin-top: 1%;
     margin-bottom: 1%;
-    display: flex;
-    justify-content: center;
+    text-align: center;
     margin-left:auto;
     margin-right:auto;
 }
 #current-conditions {
     padding: 2%;
     text-align: left;
+    display: flex;
+    justify-content: center;
 }
 .curr-box { /*There are three "boxes" (divs) in the current-conditions div. Each takes up a third of the parent div.*/
     display: inline-block;
@@ -240,12 +245,17 @@ input[type=text] {
 	color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-color: #1A355D;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 #pills-tab {
     background-color: rgba(0, 34, 72);
     border-radius: 10px;
     border-color: #1A355D;
+    font-size: 13px;
+    width: 100%;
+    padding: 0px;
 }
 
 .nav-link:hover {
@@ -261,6 +271,8 @@ a {
 
 #week-forecast {
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 #week-forecast div {
     display: inline-block;
@@ -268,11 +280,11 @@ a {
     padding: 1%;
 }
 #week-forecast h5 {
-    font-size: 14px;
+    font-size: 13px;
 }
 #week-forecast p {
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
 }
 #week-forecast i {
     padding-top: 15%;
