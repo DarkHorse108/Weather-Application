@@ -43,7 +43,7 @@
 
        function change_mph_text_to_kmhr(elementID)
        {
-            var km_units_text = "km/hr";
+            var km_units_text = "km/h";
 
             $(elementID).html(km_units_text);
 
