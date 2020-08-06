@@ -85,8 +85,6 @@ def results():
                         coordinate_weather = APIRequest.generate_current_weather_data(coordinate_weather_json)
                         nine_point_current_weather.append(coordinate_weather)
 
-                    print(nine_point_current_weather)
-
                     return render_template('results.html',
                                            forecast_days=forecast_days,
                                            location=location,
