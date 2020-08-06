@@ -77,7 +77,6 @@ def get_api_response(parameters):
 
 def api_response_to_json(response):
     '''api_response_to_json() takes a Requests response, checks if it's valid, then converts it to json and returns it
-
     response:   Requests response
     returns:    JSON object'''
 
@@ -141,7 +140,6 @@ def generate_formatted_per_day_weather_data(forecast_response_json, current_resp
     precipitation (%), and a short description of the weather provided by the API. If the argument supplied is a None
     object, or is a blank string object indicating an error or issue in the original API request, this function returns
     a None object.
-
     response:   raw JSON string
     returns:    list object, or None'''
 
@@ -230,9 +228,7 @@ def is_valid_location_string(location_name_string):
     (ignoring whitespace) i.e. "Fort Collins", "Chicago", "Hogwarts" all return True. If the string is blank or
     contains values that are not alphabetical characters, it returns False, i.e. "", "San1 Diego!", "!$@*&#^",
     all return False.
-
     string_argument: string object
-
     returns: boolean object'''
 
     # If the string argument is a blank string "" we can return False
@@ -286,7 +282,6 @@ def is_valid_response(response):
 def get_timezone_time(loc_timezone):
     """
     Grabs a parameter of a timezone (eg: 'America/Indiana/Indianapolis') and converts it to local time with AM/PM.
-
     :returns timezone
     """
     current_time = datetime.datetime.now(pytz.timezone(loc_timezone))
@@ -300,8 +295,12 @@ def get_timezone_time(loc_timezone):
 
     return str(hours) + current_time
 
+
+def get_weather(weather_object):
+    return generate_formatted_per_day_weather_data(get_weather_json(test_user_weather_request,API_ENDPOINT_FORECAST),get_weather_json(test_user_weather_request,API_ENDPOINT_CURRENT))
+
 if __name__ == "__main__":
     test_user_weather_request = UserWeatherRequest("Fort Wayne", 8,"USA", "Indiana")
 
     if test_user_weather_request.has_valid_city_name():
-        print(generate_formatted_per_day_weather_data(get_weather_json(test_user_weather_request,API_ENDPOINT_FORECAST),get_weather_json(test_user_weather_request,API_ENDPOINT_CURRENT)))
+        print(get_weather(test_user_weather_request))
