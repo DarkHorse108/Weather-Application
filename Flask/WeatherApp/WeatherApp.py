@@ -46,7 +46,8 @@ def results():
 
             if forecast_weather_json and current_weather_json:
                 # the api requets
-                forecast_days = APIRequest.generate_formatted_per_day_weather_data(forecast_weather_json, current_weather_json)
+                forecast_days = APIRequest.generate_formatted_per_day_weather_data(forecast_weather_json)
+                forecast_days = APIRequest.update_current_day_formatted_weather_data(forecast_days, current_weather_json)
                 location = APIRequest.get_api_returned_location_info(forecast_weather_json)
 
                 # If forecast_days is NOT None, we received a valid/usable information from the API
