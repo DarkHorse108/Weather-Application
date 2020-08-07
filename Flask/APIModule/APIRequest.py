@@ -8,16 +8,19 @@
 # requests allow us to make the GET requests to the API
 import requests, sys, datetime, calendar
 import pytz
-from APIModule import config
+from Flask.APIModule import config
 
 # Below is the URL of the api endpoint for Weatherbit.io
 API_ENDPOINT_FORECAST = "https://api.weatherbit.io/v2.0/forecast/daily"
 API_ENDPOINT_CURRENT = " https://api.weatherbit.io/v2.0/current"
 
+API_ENDPOINT_HOURLY = "https://api.weatherbit.io/v2.0/forecast/hourly"
+
 # Below is the constant that will determine the number of days to be queried for the forecast as a whole, adjust this
 # number which will affect the query and parsing functions below.
 FORECAST_DAYS = 8
 CURRENT_DAY = 1
+
 
 class UserWeatherRequest:
     def __init__(self, city, number_of_days, country="", state=""):
@@ -25,7 +28,6 @@ class UserWeatherRequest:
         self.number_of_days = number_of_days
         self.country = country
         self.state = state
-        
 
     def generate_formatted_request_parameters(self):
         # There must be a city to make get weather data. country and state are optional.
@@ -40,10 +42,10 @@ class UserWeatherRequest:
 
         if self.number_of_days == CURRENT_DAY:
 
-             parameters = {"city": self.city, "units": "I", "key": str(config.API_KEY)}
+            parameters = {"city": self.city, "units": "I", "key": str(config.API_KEY)}
 
         elif self.number_of_days == FORECAST_DAYS:
-            
+
             # Create a new dictionary of parameters, where the key will be the string key in the query, and the value will
             # be the string value in the query
             parameters = {"city": self.city, "days": str(self.number_of_days), "units": "I", "key": str(config.API_KEY)}
@@ -69,10 +71,12 @@ class UserWeatherRequest:
             return True
         return False
 
+
 def get_api_response(parameters):
     # Send the GET request to the API with our dictionary of parameters
     # Return our JSON object response from the function
     return requests.get(url=API_ENDPOINT, params=parameters)
+
 
 def get_weather_json(user_weather_request, endpoint_url):
     formatted_request_parameters = user_weather_request.generate_formatted_request_parameters()
@@ -152,14 +156,15 @@ def generate_formatted_per_day_weather_data(forecast_response_json):
 
     for i in range(FORECAST_DAYS):
         days[i]["date"] = per_day_weather_json[i]["valid_date"]
-        #days[i]["calendar_day"] = get_current_calendar_day_number() // This uses the calendar day of the machine the program is running on!!! do not use - John Sy
+        # days[i]["calendar_day"] = get_current_calendar_day_number() // This uses the calendar day of the machine the program is running on!!! do not use - John Sy
         days[i]["calendar_day"] = int(per_day_weather_json[i]["valid_date"][-2::])
         days[i]["day"] = get_day_of_week(days[i]["date"])
         days[i]["month"] = get_month_name(days[i]["date"])
         days[i]["current_temp"] = round(per_day_weather_json[i]["temp"])
         days[i]["high_temp"] = round(per_day_weather_json[i]["max_temp"])
         days[i]["low_temp"] = round(per_day_weather_json[i]["low_temp"])
-        days[i]["precip_chance"] = per_day_weather_json[i]["pop"]  # UPDATE: It works, some locations do in fact have a 0% precip chance while others have more expected values like 20-50%. This value is fine/working/
+        days[i]["precip_chance"] = per_day_weather_json[i][
+            "pop"]  # UPDATE: It works, some locations do in fact have a 0% precip chance while others have more expected values like 20-50%. This value is fine/working/
         days[i]["weather_description"] = per_day_weather_json[i]["weather"]["description"]
         days[i]["weather_icon"] = per_day_weather_json[i]["weather"]["icon"]
         days[i]["weather_code"] = per_day_weather_json[i]["weather"]["code"]
@@ -171,13 +176,28 @@ def generate_formatted_per_day_weather_data(forecast_response_json):
 
     return days
 
-def update_current_day_formatted_weather_data(per_day_weather_data, current_response_json):
 
+def generate_formatted_per_hour_weather_data(forecast_response_json):
+    per_hour_weather_json = forecast_response_json["data"]
+
+    hours = generate_list_of_dicts(24)
+
+    for i in range(24):
+        hours[i]["timestamp_local"] = per_hour_weather_json[i]["timestamp_local"]
+        hours[i]["current_temp"] = round(per_hour_weather_json[i]["temp"])
+        hours[i]["weather_description"] = per_hour_weather_json[i]["weather"]["description"]
+        hours[i]["weather_icon"] = per_hour_weather_json[i]["weather"]["icon"]
+        hours[i]["weather_code"] = per_hour_weather_json[i]["weather"]["code"]
+
+    return hours
+
+
+def update_current_day_formatted_weather_data(per_day_weather_data, current_response_json):
     per_day_weather_data[0]["current_temp"] = int(current_response_json["data"][0]["temp"])
     per_day_weather_data[0]["precip_chance"] = current_response_json["data"][0]["precip"]
     per_day_weather_data[0]["weather_description"] = current_response_json["data"][0]["weather"]["description"]
     per_day_weather_data[0]["weather_icon"] = current_response_json["data"][0]["weather"]["icon"]
-    per_day_weather_data[0]["weather_code"] =  current_response_json["data"][0]["weather"]["code"]
+    per_day_weather_data[0]["weather_code"] = current_response_json["data"][0]["weather"]["code"]
 
     return per_day_weather_data
 
@@ -278,10 +298,10 @@ def get_timezone_time(loc_timezone):
     :returns timezone
     """
     current_time = datetime.datetime.now(pytz.timezone(loc_timezone))
-    
+
     current_time = current_time.strftime('%I:%M %p')
 
-    #Modify string to not include the extraneous 0 in front of the hours i.e. 06:00 AM, however if the time is 10:00AM it will be displayed correctly as such/
+    # Modify string to not include the extraneous 0 in front of the hours i.e. 06:00 AM, however if the time is 10:00AM it will be displayed correctly as such/
     hours = current_time[:2]
     hours = int(hours)
     current_time = current_time[2::]
@@ -289,11 +309,25 @@ def get_timezone_time(loc_timezone):
     return str(hours) + current_time
 
 
+def get_timestamp_local_time(timestamp_local):
+    """
+    'timestamp_local': '2020-08-07T19:00:00'
+    """
+    m = datetime.datetime.strptime(timestamp_local, "%Y-%m-%dT%H:%M:%S")
+    y = m.strftime("%I:%M:%S %p")
+    print(y)
+
 def get_weather(weather_object):
-    return generate_formatted_per_day_weather_data(get_weather_json(test_user_weather_request,API_ENDPOINT_FORECAST),get_weather_json(test_user_weather_request,API_ENDPOINT_CURRENT))
+    return generate_formatted_per_day_weather_data(get_weather_json(test_user_weather_request, API_ENDPOINT_FORECAST),
+                                                   get_weather_json(test_user_weather_request, API_ENDPOINT_CURRENT))
+
 
 if __name__ == "__main__":
-    test_user_weather_request = UserWeatherRequest("Fort Wayne", 8,"USA", "Indiana")
-
-    if test_user_weather_request.has_valid_city_name():
-        print(get_weather(test_user_weather_request))
+    # test_user_weather_request = UserWeatherRequest("Fort Wayne", 8, "USA", "Indiana")
+    #
+    # if test_user_weather_request.has_valid_city_name():
+    #     hourly_forecast = get_weather_json(test_user_weather_request, API_ENDPOINT_HOURLY)
+    #     # print(hourly_forecast)
+    #     test = generate_formatted_per_hour_weather_data(hourly_forecast)
+    #     print(test)
+    m = get_timestamp_local_time('2020-08-07T19:00:00')
