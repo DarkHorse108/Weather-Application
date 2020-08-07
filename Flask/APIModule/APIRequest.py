@@ -183,7 +183,7 @@ def generate_formatted_per_hour_weather_data(forecast_response_json):
     hours = generate_list_of_dicts(24)
 
     for i in range(24):
-        hours[i]["timestamp_local"] = per_hour_weather_json[i]["timestamp_local"]
+        hours[i]["timestamp_local"] = get_timestamp_local_time(per_hour_weather_json[i]["timestamp_local"])
         hours[i]["current_temp"] = round(per_hour_weather_json[i]["temp"])
         hours[i]["weather_description"] = per_hour_weather_json[i]["weather"]["description"]
         hours[i]["weather_icon"] = per_hour_weather_json[i]["weather"]["icon"]
@@ -311,11 +311,12 @@ def get_timezone_time(loc_timezone):
 
 def get_timestamp_local_time(timestamp_local):
     """
-    'timestamp_local': '2020-08-07T19:00:00'
+    'timestamp_local': '2020-08-07T19:00:00' to 07:00:00 PM
     """
-    m = datetime.datetime.strptime(timestamp_local, "%Y-%m-%dT%H:%M:%S")
-    y = m.strftime("%I:%M:%S %p")
-    print(y)
+    main_time = datetime.datetime.strptime(timestamp_local, "%Y-%m-%dT%H:%M:%S")
+    converted_local_time = main_time.strftime("%I:%M:%S %p")
+    return converted_local_time
+
 
 def get_weather(weather_object):
     return generate_formatted_per_day_weather_data(get_weather_json(test_user_weather_request, API_ENDPOINT_FORECAST),
@@ -323,11 +324,10 @@ def get_weather(weather_object):
 
 
 if __name__ == "__main__":
-    # test_user_weather_request = UserWeatherRequest("Fort Wayne", 8, "USA", "Indiana")
-    #
-    # if test_user_weather_request.has_valid_city_name():
-    #     hourly_forecast = get_weather_json(test_user_weather_request, API_ENDPOINT_HOURLY)
-    #     # print(hourly_forecast)
-    #     test = generate_formatted_per_hour_weather_data(hourly_forecast)
-    #     print(test)
-    m = get_timestamp_local_time('2020-08-07T19:00:00')
+    test_user_weather_request = UserWeatherRequest("Fort Wayne", 8, "USA", "Indiana")
+
+    if test_user_weather_request.has_valid_city_name():
+        hourly_forecast = get_weather_json(test_user_weather_request, API_ENDPOINT_HOURLY)
+        # print(hourly_forecast)
+        test = generate_formatted_per_hour_weather_data(hourly_forecast)
+        print(test)
