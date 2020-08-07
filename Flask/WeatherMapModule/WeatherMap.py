@@ -1,5 +1,5 @@
 
-class Point:
+class GeoCoord2D:
     def __init__(self, lon, lat):
         self.lon = lon
         self.lat = lat
@@ -45,6 +45,6 @@ def create_offset_coord(point, lon_offset, lat_offset):
     if new_lat < -90:
         new_lat = -90
 
-    return Point(new_lon, new_lat)
+    return GeoCoord2D(new_lon, new_lat)
 
 
