@@ -1,9 +1,9 @@
-/*This sheet is for mobile and tablet viewing while in portrait mode*/
+/* Navigation bar (blue bar at top of page)*/
 body {
   text-align: center;
   background-color: #f8f8ff;
   margin: 0px;
-  font-size: ems;
+  font-size: 1rem;
   font-weight: 400;
   width: 100%;
   height: 100%;
@@ -48,12 +48,10 @@ nav {
 
 .navbar {
   margin: 0 auto;
-  width: 90%;
+  width: 75%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
 }
 
 .navbar img {
@@ -62,7 +60,7 @@ nav {
 
 .navbar li {
   display: inline-block;
-  max-width: 30%;
+  max-width: 20%;
 }
 
 .navbar a {
@@ -78,13 +76,13 @@ nav {
 
 #location-box {
   background-color: rgba(3, 3, 32, 0.5);
-  width: 95%;
+  width: 60%;
   padding: 3%;
   border-radius: 10px;
   color: white;
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
+  text-align: left;
 }
 
 form {
@@ -106,7 +104,6 @@ input[type=submit] {
   cursor: pointer;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 1%;
 }
 
 input[type=submit]:hover {
@@ -116,16 +113,12 @@ input[type=submit]:hover {
 }
 
 input[type=text] {
-  width: 70%;
+  width: 25%;
   margin-right: auto;
   margin-left: auto;
 }
 
-#center-por {
-  width: 100%;
-}
-
-.white-container {
+#white-container {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -134,11 +127,15 @@ input[type=text] {
 }
 
 .textContainer {
-  width: 100%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
   padding: 2%;
+}
+
+.container {
+  text-align: center;
 }
 
 .container ul {
@@ -151,12 +148,6 @@ input[type=text] {
   padding: 2%;
   min-width: 40px;
   width: 70%;
-}
-
-#mustard-container {
-  min-height: 400px;
-  width: 100%;
-  background-color: #fdbe51;
 }
 
 .flex-center {
@@ -175,42 +166,44 @@ input[type=text] {
 }
 
 .alert {
-  width: 95%;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .weather-graph-box {
-  width: 95%;
-  border-radius: 10px;
+  width: 80%;
   background-color: #1A355D;
+  border-radius: 10px;
   color: white;
   margin-top: 1%;
   margin-bottom: 1%;
   margin-left: auto;
   margin-right: auto;
   padding: 1%;
-  font-size: x-small;
-}
-
-.weather-graph-box h5 {
-  font-size: 17px;
 }
 
 .weather-box {
-  width: 95%;
+  width: 80%;
   background-color: #1A355D;
   border-radius: 10px;
   color: white;
   margin-top: 1%;
   margin-bottom: 1%;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
 
 #current-conditions {
-  padding: 1%;
-  text-align: center;
+  padding: 2%;
+  text-align: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #current-conditions i {
@@ -224,19 +217,30 @@ input[type=text] {
 
 .curr-box {
   display: inline-block;
-  width: 100%;
+  width: 33.33333333%;
+}
+
+#curr-middle {
+  text-align: center;
 }
 
 #curr-middle img {
-  width: 45%;
+  width: 55%;
+}
+
+#curr-right {
+  padding-left: 10%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 #curr-right h1 {
-  font-size: 80px;
+  font-size: 90px;
 }
 
 #curr-date {
-  padding-bottom: 1%;
+  padding-bottom: 15%;
 }
 
 .nav-tabs .nav-link.active {
@@ -244,6 +248,8 @@ input[type=text] {
   color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
   border-color: #1A355D;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .nav-tabs .show > .nav-link {
@@ -251,16 +257,14 @@ input[type=text] {
   color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
   border-color: #1A355D;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 #pills-tab {
   background-color: #002248;
   border-radius: 10px;
   border-color: #1A355D;
-  font-size: 13px;
-  padding: 0px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
 }
 
 .nav-link:hover {
@@ -274,49 +278,27 @@ a {
 }
 
 #week-forecast {
-  text-align: left;
-}
-
-#week-forecast h5 {
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  margin-left: 1%;
-  margin-top: 3%;
-  font-size: 17px;
-}
-
-#week-forecast img {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  max-width: 15%;
-}
-
-#week-forecast div {
+  text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#week-forecast h5 {
+  font-size: 17px;
+}
+
+#week-forecast div {
+  display: inline-block;
+  width: 14.2857142857%;
   padding: 1%;
 }
 
 #week-forecast p {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  text-align: right;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  margin-right: 2.5%;
-  margin-top: 3%;
+  text-align: center;
 }
 
 #week-forecast i {
@@ -330,9 +312,8 @@ a {
   left: 0px;
   height: 26px;
   width: 30%;
-  margin-top: 3%;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 20px auto;
+  margin-left: 0%;
   background: rgba(0, 0, 0, 0.25);
   border-radius: 3px;
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
@@ -409,7 +390,7 @@ a {
 }
 
 #storm-watch {
-  width: 95%;
+  width: 70%;
   background-color: #fed48b;
   border-style: solid;
   border-color: #e4be7d;
