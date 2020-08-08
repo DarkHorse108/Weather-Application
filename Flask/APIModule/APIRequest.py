@@ -264,7 +264,7 @@ def get_api_returned_location_info(response_json):
 
 
 def get_city_coordinates(response_json):
-    return WeatherMap.Point(float(response_json['lon']), float(response_json['lat']))
+    return WeatherMap.GeoCoord2D(float(response_json['lon']), float(response_json['lat']))
 
 
 def generate_list_of_dicts(list_len):
