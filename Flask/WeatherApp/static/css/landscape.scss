@@ -138,17 +138,6 @@ input[type=text] {
 	margin-left: auto;
 	margin-right: auto;
 }
-.weather-box {
-	width: 97%;
-	background-color: #1A355D;
-	border-radius: 10px;
-	color: white;
-	margin-top: 1%;
-	margin-bottom: 1%;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-}
 #current-conditions {
 	padding: 2%;
 	text-align: left;
@@ -159,178 +148,191 @@ input[type=text] {
 		font-size: 14px;
 	}
 }
-.curr-box {
-	display: inline-block;
-	width: 33.33333333%;
-	h6 {
-		font-size: 14px;
-	}
-	h2 {
-		font-size: 19px;
-	}
-}
-#curr-middle {
-	text-align: center;
-	img {
-		width: 65%;
-	}
-}
-#curr-right {
-	padding-left: 10%;
-	justify-content: flex-start;
-	h1 {
-		font-size: 70px;
-	}
-}
-#curr-date {
-	padding-bottom: 15%;
-}
-.nav-tabs {
-	.nav-link.active {
-		background-color: #1A355D;
-		color: rgba(255, 255, 255, 0.8);
-		cursor: pointer;
-		border-color: #1A355D;
-		border-top-left-radius: 10px;
-		border-top-right-radius: 10px;
-	}
-	.show {
-		>.nav-link {
-			background-color: #1A355D;
-			color: rgba(255, 255, 255, 0.8);
-			cursor: pointer;
-			border-color: #1A355D;
-			border-top-left-radius: 10px;
-			border-top-right-radius: 10px;
-		}
-	}
-}
-#pills-tab {
-	background-color: #002248;
+.weather-box {
+	width: 97%;
+	background-color: #1A355D;
 	border-radius: 10px;
-	border-color: #1A355D;
-	font-size: 13px;
-	width: 100%;
-	padding: 0px;
-}
-.nav-link {
-	&:hover {
-		background-color: rgba(255, 255, 255, 0.8);
-		border-color: #03396c;
-		color: #03396c;
-	}
-}
-a {
 	color: white;
-}
-#week-forecast {
+	margin-top: 1%;
+	margin-bottom: 1%;
 	text-align: center;
-	display: flex;
-	justify-content: center;
-	div {
-		display: inline-block;
-		width: 14.2857142857%;
-		padding: 1%;
-	}
-	h5 {
-		font-size: 13px;
-	}
-	p {
-		text-align: center;
-		font-size: 13px;
-	}
-	i {
-		padding-top: 15%;
-		padding-bottom: 15%;
-		font-size: xx-large;
-	}
-}
-.switch {
-	position: relative;
-	left: 0px;
-	height: 26px;
-	width: 60%;
-	margin: 20px auto;
-	margin-left: 0%;
-	background: rgba(0, 0, 0, 0.25);
-	border-radius: 3px;
-	-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
-    .switch-label {
-        position: relative;
-        z-index: 2;
-        float: left;
-        width: 50%;
-        line-height: 26px;
-        font-size: 11px;
-        color: rgba(255, 255, 255, 0.35);
-        text-align: center;
-        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
-        cursor: pointer;
-        &:active {
-            font-weight: bold;
+	margin-left: auto;
+    margin-right: auto;
+    
+    .curr-box {
+        display: inline-block;
+        width: 33.33333333%;
+        h6 {
+            font-size: 14px;
+        }
+        h2 {
+            font-size: 19px;
         }
     }
-    .switch-label-off {
-        padding-left: 2px;
+    #curr-middle {
+        text-align: center;
+        img {
+            width: 65%;
+        }
     }
-    .switch-label-on {
-        padding-right: 2px;
+    #curr-right {
+        padding-left: 10%;
+        justify-content: flex-start;
+        h1 {
+            font-size: 70px;
+        }
     }
-    .switch-input {
-        display: none;
-        &:checked {
-            + {
-                .switch-label {
-                    font-weight: bold;
-                    color: #eeeeee;
-                    text-shadow: 1.5px 1px #000000;
-                    -webkit-transition: 0.15s ease-out;
-                    -moz-transition: 0.15s ease-out;
-                    -ms-transition: 0.15s ease-out;
-                    -o-transition: 0.15s ease-out;
-                    transition: 0.15s ease-out;
-                    -webkit-transition-property: color, text-shadow;
-                    -moz-transition-property: color, text-shadow;
-                    -ms-transition-property: color, text-shadow;
-                    -o-transition-property: color, text-shadow;
-                    transition-property: color, text-shadow;
-                }
-                .switch-label-on {
-                    ~ {
-                        .switch-selection {
-                            left: 50%;
+    #curr-date {
+        padding-bottom: 15%;
+    }
+    .nav-tabs {
+        .nav-link.active {
+            background-color: #1A355D;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            border-color: #1A355D;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .show {
+            >.nav-link {
+                background-color: #1A355D;
+                color: rgba(255, 255, 255, 0.8);
+                cursor: pointer;
+                border-color: #1A355D;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+        }
+    }
+    #pills-tab {
+        background-color: #002248;
+        border-radius: 10px;
+        border-color: #1A355D;
+        font-size: 13px;
+        width: 100%;
+        padding: 0px;
+    }
+    .nav-link {
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-color: #03396c;
+            color: #03396c;
+        }
+    }
+    a {
+        color: white;
+    }
+    #week-forecast {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        div {
+            display: inline-block;
+            width: 14.2857142857%;
+            padding: 1%;
+        }
+        h5 {
+            font-size: 13px;
+        }
+        p {
+            text-align: center;
+            font-size: 13px;
+        }
+        i {
+            padding-top: 15%;
+            padding-bottom: 15%;
+            font-size: xx-large;
+        }
+    }
+    .switch {
+        position: relative;
+        left: 0px;
+        height: 26px;
+        width: 60%;
+        margin: 20px auto;
+        margin-left: 0%;
+        background: rgba(0, 0, 0, 0.25);
+        border-radius: 3px;
+        -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+        .switch-label {
+            position: relative;
+            z-index: 2;
+            float: left;
+            width: 50%;
+            line-height: 26px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.35);
+            text-align: center;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+            cursor: pointer;
+            &:active {
+                font-weight: bold;
+            }
+        }
+        .switch-label-off {
+            padding-left: 2px;
+        }
+        .switch-label-on {
+            padding-right: 2px;
+        }
+        .switch-input {
+            display: none;
+            &:checked {
+                + {
+                    .switch-label {
+                        font-weight: bold;
+                        color: #eeeeee;
+                        text-shadow: 1.5px 1px #000000;
+                        -webkit-transition: 0.15s ease-out;
+                        -moz-transition: 0.15s ease-out;
+                        -ms-transition: 0.15s ease-out;
+                        -o-transition: 0.15s ease-out;
+                        transition: 0.15s ease-out;
+                        -webkit-transition-property: color, text-shadow;
+                        -moz-transition-property: color, text-shadow;
+                        -ms-transition-property: color, text-shadow;
+                        -o-transition-property: color, text-shadow;
+                        transition-property: color, text-shadow;
+                    }
+                    .switch-label-on {
+                        ~ {
+                            .switch-selection {
+                                left: 50%;
+                            }
                         }
                     }
                 }
             }
         }
-    }
-    .switch-selection {
-        position: absolute;
-        z-index: 1;
-        top: 2px;
-        left: 2px;
-        display: block;
-        width: 50%;
-        height: 22px;
-        border-radius: 3px;
-        background-color: #000000;
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #334b6e), color-stop(100%, #011f4b));
-        background-image: -webkit-linear-gradient(top, #334b6e, #011f4b);
-        background-image: -moz-linear-gradient(top, #334b6e, #011f4b);
-        background-image: -ms-linear-gradient(top, #334b6e, #011f4b);
-        background-image: -o-linear-gradient(top, #334b6e, #011f4b);
-        background-image: linear-gradient(top, #334b6e, #011f4b);
-        -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
-        box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
-        -webkit-transition: left 0.15s ease-out;
-        -moz-transition: left 0.15s ease-out;
-        -ms-transition: left 0.15s ease-out;
-        -o-transition: left 0.15s ease-out;
-        transition: left 0.15s ease-out;
+        .switch-selection {
+            position: absolute;
+            z-index: 1;
+            top: 2px;
+            left: 2px;
+            display: block;
+            width: 50%;
+            height: 22px;
+            border-radius: 3px;
+            background-color: #000000;
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #334b6e), color-stop(100%, #011f4b));
+            background-image: -webkit-linear-gradient(top, #334b6e, #011f4b);
+            background-image: -moz-linear-gradient(top, #334b6e, #011f4b);
+            background-image: -ms-linear-gradient(top, #334b6e, #011f4b);
+            background-image: -o-linear-gradient(top, #334b6e, #011f4b);
+            background-image: linear-gradient(top, #334b6e, #011f4b);
+            -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
+            -webkit-transition: left 0.15s ease-out;
+            -moz-transition: left 0.15s ease-out;
+            -ms-transition: left 0.15s ease-out;
+            -o-transition: left 0.15s ease-out;
+            transition: left 0.15s ease-out;
+        }
     }
 }
+
 
 .weather-graph-box {
 	width: 97%;
