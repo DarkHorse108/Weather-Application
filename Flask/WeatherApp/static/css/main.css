@@ -30,7 +30,7 @@ header {
 
 #homepic {
   width: 100%;
-  min-height: 800px;
+  min-height: 910px;
   padding-top: 15%;
   background: url("../img/nasa-yZygONrUBe8-unsplash.jpg") no-repeat top center fixed;
   background-size: cover;
@@ -55,7 +55,7 @@ nav {
 }
 
 .navbar img {
-  width: 100%;
+  width: 97%;
 }
 
 .navbar li {
@@ -94,7 +94,7 @@ form {
   border-radius: 5px;
 }
 
-input[type=submit] {
+form input[type=submit] {
   padding: 8px 20px;
   border-style: solid;
   border-color: #001b43;
@@ -106,32 +106,16 @@ input[type=submit] {
   margin-left: auto;
 }
 
-input[type=submit]:hover {
+form input[type=submit]:hover {
   background-color: rgba(255, 255, 255, 0.8);
   border-color: #03396c;
   color: #03396c;
 }
 
-input[type=text] {
+form input[type=text] {
   width: 25%;
   margin-right: auto;
   margin-left: auto;
-}
-
-#white-container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #f8f8ff;
-  color: black;
-}
-
-.textContainer {
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  padding: 2%;
 }
 
 .container {
@@ -150,47 +134,8 @@ input[type=text] {
   width: 70%;
 }
 
-.flex-center {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.flex-center div {
-  padding: 15px;
-  width: 50%;
-  margin: 5px;
-}
-
 .alert {
   width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.weather-graph-box {
-  width: 80%;
-  background-color: #1A355D;
-  border-radius: 10px;
-  color: white;
-  margin-top: 1%;
-  margin-bottom: 1%;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1%;
-}
-
-.weather-box {
-  width: 80%;
-  background-color: #1A355D;
-  border-radius: 10px;
-  color: white;
-  margin-top: 1%;
-  margin-bottom: 1%;
-  text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
@@ -215,35 +160,47 @@ input[type=text] {
   margin: 0px;
 }
 
-.curr-box {
+.weather-box {
+  width: 80%;
+  background-color: #1A355D;
+  border-radius: 10px;
+  color: white;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.weather-box .curr-box {
   display: inline-block;
   width: 33.33333333%;
 }
 
-#curr-middle {
+.weather-box #curr-middle {
   text-align: center;
 }
 
-#curr-middle img {
+.weather-box #curr-middle img {
   width: 55%;
 }
 
-#curr-right {
+.weather-box #curr-right {
   padding-left: 10%;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
 }
 
-#curr-right h1 {
+.weather-box #curr-right h1 {
   font-size: 90px;
 }
 
-#curr-date {
+.weather-box #curr-date {
   padding-bottom: 15%;
 }
 
-.nav-tabs .nav-link.active {
+.weather-box .nav-tabs .nav-link.active {
   background-color: #1A355D;
   color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
@@ -252,7 +209,7 @@ input[type=text] {
   border-top-right-radius: 10px;
 }
 
-.nav-tabs .show > .nav-link {
+.weather-box .nav-tabs .show > .nav-link {
   background-color: #1A355D;
   color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
@@ -261,23 +218,23 @@ input[type=text] {
   border-top-right-radius: 10px;
 }
 
-#pills-tab {
+.weather-box #pills-tab {
   background-color: #002248;
   border-radius: 10px;
   border-color: #1A355D;
 }
 
-.nav-link:hover {
+.weather-box .nav-link:hover {
   background-color: rgba(255, 255, 255, 0.8);
   border-color: #03396c;
   color: #03396c;
 }
 
-a {
+.weather-box a {
   color: white;
 }
 
-#week-forecast {
+.weather-box #week-forecast {
   text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -287,27 +244,27 @@ a {
           justify-content: center;
 }
 
-#week-forecast h5 {
+.weather-box #week-forecast h5 {
   font-size: 17px;
 }
 
-#week-forecast div {
+.weather-box #week-forecast div {
   display: inline-block;
   width: 14.2857142857%;
   padding: 1%;
 }
 
-#week-forecast p {
+.weather-box #week-forecast p {
   text-align: center;
 }
 
-#week-forecast i {
+.weather-box #week-forecast i {
   padding-top: 15%;
   padding-bottom: 15%;
   font-size: xx-large;
 }
 
-.switch {
+.weather-box .switch {
   position: relative;
   left: 0px;
   height: 26px;
@@ -320,7 +277,7 @@ a {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
 }
 
-.switch-label {
+.weather-box .switch .switch-label {
   position: relative;
   z-index: 2;
   float: left;
@@ -333,23 +290,23 @@ a {
   cursor: pointer;
 }
 
-.switch-label:active {
+.weather-box .switch .switch-label:active {
   font-weight: bold;
 }
 
-.switch-label-off {
+.weather-box .switch .switch-label-off {
   padding-left: 2px;
 }
 
-.switch-label-on {
+.weather-box .switch .switch-label-on {
   padding-right: 2px;
 }
 
-.switch-input {
+.weather-box .switch .switch-input {
   display: none;
 }
 
-.switch-input:checked + .switch-label {
+.weather-box .switch .switch-input:checked + .switch-label {
   font-weight: bold;
   color: #eeeeee;
   text-shadow: 1.5px 1px #000000;
@@ -359,11 +316,11 @@ a {
   transition-property: color, text-shadow;
 }
 
-.switch-input:checked + .switch-label-on ~ .switch-selection {
+.weather-box .switch .switch-input:checked + .switch-label-on ~ .switch-selection {
   left: 50%;
 }
 
-.switch-selection {
+.weather-box .switch .switch-selection {
   position: absolute;
   z-index: 1;
   top: 2px;
@@ -381,29 +338,43 @@ a {
   transition: left 0.15s ease-out;
 }
 
-#background-thing {
-  width: 100%;
-  min-height: 650px;
-  padding-top: 3%;
-  background: url("../img/trevor-mckinnon-nsKKH8ILrkM-unsplash.jpg") no-repeat center center fixed;
-  background-size: cover;
-}
-
-#storm-watch {
-  width: 70%;
-  background-color: #fed48b;
-  border-style: solid;
-  border-color: #e4be7d;
+.weather-graph-box {
+  width: 80%;
+  background-color: #1A355D;
   border-radius: 10px;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  padding-bottom: 20%;
-  padding-top: 2%;
-  text-align: center;
+  color: white;
+  margin-top: 1%;
+  margin-bottom: 1%;
   margin-left: auto;
   margin-right: auto;
+  padding: 1%;
 }
 
+/* WILL DELETE LATER IF WE DON'T USE IT
+#middle-background-image {
+	width: 100%;
+	min-height: 650px;
+	padding-top: 3%;
+	background: url("../img/trevor-mckinnon-nsKKH8ILrkM-unsplash.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+#map-box {
+	width: 70%;
+	background-color: #fed48b;
+	border-style: solid;
+	border-color: #e4be7d;
+	border-radius: 10px;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	padding-bottom: 20%;
+	padding-top: 2%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}*/
 footer {
   width: 100%;
   background: url("../img/leon-contreras-YyBlrCUVFWQ-unsplash.jpg") no-repeat center center fixed;

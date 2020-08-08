@@ -18,7 +18,7 @@ header {
 }
 #homepic {
 	width: 100%;
-	min-height: 900px;
+	min-height: 910px;
 	padding-top: 15%;
 	background: url("../img/nasa-yZygONrUBe8-unsplash.jpg") no-repeat top center fixed;
 	-webkit-background-size: cover;
@@ -117,6 +117,19 @@ form {
 	margin-right: auto;
 }
 
+#current-conditions {
+	padding: 2%;
+	text-align: left;
+	display: flex;
+	justify-content: center;
+	i {
+		padding-top: 15%;
+		font-size: 120px;
+	}
+	p {
+		margin: 0px;
+	}
+}
 
 .weather-box {
 	width: 80%;
@@ -129,19 +142,6 @@ form {
 	margin-left: auto;
 	margin-right: auto;
 
-	#current-conditions {
-		padding: 2%;
-		text-align: left;
-		display: flex;
-		justify-content: center;
-		i {
-			padding-top: 15%;
-			font-size: 120px;
-		}
-		p {
-			margin: 0px;
-		}
-	}
 	.curr-box {
 		display: inline-block;
 		width: 33.33333333%;
