@@ -28,12 +28,12 @@ WEATHER_CODES = [THUNDER_CODES, DRIZZLE_CODES, RAIN_CODES, SNOW_CODES, MIST_CODE
 DAYS_IN_ROW_CONSIDERED_STORM = 2
 
 
-def generate_warning_dict(code, days_till, duration_days):
+def generate_warning_dict(storm_pattern_tracker):
     return {
-        'type': code['type'],
-        'bootstrap_alert_class': code['bootstrap_alert_class'],
-        'days_till': days_till,
-        'duration_days': duration_days
+        'type': storm_pattern_tracker.code['type'],
+        'bootstrap_alert_class': storm_pattern_tracker.code['bootstrap_alert_class'],
+        'days_till': storm_pattern_tracker.days_till,
+        'duration_days': storm_pattern_tracker.duration
     }
 
 
@@ -48,6 +48,7 @@ class StormPatternTracker:
             return True
         return False
 
+
 def code_match(code_to_check, code):
     if code['min'] <= code_to_check <= code['max']:
         return True
@@ -61,47 +62,56 @@ def get_matching_weather_code(day):
     return None
 
 
+class StormFinder:
+    def __init__(self):
+        self.weather_warnings = []
+        self.days_till = 1
+        self.storm_pattern_tracker = StormPatternTracker(None, None)
+
+    def assess_weather_pattern(self):
+        if self.storm_pattern_tracker.is_storm():
+            self.log_storm()
+
+    def log_storm(self):
+        weather_storm = generate_warning_dict(self.storm_pattern_tracker)
+        self.weather_warnings.append(weather_storm)
+
+
 def find_storms(per_day_weather_data):
+    storm_finder = StormFinder()
     # returns an empty list or a list of storm dictionaries
-    weather_warnings = []
-    days_till = 1
-    storm_pattern_tracker = StormPatternTracker(None, None)
 
     for day in per_day_weather_data:
-        todays_code = get_matching_weather_code(day)
-        if todays_code is not None:
-            # then we're tracking this code
-            if storm_pattern_tracker.code is not None:
-                if code_match(day['weather_code'], storm_pattern_tracker.code):
-                    # the streak continues
-                    storm_pattern_tracker.duration += 1
-                else:
-                    # the streak has ended
-                    assess_weather_pattern(storm_pattern_tracker, weather_warnings)
-                    # start tracking the new code
-                    storm_pattern_tracker = StormPatternTracker(todays_code, days_till)
-            else:
-                # start tracking the new code
-                storm_pattern_tracker = StormPatternTracker(todays_code, days_till)
-        else:
-            # if we're not tracking the code so end any streak
-            assess_weather_pattern(storm_pattern_tracker, weather_warnings)
-            storm_pattern_tracker = StormPatternTracker(None, None)
-
-        days_till += 1
+        process_day_weather(day, storm_finder)
 
     # if the loop ends and that last tracked pattern is a storm, track it
-    assess_weather_pattern(storm_pattern_tracker, weather_warnings)
+    storm_finder.assess_weather_pattern()
 
-    return weather_warnings
-
-
-def assess_weather_pattern(storm_pattern_tracker, weather_warnings):
-    if storm_pattern_tracker.is_storm():
-        log_storm(storm_pattern_tracker, weather_warnings)
+    return storm_finder.weather_warnings
 
 
-def log_storm(storm_pattern_tracker, weather_warnings):
-    weather_storm = generate_warning_dict(storm_pattern_tracker.code, storm_pattern_tracker.days_till,
-                                          storm_pattern_tracker.duration)
-    weather_warnings.append(weather_storm)
+def process_day_weather(day, storm_finder):
+    todays_code = get_matching_weather_code(day)
+    if todays_code is not None:
+        # then we're tracking this code
+        if storm_finder.storm_pattern_tracker.code is not None:
+            assess_if_streak(day, storm_finder, todays_code)
+        else:
+            # start tracking the new code
+            storm_finder.storm_pattern_tracker = StormPatternTracker(todays_code, storm_finder.days_till)
+    else:
+        # if we're not tracking the code so end any streak
+        storm_finder.assess_weather_pattern()
+        storm_finder.storm_pattern_tracker = StormPatternTracker(None, None)
+    storm_finder.days_till += 1
+
+
+def assess_if_streak(day, storm_finder, todays_code):
+    if code_match(day['weather_code'], storm_finder.storm_pattern_tracker.code):
+        # the streak continues
+        storm_finder.storm_pattern_tracker.duration += 1
+    else:
+        # the streak has ended
+        storm_finder.assess_weather_pattern()
+        # start tracking the new code
+        storm_finder.storm_pattern_tracker = StormPatternTracker(todays_code, storm_finder.days_till)
