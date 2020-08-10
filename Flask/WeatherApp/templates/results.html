@@ -13,20 +13,13 @@
     <script src='../static/js/chartjs-plugin-datalabels.min.js'></script>
 
 
-    <link href="../static/css/home.css" rel="stylesheet" type="text/css" media="screen and (min-width: 1001px)">
+    <link href="../static/css/main.css" rel="stylesheet" type="text/css" media="screen and (min-width: 1001px)">
     <link href="../static/css/portrait.css" rel="stylesheet" type="text/css" media="screen and (max-width: 420px)">
     <link href="../static/css/landscape.css" rel="stylesheet" type="text/css" media="screen and (min-width: 421px) and (max-width: 1000px)">
-    <link href="../static/css/weather-icons.css" rel="stylesheet" type="text/css">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
-
-   
-    
-
-
-    <!--<link rel='icon' href='{{ url_for('static', filename = '/img/favicon.ico') }}' type='image/x-icon'>-->
     <link rel='icon' href="../static/img/favicon.ico" type='image/x-icon'>
 
     <!-- leaflet -->
@@ -38,25 +31,22 @@
    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
    crossorigin=""></script>
 </head>
+
 <body>
     <header>
         <nav>
             <ul class="navbar">
-                <!--<li><a href="#homepic"><img src="{{ url_for('static', filename = '/img/logo.JPG') }}" alt="logo"/></a></li>-->
                 <li><a href="/"><img src="../static/img/logo.JPG" alt="logo"/></a></li>
-                <!-- <li><a href="#white-container">7-Day Forecast</a></li> -->
-                <!-- <li><a href="#mustard-container">Next Page</a></li> -->
-                <!-- <li><a href="#background-thing">Next Page</a></li> -->
-                <!-- <li><a href="#background-thing">Next Page</a></li> -->
+                <!-- <li><a href="#id_of_thing">7-Day Forecast</a></li> -->
             </ul>
         </nav>
     </header>
+
     <div id="homepic">
         <div id="location-box">
             <h4>Choose a location:</h4>
             <p>Please enter the name of the city you would like weather information from below, then press submit. For more accurate results, include the country, and state (if in the U.S.)</p>
             
-
             <!---FORM SECTION-->
             <form class="form-inline" method="POST" action="/results">
                 <div class="form-row align-items-center">
@@ -79,13 +69,7 @@
     </div>
 
     <!---CONTENT SECTION-->
-    <div class="container"> <!-- white box -->
-        <!--<div class="textContainer">-->
-
-            <!--<div class="alert alert-warning alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Heat Advisory</strong> -  Click <a href="#storm-watch" class="alert-link">here</a> to see more information.
-            </div>-->
+    <div class="container">
 
             {% for warning in warnings %}
                     <div class= "{{ warning.bootstrap_alert_class }}">
@@ -258,10 +242,7 @@
                     });
                 </script>
             </div>
-        <!--</div>-->
     </div>
-        </div>
-    </section>
 
     <div id="mapid"></div>
     <script type="text/javascript">
@@ -271,7 +252,6 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-
 
         var icon_shadow_url = "{{ url_for('static', filename = 'img/weather_icon_shadow.png') }}";
         {% for weather_point in nine_point_current_weather %}
@@ -284,37 +264,18 @@
                 shadowSize: [75, 75]
             });
 
-            L.marker([{{ weather_point.lat }}, {{ weather_point.lon }}], {icon: weather_icon}).addTo(map).bindPopup('Current Temperature <br> {{ weather_point.current_temp }}').openPopup();
+            L.marker([{{ weather_point.lat }}, {{ weather_point.lon }}], {icon: weather_icon}).addTo(map).bindPopup('{{ weather_point.current_temp }}°').openPopup();
         {% endfor %}
-
     </script>
     
     <!---
-    <div id="background-thing">
-    </div>
+    <div id="middle-background-image"></div>
     
-    <section class="white-container"> 
-        <div class="textContainer">
-            <div id="storm-watch">
-                <h3>Weather Warnings for {{ location.city_name }}, {{ location.state_code }} {{ location.country }}:</h3>
-                
-            </div>-->
-
-            <!--<div class="flex-center">
-                <div>-->
-
-                    <!--<img src="{{ url_for('static', filename = '/img/lee-junda.jpg') }}" alt="lee-junda"/>-->
-                    
-                    <!--<img src="../static/img/lee-junda.jpg" alt="lee-junda"/>
-                </div>
-                <div>
-                    <h3>Something</h3>
-                    <p>We could put something here later when our TA gives us more requirements in the future.</p>
-                </div>
-            </div>-->
-            
+    <div class="container">  
+        <div id="map-box">
+            <h3>Weather Warnings for {{ location.city_name }}, {{ location.state_code }} {{ location.country }}:</h3>  
         </div>
-    </section>
+    </div>-->
 
     <footer>
     <ul>

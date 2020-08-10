@@ -1,4 +1,4 @@
-/*This sheet is for mobile and tablet viewing while in landscape mode*/
+/* Navigation bar (blue bar at top of page)*/
 body {
   text-align: center;
   background-color: #f8f8ff;
@@ -30,7 +30,7 @@ header {
 
 #homepic {
   width: 100%;
-  min-height: 700px;
+  min-height: 910px;
   padding-top: 15%;
   background: url("../img/nasa-yZygONrUBe8-unsplash.jpg") no-repeat top center fixed;
   background-size: cover;
@@ -52,12 +52,10 @@ nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
 }
 
 .navbar img {
-  width: 100%;
+  width: 97%;
 }
 
 .navbar li {
@@ -78,13 +76,13 @@ nav {
 
 #location-box {
   background-color: rgba(3, 3, 32, 0.5);
-  width: 80%;
+  width: 60%;
   padding: 3%;
   border-radius: 10px;
   color: white;
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
+  text-align: left;
 }
 
 form {
@@ -96,7 +94,7 @@ form {
   border-radius: 5px;
 }
 
-input[type=submit] {
+form input[type=submit] {
   padding: 8px 20px;
   border-style: solid;
   border-color: #001b43;
@@ -106,39 +104,18 @@ input[type=submit] {
   cursor: pointer;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 1%;
 }
 
-input[type=submit]:hover {
+form input[type=submit]:hover {
   background-color: rgba(255, 255, 255, 0.8);
   border-color: #03396c;
   color: #03396c;
 }
 
-input[type=text] {
-  width: 70%;
+form input[type=text] {
+  width: 25%;
   margin-right: auto;
   margin-left: auto;
-}
-
-#center-por {
-  width: 100%;
-}
-
-.white-container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #f8f8ff;
-  color: black;
-}
-
-.textContainer {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  padding: 2%;
 }
 
 .container {
@@ -157,14 +134,8 @@ input[type=text] {
   width: 70%;
 }
 
-/*
-#mustard-container {
-	min-height: 400px;
-	width: 100%;
-	background-color: #fdbe51;
-}*/
 .alert {
-  width: 97%;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -180,13 +151,17 @@ input[type=text] {
           justify-content: center;
 }
 
+#current-conditions i {
+  padding-top: 15%;
+  font-size: 120px;
+}
+
 #current-conditions p {
   margin: 0px;
-  font-size: 14px;
 }
 
 .weather-box {
-  width: 97%;
+  width: 80%;
   background-color: #1A355D;
   border-radius: 10px;
   color: white;
@@ -202,20 +177,12 @@ input[type=text] {
   width: 33.33333333%;
 }
 
-.weather-box .curr-box h6 {
-  font-size: 14px;
-}
-
-.weather-box .curr-box h2 {
-  font-size: 19px;
-}
-
 .weather-box #curr-middle {
   text-align: center;
 }
 
 .weather-box #curr-middle img {
-  width: 65%;
+  width: 55%;
 }
 
 .weather-box #curr-right {
@@ -226,7 +193,7 @@ input[type=text] {
 }
 
 .weather-box #curr-right h1 {
-  font-size: 70px;
+  font-size: 90px;
 }
 
 .weather-box #curr-date {
@@ -255,9 +222,6 @@ input[type=text] {
   background-color: #002248;
   border-radius: 10px;
   border-color: #1A355D;
-  font-size: 13px;
-  width: 100%;
-  padding: 0px;
 }
 
 .weather-box .nav-link:hover {
@@ -280,19 +244,18 @@ input[type=text] {
           justify-content: center;
 }
 
+.weather-box #week-forecast h5 {
+  font-size: 17px;
+}
+
 .weather-box #week-forecast div {
   display: inline-block;
   width: 14.2857142857%;
   padding: 1%;
 }
 
-.weather-box #week-forecast h5 {
-  font-size: 13px;
-}
-
 .weather-box #week-forecast p {
   text-align: center;
-  font-size: 13px;
 }
 
 .weather-box #week-forecast i {
@@ -305,7 +268,7 @@ input[type=text] {
   position: relative;
   left: 0px;
   height: 26px;
-  width: 60%;
+  width: 30%;
   margin: 20px auto;
   margin-left: 0%;
   background: rgba(0, 0, 0, 0.25);
@@ -376,7 +339,7 @@ input[type=text] {
 }
 
 .weather-graph-box {
-  width: 97%;
+  width: 80%;
   background-color: #1A355D;
   border-radius: 10px;
   color: white;
@@ -385,10 +348,6 @@ input[type=text] {
   margin-left: auto;
   margin-right: auto;
   padding: 1%;
-}
-
-.weather-graph-box h5 {
-  font-size: 15px;
 }
 
 /* WILL DELETE LATER IF WE DON'T USE IT
@@ -434,4 +393,10 @@ footer ul {
   list-style: none;
   color: white;
   font-size: small;
+}
+
+/* Leaflet */
+#mapid {
+    height: 300px;
+    width: 500px;
 }
