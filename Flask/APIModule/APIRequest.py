@@ -102,26 +102,6 @@ def get_month_name(date_string):
     return str(month)
 
 
-def get_current_calendar_day_number():
-    return datetime.datetime.today().day
-
-
-def get_current_hour():
-    return str(datetime.datetime.now().strftime('%I'))
-
-
-def get_current_minute():
-    return str(datetime.datetime.now().strftime('%M'))
-
-
-def get_current_am_pm():
-    return str(datetime.datetime.now().strftime('%p'))
-
-
-def create_current_12_hour_time():
-    return get_current_hour() + ':' + get_current_minute() + ' ' + get_current_am_pm()
-
-
 def generate_formatted_per_day_weather_data(forecast_response_json):
     '''generate_formatted_per_day_weather_data() takes a Weatherbit API response  JSON object  and creates a list of dictionary
     objects, each object representing a day in the 7 day forecast, from day 0 to day 6. Each day contains the following
