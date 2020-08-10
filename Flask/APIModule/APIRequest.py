@@ -237,19 +237,6 @@ def generate_current_weather_data(current_response_json):
 
 
 
-def generate_current_weather_data(current_response_json):
-    current_weather = {"current_temp": int(current_response_json["data"][0]["temp"]),
-                       "precip_chance": current_response_json["data"][0]["precip"],
-                       "weather_description": current_response_json["data"][0]["weather"]["description"],
-                       "weather_icon": current_response_json["data"][0]["weather"]["icon"],
-                       "weather_code": current_response_json["data"][0]["weather"]["code"],
-                       "lon": current_response_json["data"][0]["lon"],
-                       "lat": current_response_json["data"][0]["lat"]}
-
-    return current_weather
-
-
-
 def get_api_returned_location_info(response_json):
     # "city_name"   represents the name of the city
     # "country"     represents the country where the above city is found
