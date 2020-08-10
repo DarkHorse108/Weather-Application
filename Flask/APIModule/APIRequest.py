@@ -261,7 +261,6 @@ def get_timezone_time(loc_timezone):
     
     current_time = current_time.strftime('%I:%M %p')
 
-    #Modify string to not include the extraneous 0 in front of the hours i.e. 06:00 AM, however if the time is 10:00AM it will be displayed correctly as such/
     hours = current_time[:2]
     hours = int(hours)
     current_time = current_time[2::]
