@@ -394,3 +394,9 @@ footer ul {
   color: white;
   font-size: small;
 }
+
+/* Leaflet */
+#mapid {
+    height: 300px;
+    width: 500px;
+}
