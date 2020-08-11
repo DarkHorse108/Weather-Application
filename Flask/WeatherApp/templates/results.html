@@ -204,11 +204,14 @@
                     var myChart = new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: ['12 AM', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM', '6 AM', '7 AM', '8AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM',
-                                    '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM'],
+                            labels: [{% for item in hourly %}
+                                    "{{item.timestamp_local}}",
+                                    {% endfor %}],
                             datasets: [{
                                 //label: 'Temperature',
-                                data: [66, 64, 63, 63, 61, 59, 57, 61, 64, 66, 70, 72, 75, 77, 79, 81, 81, 82, 84, 84, 82, 78, 77, 75],
+                                data: [{% for temp in hourly %}
+                                    "{{temp.current_temp}}",
+                                    {% endfor %}],
                                 backgroundColor: [
                                     'rgba(179,205,224, 0.2)'
                                 ],

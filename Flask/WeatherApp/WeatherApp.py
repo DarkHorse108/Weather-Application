@@ -39,6 +39,7 @@ def results():
         # Instantiate a UserWeatherRequest object called test_user_weather_request
         user_weather_request_current = APIRequest.UserWeatherRequest(user_city_input, APIRequest.CURRENT_DAY, user_country_input, user_state_input)
         user_weather_request_forecast = APIRequest.UserWeatherRequest(user_city_input, APIRequest.FORECAST_DAYS, user_country_input, user_state_input)
+        user_weather_hourly_forecast = APIRequest.UserWeatherRequest(user_city_input, APIRequest.FORECAST_DAYS, user_country_input, user_state_input)
         # Check if the user input includes a valid city name
         if user_weather_request_forecast.has_valid_city_name():
 
@@ -47,12 +48,14 @@ def results():
 
             forecast_weather_json = APIRequest.get_weather_json(user_weather_request_forecast, APIRequest.API_ENDPOINT_FORECAST)
             current_weather_json = APIRequest.get_weather_json(user_weather_request_current, APIRequest.API_ENDPOINT_CURRENT)
+            hourly_forecast_json = APIRequest.get_weather_json(user_weather_hourly_forecast, APIRequest.API_ENDPOINT_HOURLY)
 
             if forecast_weather_json and current_weather_json:
                 # the api requets
                 forecast_days = APIRequest.generate_formatted_per_day_weather_data(forecast_weather_json)
                 forecast_days = APIRequest.update_current_day_formatted_weather_data(forecast_days, current_weather_json)
                 location = APIRequest.get_api_returned_location_info(forecast_weather_json)
+                hourly_forecast = APIRequest.generate_formatted_per_hour_weather_data(hourly_forecast_json)
                 city_coordinates = APIRequest.get_city_coordinates(forecast_weather_json)
                 weather_grid_coordinates = WeatherMap.generate_nine_point_grid(city_coordinates, WEATHER_GRID_SPACING)
 
@@ -92,6 +95,7 @@ def results():
                                            forecast_days=forecast_days,
                                            location=location,
                                            warnings=warnings,
+                                           hourly=hourly_forecast,
                                            nine_point_current_weather=nine_point_current_weather
                                            )
 
