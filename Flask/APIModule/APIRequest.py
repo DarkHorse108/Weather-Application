@@ -9,6 +9,7 @@
 import requests, sys, datetime, calendar
 import pytz
 from APIModule import config
+from WeatherMapModule import WeatherMap
 
 # Below is the URL of the api endpoint for Weatherbit.io
 API_ENDPOINT_FORECAST = "https://api.weatherbit.io/v2.0/forecast/daily"
@@ -68,6 +69,34 @@ class UserWeatherRequest:
         if is_valid_location_string(self.city):
             return True
         return False
+
+class CoordinateWeatherRequest:
+    def __init__(self, coords, number_of_days):
+        self.coords = coords
+        self.number_of_days = number_of_days
+
+    def generate_formatted_request_parameters(self):
+        parameters = {"lon": self.coords.lon, "lat": self.coords.lat, "days": str(self.number_of_days),
+                      "units": "I", "key": str(config.API_KEY)}
+        return parameters
+
+
+def get_api_response(parameters):
+    # Send the GET request to the API with our dictionary of parameters
+    # Return our JSON object response from the function
+    return requests.get(url=API_ENDPOINT, params=parameters)
+
+
+class CoordinateWeatherRequest:
+    def __init__(self, coords, number_of_days):
+        self.coords = coords
+        self.number_of_days = number_of_days
+
+    def generate_formatted_request_parameters(self):
+        parameters = {"lon": self.coords.lon, "lat": self.coords.lat, "days": str(self.number_of_days),
+                      "units": "I", "key": str(config.API_KEY)}
+        return parameters
+
 
 def get_api_response(parameters):
     # Send the GET request to the API with our dictionary of parameters
@@ -162,6 +191,32 @@ def update_current_day_formatted_weather_data(per_day_weather_data, current_resp
     return per_day_weather_data
 
 
+def generate_current_weather_data(current_response_json):
+    current_weather = {"current_temp": int(current_response_json["data"][0]["temp"]),
+                       "precip_chance": current_response_json["data"][0]["precip"],
+                       "weather_description": current_response_json["data"][0]["weather"]["description"],
+                       "weather_icon": current_response_json["data"][0]["weather"]["icon"],
+                       "weather_code": current_response_json["data"][0]["weather"]["code"],
+                       "lon": current_response_json["data"][0]["lon"],
+                       "lat": current_response_json["data"][0]["lat"]}
+
+    return current_weather
+
+
+
+def generate_current_weather_data(current_response_json):
+    current_weather = {"current_temp": int(current_response_json["data"][0]["temp"]),
+                       "precip_chance": current_response_json["data"][0]["precip"],
+                       "weather_description": current_response_json["data"][0]["weather"]["description"],
+                       "weather_icon": current_response_json["data"][0]["weather"]["icon"],
+                       "weather_code": current_response_json["data"][0]["weather"]["code"],
+                       "lon": current_response_json["data"][0]["lon"],
+                       "lat": current_response_json["data"][0]["lat"]}
+
+    return current_weather
+
+
+
 def get_api_returned_location_info(response_json):
     # "city_name"   represents the name of the city
     # "country"     represents the country where the above city is found
@@ -186,6 +241,10 @@ def get_api_returned_location_info(response_json):
 
 
 ''' helpers '''
+
+
+def get_city_coordinates(response_json):
+    return WeatherMap.GeoCoord2D(float(response_json['lon']), float(response_json['lat']))
 
 
 def generate_list_of_dicts(list_len):

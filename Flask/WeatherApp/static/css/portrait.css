@@ -37,7 +37,7 @@ header {
   color: #ffffff;
 }
 
-nav {
+.navbar {
   position: fixed;
   z-index: 10;
   top: 0;
@@ -46,34 +46,19 @@ nav {
   width: 100%;
 }
 
-.navbar {
-  margin: 0 auto;
-  width: 90%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
 .navbar img {
   width: 100%;
 }
 
-.navbar li {
-  display: inline-block;
-  max-width: 30%;
+.navbar a {
+  margin-left: 0px;
+  width: 40%;
 }
 
-.navbar a {
+.navbar .navbar-nav a {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.8);
   font-weight: normal;
-}
-
-.navbar a:hover {
-  color: #ffffff;
-  text-decoration: underline;
 }
 
 #location-box {
@@ -85,6 +70,7 @@ nav {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  margin-top: 3%;
 }
 
 form {
@@ -403,6 +389,43 @@ input[type=text] {
 	margin-left: auto;
 	margin-right: auto;
 }*/
+.container-fluid {
+  text-align: center;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background: url("../img/aaron-burden-6DD9FJYj0Vo-unsplash.jpg") no-repeat top center;
+  background-size: cover;
+}
+
+#map-box {
+  max-width: 95%;
+  background-color: #1A355D;
+  border-radius: 10px;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding-bottom: 20%;
+  padding-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  max-height: 500px;
+  /* Leaflet */
+}
+
+#map-box h3 {
+  padding-bottom: 4%;
+  font-size: 18px;
+}
+
+#map-box #mapid {
+  height: 350px;
+  width: 250px;
+  z-index: 1;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+}
+
 footer {
   width: 100%;
   background: url("../img/leon-contreras-YyBlrCUVFWQ-unsplash.jpg") no-repeat center center fixed;

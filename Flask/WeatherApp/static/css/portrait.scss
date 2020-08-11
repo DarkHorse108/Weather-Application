@@ -27,36 +27,27 @@ header {
 	background-size: cover;
 	color: #ffffff;
 }
-nav {
-	position: fixed;
-	z-index: 10;
-	top: 0;
-	left: 0;
-	background-color: #002248;
-	width: 100%;
+.navbar{
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background-color: #002248;
+    width: 100%;
+    img {
+        width: 100%;
+    }
+    a {
+        margin-left: 0px;
+        width: 40%;
+    }
+  .navbar-nav a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: normal;
+    }
 }
-.navbar {
-	img {
-		width: 100%;
-	}
-	margin: 0 auto;
-	width: 90%;
-	display: flex;
-	justify-content: space-around;
-	li {
-		display: inline-block;
-		max-width: 30%;
-	}
-	a {
-		text-decoration: none;
-		color: rgba(255, 255, 255, 0.8);
-		font-weight: normal;
-		&:hover {
-			color: #ffffff;
-			text-decoration: underline;
-		}
-	}
-}
+
 #location-box {
 	background-color: rgba(3, 3, 32, 0.5);
 	width: 95%;
@@ -65,7 +56,8 @@ nav {
 	color: white;
 	margin-left: auto;
 	margin-right: auto;
-	text-align: center;
+    text-align: center;
+    margin-top: 3%;
 }
 form {
 	width: 100%;
@@ -363,6 +355,48 @@ input[type=text] {
 	margin-left: auto;
 	margin-right: auto;
 }*/
+
+.container-fluid {
+	text-align: center;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	background: url("../img/aaron-burden-6DD9FJYj0Vo-unsplash.jpg") no-repeat top center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+#map-box {
+	max-width: 95%;
+	background-color: #1A355D;
+	//border-style: solid;
+	//border-color: #e4be7d;
+	border-radius: 10px;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	padding-bottom: 20%;
+	padding-top: 2%;
+	margin-left: auto;
+	margin-right: auto;
+	color: white;
+	max-height: 500px;
+
+	h3 {
+        padding-bottom: 4%;
+        font-size: 18px;
+	}
+
+	/* Leaflet */
+	#mapid {
+		height: 350px;
+		width: 250px;
+		z-index: 1;
+		margin-left: auto;
+		margin-right: auto;
+		border-radius: 5px;
+	}
+}
+
 footer {
 	width: 100%;
 	background: url("../img/leon-contreras-YyBlrCUVFWQ-unsplash.jpg") no-repeat center center fixed;

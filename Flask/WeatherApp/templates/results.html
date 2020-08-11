@@ -16,22 +16,50 @@
     <link href="../static/css/main.css" rel="stylesheet" type="text/css" media="screen and (min-width: 1001px)">
     <link href="../static/css/portrait.css" rel="stylesheet" type="text/css" media="screen and (max-width: 420px)">
     <link href="../static/css/landscape.css" rel="stylesheet" type="text/css" media="screen and (min-width: 421px) and (max-width: 1000px)">
-    <link href="../static/css/weather-icons.css" rel="stylesheet" type="text/css">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
     <link rel='icon' href="../static/img/favicon.ico" type='image/x-icon'>
+
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
 </head>
 
 <body>
     <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a href="/"><img src="../static/img/logo.JPG" alt="logo"/></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarToggler">
+              <ul class="navbar-nav mt-2 mt-lg-0 nav-fill">
+                <li class="nav-item">
+                  <a class="nav-link" href="#current-conditions">7-Day Forecast</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#map-place" tabindex="-1">Weather Nearby</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+        <!---
         <nav>
             <ul class="navbar">
                 <li><a href="/"><img src="../static/img/logo.JPG" alt="logo"/></a></li>
-                <!-- <li><a href="#id_of_thing">7-Day Forecast</a></li> -->
+                <li><a href="#current_conditions">7-Day Forecast</a></li>
+                <li><a href="#map_box">Weather Nearby</a></li>
             </ul>
         </nav>
+    -->
     </header>
 
     <div id="homepic">
@@ -235,15 +263,40 @@
                 </script>
             </div>
     </div>
+
     
-    <!---
-    <div id="middle-background-image"></div>
     
-    <div class="container">  
+    
+    <!--<div id="middle-background-image"></div>-->
+    
+    <div class="container-fluid" id="map-place">  
         <div id="map-box">
-            <h3>Weather Warnings for {{ location.city_name }}, {{ location.state_code }} {{ location.country }}:</h3>  
+            <h3>Weather Near {{ location.city_name }}, {{ location.state_code }} {{ location.country }}:</h3>
+            <div id="mapid"></div>
+            <script type="text/javascript">
+            // this script is from the leaflet example
+            var map = L.map('mapid').setView([{{ nine_point_current_weather[0].lat }}, {{ nine_point_current_weather[0].lon }}], 7.8);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            var icon_shadow_url = "{{ url_for('static', filename = 'img/weather_icon_shadow.png') }}";
+            {% for weather_point in nine_point_current_weather %}
+                var icon_url = "{{ url_for('static', filename = 'icons/' + weather_point.weather_icon + '.png') }}";
+                console.log(icon_url);
+                var weather_icon = L.icon({
+                    iconUrl: icon_url,
+                    iconSize: [50, 50],
+                    shadowUrl: icon_shadow_url,
+                    shadowSize: [75, 75]
+                });
+
+                L.marker([{{ weather_point.lat }}, {{ weather_point.lon }}], {icon: weather_icon}).addTo(map).bindPopup('{{ weather_point.current_temp }}°').openPopup();
+            {% endfor %}
+        </script>  
         </div>
-    </div>-->
+    </div>
 
     <footer>
     <ul>

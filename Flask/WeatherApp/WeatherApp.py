@@ -3,11 +3,15 @@
 from flask import Flask, render_template, request, redirect
 from APIModule import APIRequest
 from WeatherWarningsModule import WeatherWarnings
+from WeatherMapModule import WeatherMap
 import requests
 import datetime
 
 # Instantiate the Flask Application/Object
 WeatherApp = Flask(__name__)
+
+# controls the spacing in degrees between the weather grid points
+WEATHER_GRID_SPACING = 0.5
 
 # The code below handles the default URL/Landing page i.e. flipN.oregonstate.edu:PORTNUMBER automatically executes
 # the view/function below
@@ -49,6 +53,8 @@ def results():
                 forecast_days = APIRequest.generate_formatted_per_day_weather_data(forecast_weather_json)
                 forecast_days = APIRequest.update_current_day_formatted_weather_data(forecast_days, current_weather_json)
                 location = APIRequest.get_api_returned_location_info(forecast_weather_json)
+                city_coordinates = APIRequest.get_city_coordinates(forecast_weather_json)
+                weather_grid_coordinates = WeatherMap.generate_nine_point_grid(city_coordinates, WEATHER_GRID_SPACING)
 
                 # If forecast_days is NOT None, we received a valid/usable information from the API
                 if forecast_days is not None:
@@ -71,10 +77,22 @@ def results():
                     # todo: need to get location and time out of this dict
                     warnings = WeatherWarnings.find_storms(forecast_days[1:8])
 
+                    # get weather map data
+                    city_coordinates = APIRequest.get_city_coordinates(forecast_weather_json)
+                    weather_grid_coordinates = WeatherMap.generate_nine_point_grid(city_coordinates, WEATHER_GRID_SPACING)
+                    nine_point_current_weather = []
+                    for coordinate in weather_grid_coordinates:
+                        coordinate_request = APIRequest.CoordinateWeatherRequest(coordinate, 1)
+
+                        coordinate_weather_json = APIRequest.get_weather_json(coordinate_request, APIRequest.API_ENDPOINT_CURRENT)
+                        coordinate_weather = APIRequest.generate_current_weather_data(coordinate_weather_json)
+                        nine_point_current_weather.append(coordinate_weather)
+
                     return render_template('results.html',
                                            forecast_days=forecast_days,
                                            location=location,
-                                           warnings=warnings
+                                           warnings=warnings,
+                                           nine_point_current_weather=nine_point_current_weather
                                            )
 
         # If the city name was not valid, or if the API response indicates that weather information could not be

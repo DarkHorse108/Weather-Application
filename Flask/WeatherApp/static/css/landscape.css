@@ -37,7 +37,7 @@ header {
   color: #ffffff;
 }
 
-nav {
+.navbar {
   position: fixed;
   z-index: 10;
   top: 0;
@@ -46,36 +46,57 @@ nav {
   width: 100%;
 }
 
-.navbar {
-  margin: 0 auto;
-  width: 75%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
 .navbar img {
   width: 100%;
 }
 
-.navbar li {
-  display: inline-block;
-  max-width: 20%;
+.navbar a {
+  margin-left: 5px;
+  width: 25%;
 }
 
-.navbar a {
+.navbar .navbar-nav a {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.8);
   font-weight: normal;
 }
 
-.navbar a:hover {
+.navbar .navbar-nav a:hover {
   color: #ffffff;
   text-decoration: underline;
 }
 
+/*
+nav {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	background-color: #002248;
+	width: 100%;
+}
+.navbar {
+	img {
+		width: 100%;
+	}
+	margin: 0 auto;
+	width: 75%;
+	display: flex;
+	justify-content: space-around;
+	li {
+		display: inline-block;
+		max-width: 20%;
+	}
+	a {
+		text-decoration: none;
+		color: rgba(255, 255, 255, 0.8);
+		font-weight: normal;
+		&:hover {
+			color: #ffffff;
+			text-decoration: underline;
+		}
+	}
+}*/
 #location-box {
   background-color: rgba(3, 3, 32, 0.5);
   width: 80%;
@@ -416,6 +437,49 @@ input[type=text] {
 	margin-left: auto;
 	margin-right: auto;
 }*/
+.container-fluid {
+  text-align: center;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background: url("../img/aaron-burden-6DD9FJYj0Vo-unsplash.jpg") no-repeat top center;
+  background-size: cover;
+}
+
+#map-box {
+  max-width: 80%;
+  min-width: 400px;
+  background-color: #1A355D;
+  border-radius: 10px;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding-bottom: 20%;
+  padding-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  max-height: 520px;
+  /* Leaflet */
+}
+
+#map-box h3 {
+  padding-bottom: 4%;
+  font-size: 20px;
+}
+
+#map-box #mapid {
+  height: 400px;
+  width: 390px;
+  z-index: 1;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+}
+
+#map-box #mapid:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
 footer {
   width: 100%;
   background: url("../img/leon-contreras-YyBlrCUVFWQ-unsplash.jpg") no-repeat center center fixed;
