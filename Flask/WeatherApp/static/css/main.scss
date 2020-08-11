@@ -27,25 +27,28 @@ header {
 	background-size: cover;
 	color: #ffffff;
 }
-nav {
+.navbar {
 	position: fixed;
 	z-index: 10;
 	top: 0;
 	left: 0;
 	background-color: #002248;
 	width: 100%;
-}
-.navbar {
 	img {
-		width: 97%;
+		width: 55%;
 	}
-	margin: 0 auto;
-	width: 75%;
+	a {
+		margin-left: 10%;
+	}
+}
+.navbar-nav {
+	margin-left: 42%;
+	width: 40%;
 	display: flex;
-	li {
+	/*li {
 		display: inline-block;
-		max-width: 20%;
-	}
+		max-width: 30%;
+	}*/
 	a {
 		text-decoration: none;
 		color: rgba(255, 255, 255, 0.8);
@@ -99,6 +102,8 @@ form {
 
 .container {
 	text-align: center;
+	padding-top: 3%;
+	padding-bottom: 3%;
 	ul {
 		text-align: left;
 	}
@@ -318,7 +323,7 @@ form {
 	margin-right: auto;
 	padding: 1%;
 }
-/* WILL DELETE LATER IF WE DON'T USE IT
+/*
 #middle-background-image {
 	width: 100%;
 	min-height: 650px;
@@ -328,21 +333,52 @@ form {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+}*/
+
+.container-fluid {
+	text-align: center;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	background: url("../img/aaron-burden-6DD9FJYj0Vo-unsplash.jpg") no-repeat top center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 #map-box {
-	width: 70%;
-	background-color: #fed48b;
-	border-style: solid;
-	border-color: #e4be7d;
+	max-width: 60%;
+	min-width: 700px;
+	background-color: #1A355D;
+	//border-style: solid;
+	//border-color: #e4be7d;
 	border-radius: 10px;
 	margin-top: 2%;
 	margin-bottom: 2%;
 	padding-bottom: 20%;
 	padding-top: 2%;
-	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-}*/
+	color: white;
+	max-height: 600px;
+
+	h3 {
+		padding-bottom: 4%;
+	}
+
+	/* Leaflet */
+	#mapid {
+		height: 400px;
+		width: 600px;
+		z-index: 1;
+		margin-left: auto;
+		margin-right: auto;
+		transition: transform .2s;
+		border-radius: 5px;
+	}
+	#mapid:hover {
+		transform: scale(1.2);
+	  }
+}
 
 footer {
 	width: 100%;
@@ -366,8 +402,4 @@ footer {
 	}
 }
 
-/* Leaflet */
-#mapid {
-    height: 300px;
-    width: 500px;
-}
+
