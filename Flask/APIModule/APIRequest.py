@@ -9,6 +9,7 @@
 import requests, sys, datetime, calendar
 import pytz
 from APIModule import config
+from WeatherMapModule import WeatherMap
 
 # Below is the URL of the api endpoint for Weatherbit.io
 API_ENDPOINT_FORECAST = "https://api.weatherbit.io/v2.0/forecast/daily"
@@ -71,6 +72,32 @@ class UserWeatherRequest:
             return True
         return False
 
+class CoordinateWeatherRequest:
+    def __init__(self, coords, number_of_days):
+        self.coords = coords
+        self.number_of_days = number_of_days
+
+    def generate_formatted_request_parameters(self):
+        parameters = {"lon": self.coords.lon, "lat": self.coords.lat, "days": str(self.number_of_days),
+                      "units": "I", "key": str(config.API_KEY)}
+        return parameters
+
+
+def get_api_response(parameters):
+    # Send the GET request to the API with our dictionary of parameters
+    # Return our JSON object response from the function
+    return requests.get(url=API_ENDPOINT, params=parameters)
+
+
+class CoordinateWeatherRequest:
+    def __init__(self, coords, number_of_days):
+        self.coords = coords
+        self.number_of_days = number_of_days
+
+    def generate_formatted_request_parameters(self):
+        parameters = {"lon": self.coords.lon, "lat": self.coords.lat, "days": str(self.number_of_days),
+                      "units": "I", "key": str(config.API_KEY)}
+        return parameters
 
 def get_api_response(parameters):
     # Send the GET request to the API with our dictionary of parameters
@@ -104,26 +131,6 @@ def get_month_name(date_string):
     month = datetime.datetime.strptime(date_string, '%Y-%m-%d').strftime('%B')
 
     return str(month)
-
-
-def get_current_calendar_day_number():
-    return datetime.datetime.today().day
-
-
-def get_current_hour():
-    return str(datetime.datetime.now().strftime('%I'))
-
-
-def get_current_minute():
-    return str(datetime.datetime.now().strftime('%M'))
-
-
-def get_current_am_pm():
-    return str(datetime.datetime.now().strftime('%p'))
-
-
-def create_current_12_hour_time():
-    return get_current_hour() + ':' + get_current_minute() + ' ' + get_current_am_pm()
 
 
 def generate_formatted_per_day_weather_data(forecast_response_json):
@@ -199,6 +206,32 @@ def update_current_day_formatted_weather_data(per_day_weather_data, current_resp
     return per_day_weather_data
 
 
+def generate_current_weather_data(current_response_json):
+    current_weather = {"current_temp": int(current_response_json["data"][0]["temp"]),
+                       "precip_chance": current_response_json["data"][0]["precip"],
+                       "weather_description": current_response_json["data"][0]["weather"]["description"],
+                       "weather_icon": current_response_json["data"][0]["weather"]["icon"],
+                       "weather_code": current_response_json["data"][0]["weather"]["code"],
+                       "lon": current_response_json["data"][0]["lon"],
+                       "lat": current_response_json["data"][0]["lat"]}
+
+    return current_weather
+
+
+
+def generate_current_weather_data(current_response_json):
+    current_weather = {"current_temp": int(current_response_json["data"][0]["temp"]),
+                       "precip_chance": current_response_json["data"][0]["precip"],
+                       "weather_description": current_response_json["data"][0]["weather"]["description"],
+                       "weather_icon": current_response_json["data"][0]["weather"]["icon"],
+                       "weather_code": current_response_json["data"][0]["weather"]["code"],
+                       "lon": current_response_json["data"][0]["lon"],
+                       "lat": current_response_json["data"][0]["lat"]}
+
+    return current_weather
+
+
+
 def get_api_returned_location_info(response_json):
     # "city_name"   represents the name of the city
     # "country"     represents the country where the above city is found
@@ -223,6 +256,10 @@ def get_api_returned_location_info(response_json):
 
 
 ''' helpers '''
+
+
+def get_city_coordinates(response_json):
+    return WeatherMap.GeoCoord2D(float(response_json['lon']), float(response_json['lat']))
 
 
 def generate_list_of_dicts(list_len):
@@ -298,7 +335,6 @@ def get_timezone_time(loc_timezone):
 
     current_time = current_time.strftime('%I:%M %p')
 
-    # Modify string to not include the extraneous 0 in front of the hours i.e. 06:00 AM, however if the time is 10:00AM it will be displayed correctly as such/
     hours = current_time[:2]
     hours = int(hours)
     current_time = current_time[2::]

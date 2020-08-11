@@ -1,0 +1,433 @@
+/* Navigation bar (blue bar at top of page)*/
+body {
+  text-align: center;
+  background-color: #f8f8ff;
+  margin: 0px;
+  font-size: 1rem;
+  font-weight: 400;
+  width: 100%;
+  height: 100%;
+}
+
+@-ms-viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+
+@-o-viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+
+header {
+  color: #ffffff;
+}
+
+#homepic {
+  width: 100%;
+  min-height: 910px;
+  padding-top: 15%;
+  background: url("../img/nasa-yZygONrUBe8-unsplash.jpg") no-repeat top center fixed;
+  background-size: cover;
+  color: #ffffff;
+}
+
+.navbar {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background-color: #002248;
+  width: 100%;
+}
+
+.navbar img {
+  width: 55%;
+}
+
+.navbar a {
+  margin-left: 10%;
+}
+
+.navbar-nav {
+  margin-left: 42%;
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /*li {
+		display: inline-block;
+		max-width: 30%;
+	}*/
+}
+
+.navbar-nav a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: normal;
+}
+
+.navbar-nav a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+#location-box {
+  background-color: rgba(3, 3, 32, 0.5);
+  width: 60%;
+  padding: 3%;
+  border-radius: 10px;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+form {
+  width: 100%;
+  overflow: auto;
+  padding: 2% 5%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+}
+
+form input[type=submit] {
+  padding: 8px 20px;
+  border-style: solid;
+  border-color: #001b43;
+  background-color: #011f4b;
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+form input[type=submit]:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: #03396c;
+  color: #03396c;
+}
+
+form input[type=text] {
+  width: 25%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container {
+  text-align: center;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.container ul {
+  text-align: left;
+}
+
+.container img {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 2%;
+  min-width: 40px;
+  width: 70%;
+}
+
+.alert {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#current-conditions {
+  padding: 2%;
+  text-align: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#current-conditions i {
+  padding-top: 15%;
+  font-size: 120px;
+}
+
+#current-conditions p {
+  margin: 0px;
+}
+
+.weather-box {
+  width: 80%;
+  background-color: #1A355D;
+  border-radius: 10px;
+  color: white;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.weather-box .curr-box {
+  display: inline-block;
+  width: 33.33333333%;
+}
+
+.weather-box #curr-middle {
+  text-align: center;
+}
+
+.weather-box #curr-middle img {
+  width: 55%;
+}
+
+.weather-box #curr-right {
+  padding-left: 10%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.weather-box #curr-right h1 {
+  font-size: 90px;
+}
+
+.weather-box #curr-date {
+  padding-bottom: 15%;
+}
+
+.weather-box .nav-tabs .nav-link.active {
+  background-color: #1A355D;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  border-color: #1A355D;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.weather-box .nav-tabs .show > .nav-link {
+  background-color: #1A355D;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  border-color: #1A355D;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.weather-box #pills-tab {
+  background-color: #002248;
+  border-radius: 10px;
+  border-color: #1A355D;
+}
+
+.weather-box .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: #03396c;
+  color: #03396c;
+}
+
+.weather-box a {
+  color: white;
+}
+
+.weather-box #week-forecast {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.weather-box #week-forecast h5 {
+  font-size: 17px;
+}
+
+.weather-box #week-forecast div {
+  display: inline-block;
+  width: 14.2857142857%;
+  padding: 1%;
+}
+
+.weather-box #week-forecast p {
+  text-align: center;
+}
+
+.weather-box #week-forecast i {
+  padding-top: 15%;
+  padding-bottom: 15%;
+  font-size: xx-large;
+}
+
+.weather-box .switch {
+  position: relative;
+  left: 0px;
+  height: 26px;
+  width: 30%;
+  margin: 20px auto;
+  margin-left: 0%;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.weather-box .switch .switch-label {
+  position: relative;
+  z-index: 2;
+  float: left;
+  width: 50%;
+  line-height: 26px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+.weather-box .switch .switch-label:active {
+  font-weight: bold;
+}
+
+.weather-box .switch .switch-label-off {
+  padding-left: 2px;
+}
+
+.weather-box .switch .switch-label-on {
+  padding-right: 2px;
+}
+
+.weather-box .switch .switch-input {
+  display: none;
+}
+
+.weather-box .switch .switch-input:checked + .switch-label {
+  font-weight: bold;
+  color: #eeeeee;
+  text-shadow: 1.5px 1px #000000;
+  -webkit-transition: 0.15s ease-out;
+  transition: 0.15s ease-out;
+  -webkit-transition-property: color, text-shadow;
+  transition-property: color, text-shadow;
+}
+
+.weather-box .switch .switch-input:checked + .switch-label-on ~ .switch-selection {
+  left: 50%;
+}
+
+.weather-box .switch .switch-selection {
+  position: absolute;
+  z-index: 1;
+  top: 2px;
+  left: 2px;
+  display: block;
+  width: 50%;
+  height: 22px;
+  border-radius: 3px;
+  background-color: #000000;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#334b6e), to(#011f4b));
+  background-image: linear-gradient(top, #334b6e, #011f4b);
+  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
+  -webkit-transition: left 0.15s ease-out;
+  transition: left 0.15s ease-out;
+}
+
+.weather-graph-box {
+  width: 80%;
+  background-color: #1A355D;
+  border-radius: 10px;
+  color: white;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1%;
+}
+
+/*
+#middle-background-image {
+	width: 100%;
+	min-height: 650px;
+	padding-top: 3%;
+	background: url("../img/trevor-mckinnon-nsKKH8ILrkM-unsplash.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}*/
+.container-fluid {
+  text-align: center;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background: url("../img/aaron-burden-6DD9FJYj0Vo-unsplash.jpg") no-repeat top center;
+  background-size: cover;
+}
+
+#map-box {
+  max-width: 60%;
+  min-width: 700px;
+  background-color: #1A355D;
+  border-radius: 10px;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding-bottom: 20%;
+  padding-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  max-height: 600px;
+  /* Leaflet */
+}
+
+#map-box h3 {
+  padding-bottom: 4%;
+}
+
+#map-box #mapid {
+  height: 400px;
+  width: 600px;
+  z-index: 1;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+  border-radius: 5px;
+}
+
+#map-box #mapid:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+footer {
+  width: 100%;
+  background: url("../img/leon-contreras-YyBlrCUVFWQ-unsplash.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #ffffff;
+  bottom: 0;
+  padding: 1%;
+}
+
+footer ul {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 2%;
+  list-style: none;
+  color: white;
+  font-size: small;
+}
