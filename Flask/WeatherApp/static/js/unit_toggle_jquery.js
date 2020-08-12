@@ -1,8 +1,10 @@
 
+
         function record_starting_values(days)
         {
-            original = [];
+            var original = [];
 
+            var i = 0;
             for (i = 0; i < days.length; i++)
             {
                 original.push($(days[i]).text());
@@ -11,41 +13,72 @@
             return original;
         }
 
-        function revert_to_imperial_units(element_array, farenheit_array)
+        function farenheit_array_to_celsius_array(farenheit_array)
+        {
+            var celsius_array = [];
+
+            var i = 0;
+            for (i = 0; i < farenheit_array.length; i++)
+            {
+                celsius_array.push(farenheit_to_celsius(farenheit_array[i]));
+            }
+
+            return celsius_array;
+        }
+
+        function farenheit_to_celsius(farenheit)
+       {
+
+            var celsius = (farenheit - 32) * (5/9);
+            celsius = Math.round(celsius); 
+            
+            return celsius;
+       }
+
+        function mph_array_to_kmh_array(mph_array)
+        {
+            var kmh_array = [];
+
+            var i = 0;
+            for (i = 0; i < mph_array.length; i++)
+            {
+                kmh_array.push(mph_to_kmh(mph_array[i]));
+            }
+
+            return kmh_array;
+        }
+
+        function mph_to_kmh(mph)
+       {
+            var kmh = Math.round((mph * 1.60934) * 10) / 10;
+            
+            return kmh;
+       }
+
+
+       function update_html_with_array_values(element_array, data_array)
        {
             var i = 0;
-            var length = element_array.length;
 
-            for (i = 0; i < element_array.length; i++)
+            for(i = 0; i < element_array.length; i++)
             {
-                $(element_array[i]).html(farenheit_array[i]);
-            }       
+                $(element_array[i]).html(data_array[i]);
+            }
        }
 
-
-        function farenheit_to_celsius(elementID)
+       function change_mph_text_to_kmh(elementID)
        {
+             var km_units_text = "km/h";
 
-            var celsius = $(elementID).text();
-            celsius = (celsius - 32) * (5/9);
-            celsius = Math.round(celsius); 
-            $(elementID).html(celsius);
-       }
+             $(elementID).html(km_units_text);
 
-       function mph_to_km_per_hr(elementID)
+        }
+
+        function change_kmh_text_to_mph(elementID)
        {
-            var one_mph_equals_kmhr = 1.60934;
+             var mph_units_text = "mph";
 
-            var km_hr = $(elementID).text();
-            ms = Math.round((km_hr * one_mph_equals_kmhr) * 10) / 10;
-            $(elementID).html(km_hr);
-       }
-
-       function change_mph_text_to_kmhr(elementID)
-       {
-            var km_units_text = "km/h";
-
-            $(elementID).html(km_units_text);
+             $(elementID).html(mph_units_text);
 
         }
 
@@ -55,23 +88,29 @@
             var wind_values = ['#current_wind', '#day1_wind', '#day2_wind', '#day3_wind', '#day4_wind', '#day5_wind', '#day6_wind', '#day7_wind'];
             var wind_units = ['#current_wind_units', '#day1_wind_units', '#day2_wind_units', '#day3_wind_units', '#day4_wind_units', '#day5_wind_units', '#day6_wind_units', '#day7_wind_units'];
 
-            var farenheit = record_starting_values(days);
-            var mph = record_starting_values(wind_values);
-            var mph_text = record_starting_values(wind_units);
+            var farenheit_array = record_starting_values(days);
+            var celsius_array = farenheit_array.slice();
+            celsius_array = farenheit_array_to_celsius_array(celsius_array);
+
+            var mph_array = record_starting_values(wind_values);
+            var kmh_array = mph_array.slice();
+            kmh_array = mph_array_to_kmh_array(kmh_array);
+
 
             $('input:radio').change(function(){
 
                 if(this.value == 'celsius')
                 {
-                    days.forEach(element => farenheit_to_celsius(element));
-                    wind_values.forEach(element => mph_to_km_per_hr(element));
-                    wind_units.forEach(element => change_mph_text_to_kmhr(element));
+                    update_html_with_array_values(days, celsius_array);
+                    update_html_with_array_values(wind_values, kmh_array);
+                    wind_units.forEach(element => change_mph_text_to_kmh(element));
                 }
                 else if (this.value == 'farenheit')
                 {
-                    revert_to_imperial_units(days, farenheit);
-                    revert_to_imperial_units(wind_values, mph);
-                    revert_to_imperial_units(wind_units, mph_text);
+                    update_html_with_array_values(days, farenheit_array);
+                    update_html_with_array_values(wind_values, mph_array);
+                    wind_units.forEach(element => change_kmh_text_to_mph(element));
+                    
                 }
             });
         });

@@ -183,7 +183,6 @@ def generate_formatted_per_day_weather_data(forecast_response_json):
 
     return days
 
-
 def generate_formatted_per_hour_weather_data(forecast_response_json):
     per_hour_weather_json = forecast_response_json["data"]
 
@@ -192,6 +191,7 @@ def generate_formatted_per_hour_weather_data(forecast_response_json):
     for i in range(24):
         hours[i]["timestamp_local"] = get_timestamp_local_time(per_hour_weather_json[i]["timestamp_local"])
         hours[i]["current_temp"] = round(per_hour_weather_json[i]["temp"])
+        hours[i]["current_temp_celsius"] = round( ((per_hour_weather_json[i]["temp"]) - 32) * (5/9) ) 
 
     return hours
 
@@ -207,7 +207,8 @@ def update_current_day_formatted_weather_data(per_day_weather_data, current_resp
 
 
 def generate_current_weather_data(current_response_json):
-    current_weather = {"current_temp": int(current_response_json["data"][0]["temp"]),
+    current_weather = {"current_temp": round(current_response_json["data"][0]["temp"]),
+                        "current_temp_celsius": round((current_response_json["data"][0]["temp"] - 32) * (5/9)),
                        "precip_chance": current_response_json["data"][0]["precip"],
                        "weather_description": current_response_json["data"][0]["weather"]["description"],
                        "weather_icon": current_response_json["data"][0]["weather"]["icon"],
@@ -216,21 +217,6 @@ def generate_current_weather_data(current_response_json):
                        "lat": current_response_json["data"][0]["lat"]}
 
     return current_weather
-
-
-
-def generate_current_weather_data(current_response_json):
-    current_weather = {"current_temp": int(current_response_json["data"][0]["temp"]),
-                       "precip_chance": current_response_json["data"][0]["precip"],
-                       "weather_description": current_response_json["data"][0]["weather"]["description"],
-                       "weather_icon": current_response_json["data"][0]["weather"]["icon"],
-                       "weather_code": current_response_json["data"][0]["weather"]["code"],
-                       "lon": current_response_json["data"][0]["lon"],
-                       "lat": current_response_json["data"][0]["lat"]}
-
-    return current_weather
-
-
 
 def get_api_returned_location_info(response_json):
     # "city_name"   represents the name of the city
