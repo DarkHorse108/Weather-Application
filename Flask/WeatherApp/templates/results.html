@@ -207,19 +207,31 @@
                             labels: [{% for item in hourly %}
                                     "{{item.timestamp_local}}",
                                     {% endfor %}],
-                            datasets: [{
-                                //label: 'Temperature',
+                            datasets: [
+                            {
+                                label: 'F\xB0 (click)',
                                 data: [{% for temp in hourly %}
                                     "{{temp.current_temp}}",
                                     {% endfor %}],
                                 backgroundColor: [
-                                    'rgba(179,205,224, 0.2)'
+                                    'rgba(255,205,224, 0.2)'
                                 ],
                                 borderColor: [
-                                    'rgba(100,151,177, 0.8)'
+                                    'rgba(155,151,177, 0.8)'
                                 ],
                                 borderWidth: 1
-                            }]
+                            },
+                            {
+                            	label: 'C\xB0 (click)',
+                            	data: [{% for temp in hourly %}
+                                    "{{temp.current_temp_celsius}}",
+                                    {% endfor %}],
+                                backgroundColor: 
+                                ['rgba(160,205,224, 0.2)'],
+                                borderColor:
+                                ['rgba(100,151,177, 0.8)'],
+                                borderWidth: 1
+                            },]
                         },
                         options: {
                             plugins: {
@@ -233,8 +245,43 @@
                                         }
                                 },
                             legend: {
-                                display: false
-                            },
+        						position: 'top',
+        					labels: {
+          						fontColor: '#ffffff'
+        						},
+        					onHover: function(event, legendItem) {
+          					document.getElementById("myChart").style.cursor = 'pointer';
+        					},
+        					onClick: function(e, legendItem) {
+          					var index = legendItem.datasetIndex;
+          					var ci = this.chart;
+          					var alreadyHidden = (ci.getDatasetMeta(index).hidden === null) ? false : ci.getDatasetMeta(index).hidden;
+
+          					ci.data.datasets.forEach(function(e, i) {
+            				var meta = ci.getDatasetMeta(i);
+
+           					if (i !== index) {
+              				if (!alreadyHidden) {
+                			meta.hidden = meta.hidden === null ? !meta.hidden : null;
+              				} else if (meta.hidden === null) {
+                				meta.hidden = true;
+              				}
+            				} else if (i === index) {
+             			 	meta.hidden = null;
+            				}
+          					});
+
+          					ci.update();
+        					},
+      						},
+      						tooltips: {
+        					custom: function(tooltip) {
+         					if (!tooltip.opacity) {
+            				document.getElementById("myChart").style.cursor = 'default';
+            				return;
+          					}
+        					}
+      						},
                             title: {
                                 display: true,
                                 text: "Hourly Temperature Today",
@@ -262,7 +309,12 @@
                                 }]
                             }
                         }
+
                     });
+
+				 	window.onload = function() {
+    				window.myRadar = new Chart(document.getElementById("myChart"), config);
+  					};
                 </script>
             </div>
     </div>
@@ -295,7 +347,7 @@
                     shadowSize: [75, 75]
                 });
 
-                L.marker([{{ weather_point.lat }}, {{ weather_point.lon }}], {icon: weather_icon}).addTo(map).bindPopup('{{ weather_point.current_temp }}°').openPopup();
+                L.marker([{{ weather_point.lat }}, {{ weather_point.lon }}], {icon: weather_icon}).addTo(map).bindPopup('{{ weather_point.current_temp }}°F / {{ weather_point.current_temp_celsius }}°C').openPopup();
             {% endfor %}
         </script>  
         </div>
