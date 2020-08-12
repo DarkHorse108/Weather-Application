@@ -234,6 +234,7 @@
                             },]
                         },
                         options: {
+                            responsive:true,
                             plugins: {
                             // Change options for ALL labels of THIS CHART
                                 datalabels: {
@@ -313,7 +314,7 @@
                     });
 
 				 	window.onload = function() {
-    				window.myRadar = new Chart(document.getElementById("myChart"), config);
+    				window.myChart = new Chart(document.getElementById("myChart"), config);
   					};
                 </script>
             </div>
