@@ -209,7 +209,7 @@
                                     {% endfor %}],
                             datasets: [
                             {
-                                label: 'F\xB0 (click)',
+                                label: '\xB0F (click)',
                                 data: [{% for temp in hourly %}
                                     "{{temp.current_temp}}",
                                     {% endfor %}],
@@ -222,7 +222,7 @@
                                 borderWidth: 1
                             },
                             {
-                            	label: 'C\xB0 (click)',
+                            	label: '\xB0C (click)',
                             	data: [{% for temp in hourly %}
                                     "{{temp.current_temp_celsius}}",
                                     {% endfor %}],
