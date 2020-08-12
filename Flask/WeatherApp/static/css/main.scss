@@ -167,38 +167,7 @@ form {
 	#curr-date {
 		padding-bottom: 15%;
 	}
-	.nav-tabs {
-		.nav-link.active {
-			background-color: #1A355D;
-			color: rgba(255, 255, 255, 0.8);
-			cursor: pointer;
-			border-color: #1A355D;
-			border-top-left-radius: 10px;
-			border-top-right-radius: 10px;
-		}
-		.show {
-			>.nav-link {
-				background-color: #1A355D;
-				color: rgba(255, 255, 255, 0.8);
-				cursor: pointer;
-				border-color: #1A355D;
-				border-top-left-radius: 10px;
-				border-top-right-radius: 10px;
-			}
-		}
-	}
-	#pills-tab {
-		background-color: #002248;
-		border-radius: 10px;
-		border-color: #1A355D;
-	}
-	.nav-link {
-		&:hover {
-			background-color: rgba(255, 255, 255, 0.8);
-			border-color: #03396c;
-			color: #03396c;
-		}
-	}
+	
 	a {
 		color: white;
 	}
@@ -312,6 +281,39 @@ form {
 	}	
 }
 
+.nav-tabs {
+	.nav-link.active {
+		background-color: #1A355D;
+		color: rgba(255, 255, 255, 0.8);
+		cursor: pointer;
+		border-color: #1A355D;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+	}
+	.show {
+		>.nav-link {
+			background-color: #1A355D;
+			color: rgba(255, 255, 255, 0.8);
+			cursor: pointer;
+			border-color: #1A355D;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+		}
+	}
+}
+#pills-tab {
+	background-color: #002248;
+	border-radius: 10px;
+	border-color: #1A355D;
+}
+.nav-link {
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.8);
+		border-color: #03396c;
+		color: #03396c;
+	}
+}
+
 .weather-graph-box {
 	width: 80%;
 	background-color: #1A355D;
@@ -321,7 +323,13 @@ form {
 	margin-bottom: 1%;
 	margin-left: auto;
 	margin-right: auto;
-	padding: 1%;
+	/*padding: 1%;*/
+	a {
+		color: white;
+	}
+	.graphDiv {
+		padding: 1%;
+	}
 }
 /*
 #middle-background-image {

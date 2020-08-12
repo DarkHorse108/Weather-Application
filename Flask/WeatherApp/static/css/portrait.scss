@@ -130,7 +130,13 @@ input[type=text] {
 	padding: 1%;
 	font-size: x-small;
 	h5 {
-		font-size: 17px;
+		font-size: 14px;
+    }
+    a {
+        color: white;
+    }
+    .graphDiv {
+		padding: 1%;
 	}
 }
 
@@ -139,7 +145,7 @@ input[type=text] {
 	text-align: center;
 	i {
 		padding-top: 15%;
-		font-size: 120px;
+		font-size: 110px;
 	}
 	p {
 		margin: 0px;
@@ -172,38 +178,7 @@ input[type=text] {
     #curr-date {
         padding-bottom: 1%;
     }
-    .nav-tabs {
-        .nav-link.active {
-            background-color: #1A355D;
-            color: rgba(255, 255, 255, 0.8);
-            cursor: pointer;
-            border-color: #1A355D;
-        }
-        .show {
-            >.nav-link {
-                background-color: #1A355D;
-                color: rgba(255, 255, 255, 0.8);
-                cursor: pointer;
-                border-color: #1A355D;
-            }
-        }
-    }
-    #pills-tab {
-        background-color: #002248;
-        border-radius: 10px;
-        border-color: #1A355D;
-        font-size: 13px;
-        padding: 0px;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-    .nav-link {
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-color: #03396c;
-            color: #03396c;
-        }
-    }
+    
     a {
         color: white;
     }
@@ -214,7 +189,7 @@ input[type=text] {
             flex: 1;
             margin-left: 1%;
             margin-top: 3%;
-            font-size: 17px;
+            font-size: 14px;
         }
         img {
             justify-content: center;
@@ -328,7 +303,38 @@ input[type=text] {
         }
     }
 }
-
+.nav-tabs {
+    .nav-link.active {
+        background-color: #1A355D;
+        color: rgba(255, 255, 255, 0.8);
+        cursor: pointer;
+        border-color: #1A355D;
+    }
+    .show {
+        >.nav-link {
+            background-color: #1A355D;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            border-color: #1A355D;
+        }
+    }
+}
+#pills-tab {
+    background-color: #002248;
+    border-radius: 10px;
+    border-color: #1A355D;
+    font-size: 13px;
+    padding: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.nav-link {
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-color: #03396c;
+        color: #03396c;
+    }
+}
 
 /*
 #middle-background-image {

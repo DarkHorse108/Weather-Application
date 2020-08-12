@@ -210,41 +210,7 @@ input[type=text] {
     #curr-date {
         padding-bottom: 15%;
     }
-    .nav-tabs {
-        .nav-link.active {
-            background-color: #1A355D;
-            color: rgba(255, 255, 255, 0.8);
-            cursor: pointer;
-            border-color: #1A355D;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-        .show {
-            >.nav-link {
-                background-color: #1A355D;
-                color: rgba(255, 255, 255, 0.8);
-                cursor: pointer;
-                border-color: #1A355D;
-                border-top-left-radius: 10px;
-                border-top-right-radius: 10px;
-            }
-        }
-    }
-    #pills-tab {
-        background-color: #002248;
-        border-radius: 10px;
-        border-color: #1A355D;
-        font-size: 13px;
-        width: 100%;
-        padding: 0px;
-    }
-    .nav-link {
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-color: #03396c;
-            color: #03396c;
-        }
-    }
+    
     a {
         color: white;
     }
@@ -358,6 +324,41 @@ input[type=text] {
     }
 }
 
+.nav-tabs {
+    .nav-link.active {
+        background-color: #1A355D;
+        color: rgba(255, 255, 255, 0.8);
+        cursor: pointer;
+        border-color: #1A355D;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .show {
+        >.nav-link {
+            background-color: #1A355D;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            border-color: #1A355D;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+    }
+}
+#pills-tab {
+    background-color: #002248;
+    border-radius: 10px;
+    border-color: #1A355D;
+    font-size: 13px;
+    width: 100%;
+    padding: 0px;
+}
+.nav-link {
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-color: #03396c;
+        color: #03396c;
+    }
+}
 
 .weather-graph-box {
 	width: 97%;
@@ -371,6 +372,12 @@ input[type=text] {
 	padding: 1%;
 	h5 {
 		font-size: 15px;
+    }
+    a {
+        color: white;
+    }
+    .graphDiv {
+		padding: 1%;
 	}
 }
 /* WILL DELETE LATER IF WE DON'T USE IT
