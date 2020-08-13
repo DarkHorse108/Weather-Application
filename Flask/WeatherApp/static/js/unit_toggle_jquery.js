@@ -97,6 +97,8 @@
             kmh_array = mph_array_to_kmh_array(kmh_array);
 
 
+
+
             $('input:radio').change(function(){
 
                 if(this.value == 'celsius')
@@ -104,12 +106,17 @@
                     update_html_with_array_values(days, celsius_array);
                     update_html_with_array_values(wind_values, kmh_array);
                     wind_units.forEach(element => change_mph_text_to_kmh(element));
+                    $('#pills-fahr').removeClass('active');
+                    $('#pills-cel').addClass('active');
+                    
                 }
                 else if (this.value == 'farenheit')
                 {
                     update_html_with_array_values(days, farenheit_array);
                     update_html_with_array_values(wind_values, mph_array);
                     wind_units.forEach(element => change_kmh_text_to_mph(element));
+                    $('#pills-cel').removeClass('active');
+                    $('#pills-fahr').addClass('active');
                     
                 }
             });
