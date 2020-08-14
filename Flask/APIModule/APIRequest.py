@@ -198,7 +198,6 @@ def generate_formatted_per_hour_weather_data(forecast_response_json):
 
 def update_current_day_formatted_weather_data(per_day_weather_data, current_response_json):
     per_day_weather_data[0]["current_temp"] = int(current_response_json["data"][0]["temp"])
-    per_day_weather_data[0]["precip_chance"] = current_response_json["data"][0]["precip"]
     per_day_weather_data[0]["weather_description"] = current_response_json["data"][0]["weather"]["description"]
     per_day_weather_data[0]["weather_icon"] = current_response_json["data"][0]["weather"]["icon"]
     per_day_weather_data[0]["weather_code"] = current_response_json["data"][0]["weather"]["code"]
@@ -209,7 +208,6 @@ def update_current_day_formatted_weather_data(per_day_weather_data, current_resp
 def generate_current_weather_data(current_response_json):
     current_weather = {"current_temp": round(current_response_json["data"][0]["temp"]),
                         "current_temp_celsius": round((current_response_json["data"][0]["temp"] - 32) * (5/9)),
-                       "precip_chance": current_response_json["data"][0]["precip"],
                        "weather_description": current_response_json["data"][0]["weather"]["description"],
                        "weather_icon": current_response_json["data"][0]["weather"]["icon"],
                        "weather_code": current_response_json["data"][0]["weather"]["code"],
