@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <link href="../static/css/main.css" rel="stylesheet" type="text/css" media="screen and (min-width: 1001px)">
+    <link href="../static/css/portrait.css" rel="stylesheet" type="text/css" media="screen and (max-width: 420px)">
+    <link href="../static/css/landscape.css" rel="stylesheet" type="text/css" media="screen and (min-width: 421px) and (max-width: 1000px)">
+
+    <link rel='icon' href="../static/img/favicon.ico" type='image/x-icon'>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a href="/"><img src="../static/img/logo.JPG" alt="logo"/></a>
+        </nav>
+    </header>
+    <div id="homepic">
+        <div id="location-box">
+            <h4>Choose a location:</h4>
+            
+            <p>Please enter the name of the city you would like weather information from below, then press submit. 
+                For more accurate results, include the country (and state, if in the U.S.).</p>
+            <!---FORM SECTION-->
+            <form class="form-inline" method="POST" action="/results#main-container">
+                <div class="form-row align-items-center">
+                    <div class="col-auto" id="center-por">
+                        <input type="text" class="form-control mb-2" placeholder="City (required)" id="cityInput" name="cityInput">
+                    </div>
+                    <div class="col-auto" id="center-por">
+                        <input type="text" class="form-control mb-2" placeholder="Country (optional)" id="countryInput" name="countryInput">
+                    </div>
+                    <div class="col-auto" id="center-por">
+                        <input type="text" class="form-control mb-2" placeholder="U.S. State (optional)" id="stateInput" name="stateInput">
+                    </div>
+                    <div class="col-auto" id="center-por">
+                        <input type="submit" class="btn btn-primary mb-2 "value="submit">
+                    </div>
+                </div>
+            </form>
+            <div class="alert alert-warning">
+                        
+                        <strong>Sorry! The location you entered could not be found, try again with the name of the country included and the state (if in the U.S.).</strong>                         
+            </div>           
+        </div>
+    </div>
+
+    <footer>
+    <ul>
+        <li><strong>Image Sources:</strong></li>
+        <li>Earth and satellite: Photo by NASA on Unsplash.</li>
+        <li>Footer background: Photo by Leon Contreras on Unsplash. </li>
+      </ul> 
+</footer>
+</body>
+</html>
