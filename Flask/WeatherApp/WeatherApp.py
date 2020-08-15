@@ -19,6 +19,11 @@ WEATHER_GRID_SPACING = 0.5
 def index():
     
      return render_template('home.html')
+
+@WeatherApp.route('/error', methods=['GET', 'POST'])
+def error():
+    
+     return render_template('error.html')
   
 @WeatherApp.route('/results', methods=['GET', 'POST'])
 def results():
@@ -101,7 +106,7 @@ def results():
 
         # If the city name was not valid, or if the API response indicates that weather information could not be
         # retrieved using the location information we supplied it, return the user to the home page to start again
-        return redirect('/')
+        return redirect('/error')
 
 # To start flask locally
 if __name__ == '__main__':
