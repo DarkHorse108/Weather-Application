@@ -10,7 +10,7 @@ Edit: View a working example of this web application here: http://adrift108.pyth
 
 2. In your new folder, enter the following command:
 
-git clone https://github.com/DarkHorse108/CS361-Slackers-WeatherApp
+git clone https://github.com/DarkHorse108/Weather-Application
 
 3. Sign up for a Weatherbit.io API key at: https://www.weatherbit.io/
 
