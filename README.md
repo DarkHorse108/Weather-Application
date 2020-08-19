@@ -1,7 +1,7 @@
 # CS361-Slackers-WeatherApp
-CS361 W2020 Team Slackers Python Weather Web Application
+Weather Application expanded upon from CS361 W2020 Team Slackers Python Weather Web Application
 
-To run this web application, please follow the instructions below. Note that these instructions are for a linux environment and reflect running the application in OSU ENGR's flip servers.
+To run this web application, please follow the instructions below. 
 
 Edit: View a working example of this web application here: http://adrift108.pythonanywhere.com/
 
@@ -35,8 +35,4 @@ export FLASK_APP=run.py
 
 python -m flask run -h 0.0.0.0 -p YOUR_PORT_NUMBER --reload
 
-9. The application should now be running and viewable using your browser on your local host at the portnumber you specified. If you are using one of the OSU ENGR flip servers, *you will need to be connected to the OSU VPN*, and then the address your application is on would be:
-
-http://flipN.engr.oregonstate.edu:YOUR_PORT_NUMBER
-
-where flipN is which flip server (1, 2, 3) you are running the application on. i.e. http://flip3.engr.oregonstate.edu:YOUR_PORT_NUMBER
+9. The application should now be running and viewable using your browser on your local host at the portnumber you specified. 
