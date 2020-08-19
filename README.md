@@ -1,5 +1,6 @@
-# CS361-Slackers-WeatherApp
-Weather Application expanded upon from CS361 W2020 Team Slackers Python Weather Web Application
+# Weather Application
+
+Weather Application expanded upon from CS361 W2020 Team Slackers Python Weather Web Application.
 
 To run this web application, please follow the instructions below. 
 
