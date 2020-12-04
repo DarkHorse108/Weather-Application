@@ -4,8 +4,6 @@ Weather Application expanded upon from CS361 W2020 Team Slackers Python Weather 
 
 To run this web application, please follow the instructions below. 
 
-Edit: View a working example of this web application here: http://adrift108.pythonanywhere.com/
-
 1. Create a new folder to hold the repository files, i.e. mkdir WeatherApplication
 
 2. In your new folder, enter the following command:
